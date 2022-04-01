@@ -24,14 +24,22 @@ class GradesRepository implements GradesInterface
 
     public function store($request)
     {
-        $grade = new grade();
-        $grade->name = [
-            'en' => $request->name_en,
-            'ar' => $request->name
-        ];
-        $grade->notes = $request->notes;
+        try{
+            $grade = new grade();
+            $grade->name = [
+                'en' => $request->name_en,
+                'ar' => $request->name
+            ];
+            $grade->notes = $request->notes;
 
-        $grade->save();
-        return redirect(route('grades.index'));
+            $grade->save();
+            toastr()->success(trans('messages.success'));
+            return redirect(route('grades.index'));
+        }
+        catch(\Exception $e) {
+            return redirect()->back()->withErrors(['errors' =>$e->getMessage()]);
+
+        }
+
     }
 }

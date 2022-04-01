@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('css')
-
+@toastr_css
 @endsection
 
 @section('title')
@@ -62,8 +62,8 @@ Grades
                                 <td>{{$counter++}}</td>
                                 <td>{{$grade->name}}</td>
                                 <td>{{$grade->notes}}</td>
-                                <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit{{ $grade->id }}" title="{{ trans('Grades.Edit') }}"><i class="fa fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $grade->id }}" title="{{ trans('Grades.Delete') }}"><i class="fa fa-trash"></i></button>
+                                <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit{{ $grade->id }}" title="{{ trans('grades.Edit Grade') }}"><i class="fa fa-edit"></i></button>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $grade->id }}" title="{{ trans('grades.Delete Grade') }}"><i class="fa fa-trash"></i></button>
                                 </td>
 
                             </tr>
@@ -133,5 +133,6 @@ Grades
 <!-- row closed -->
 @endsection
 @section('js')
-
+@toastr_js
+@toastr_render
 @endsection

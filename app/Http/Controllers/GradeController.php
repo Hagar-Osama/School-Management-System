@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\GradesInterface;
 use App\Http\Requests\AddGradesRequest;
+use App\Http\Requests\DeleteGradesRequest;
+use App\Http\Requests\UpdateGradesRequest;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
@@ -24,6 +26,16 @@ class GradeController extends Controller
     public function store(AddGradesRequest $request)
     {
         return $this->gradesInterface->store($request);
+    }
+
+    public function update(UpdateGradesRequest $request)
+    {
+        return $this->gradesInterface->update($request);
+    }
+
+    public function destroy(DeleteGradesRequest $request)
+    {
+        return $this->gradesInterface->destroy($request);
     }
 
 }

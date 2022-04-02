@@ -24,7 +24,7 @@ class GradesRepository implements GradesInterface
 
     public function store($request)
     {
-        try{
+        try {
             $grade = new grade();
             $grade->name = [
                 'en' => $request->name_en,
@@ -35,11 +35,36 @@ class GradesRepository implements GradesInterface
             $grade->save();
             toastr()->success(trans('messages.success'));
             return redirect(route('grades.index'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
-        catch(\Exception $e) {
-            return redirect()->back()->withErrors(['errors' =>$e->getMessage()]);
+    }
 
+    public function update($request)
+    {
+        try {
+            $grade = $this->GetGradeById($request->grade_id);
+            $grade->update([
+                $grade->name = [
+                    'en' => $request->name_en,
+                    'ar' => $request->name
+                ],
+                $grade->notes = $request->notes,
+            ]);
+
+            $grade->update();
+            toastr()->success(trans('messages.update'));
+            return redirect(route('grades.index'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
+    }
 
+    public function destroy($request)
+    {
+        $grade = $this->GetGradeById($request->grade_id);
+        $grade->delete();
+        toastr()->error(trans('messages.delete'));
+        return redirect(route('grades.index'));
     }
 }

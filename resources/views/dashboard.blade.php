@@ -1,3 +1,6 @@
+@section('title')
+{{trans('dashboardPage.Dashboard Page Title')}}
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +39,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4 class="mb-0"> Dashboard</h4>
+                        <h4 class="mb-0"> {{trans('dashboardPage.Dashboard')}}</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">

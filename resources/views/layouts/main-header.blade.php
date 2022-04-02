@@ -3,7 +3,7 @@
         <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <!-- logo -->
             <div class="text-left navbar-brand-wrapper">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="{{asset('assets/images/logo-dark.png')}}" alt=""></a>
+                <a class="navbar-brand brand-logo" href="{{route('admin.index')}}"><img src="{{asset('assets/images/logo-dark.png')}}" alt=""></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('assets/images/logo-icon-dark.png')}}" alt=""></a>
             </div>
             <!-- Top bar left -->
@@ -24,8 +24,14 @@
             <!-- top bar right -->
             <ul class="nav navbar-nav ml-auto">
                 <div class="dropdown">
-                    <button class="btn btn-success mt-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Lang
+                    <button class="button x-small mt-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if (App::getLocale() == 'ar')
+                        {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        <img src="{{ URL::asset('assets/images/flags/EG.png') }}" alt="">
+                        @else
+                        {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        <img src="{{ URL::asset('assets/images/flags/US.png') }}" alt="">
+                        @endif
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -87,7 +93,7 @@
                 </li>
                 <li class="nav-item dropdown mr-30">
                     <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{asset('assets/images/profile-avatar.jpg')}}" alt="avatar">
+                        <img src="{{asset('assets/images/6.jpg')}}" alt="avatar">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header">
@@ -107,7 +113,7 @@
                         <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
                         <form method="post" action="{{route('signout')}}">
                             @csrf
-                        <button class="dropdown-item"><i class="text-danger ti-unlock"></i>Logout</button>
+                            <button class="dropdown-item"><i class="text-danger ti-unlock"></i>Logout</button>
                         </form>
 
                     </div>

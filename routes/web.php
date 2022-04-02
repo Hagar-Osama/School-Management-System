@@ -26,6 +26,9 @@ Route::group(
         Route::group(['prefix' => 'grades'], function(){
             Route::get('/', [GradeController::class, 'index'])->name('grades.index');
             Route::post('/store', [GradeController::class, 'store'])->name('grades.store');
+            Route::put('/update', [GradeController::class, 'update'])->name('grades.update');
+            Route::delete('/delete', [GradeController::class, 'destroy'])->name('grades.destroy');
+
 
         });
     }

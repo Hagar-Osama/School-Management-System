@@ -14,5 +14,6 @@ return [
     'Delete Warning' => 'Are you sure you want to delete this row ?',
     'Close' => 'Close',
     'Submit' => 'Submit',
+    'Exists' => 'Field already exists',
 
 ];

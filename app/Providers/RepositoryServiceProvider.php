@@ -22,6 +22,10 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Http\Interfaces\GradesInterface",
             "App\Http\Repositories\GradesRepository"
         );
+        $this->app->bind(
+            "App\Http\Interfaces\ClassesInterface",
+            "App\Http\Repositories\ClassesRepository"
+        );
     }
 
     /**

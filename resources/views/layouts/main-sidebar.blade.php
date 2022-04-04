@@ -35,8 +35,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="classes-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="calendar.html">Events Calendar </a> </li>
-                            <li> <a href="calendar-list.html">List Calendar</a> </li>
+                            <li> <a href="{{route('classes.index')}}">{{__('main-sidebar.Classes List')}}</a> </li>
                         </ul>
                     </li>
                     <!-- menu sections-->

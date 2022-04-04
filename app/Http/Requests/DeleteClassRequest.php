@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddGradesRequest extends FormRequest
+class DeleteClassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class AddGradesRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,16 +24,7 @@ class AddGradesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'english name' => 'required',
-            'notes' => 'min:5|max:100'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.required' => trans('validation.required'),
+            //
         ];
     }
 }

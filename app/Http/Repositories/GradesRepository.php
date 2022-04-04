@@ -5,6 +5,7 @@ namespace App\Http\Repositories;
 use App\Models\Grade;
 use App\Http\Interfaces\GradesInterface;
 use App\Http\Traits\GradesTraits;
+use Exception;
 
 class GradesRepository implements GradesInterface
 {
@@ -24,6 +25,9 @@ class GradesRepository implements GradesInterface
 
     public function store($request)
     {
+        if($this->gradesModel::where('name->ar', $request->name)->orWhere('name->en', $request->name_en)->exists()) {
+            return redirect()->back()->withErrors(trans('grades.Exists'));
+        }
         try {
             $grade = new grade();
             $grade->name = [
@@ -35,7 +39,7 @@ class GradesRepository implements GradesInterface
             $grade->save();
             toastr()->success(trans('messages.success'));
             return redirect(route('grades.index'));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
     }
@@ -55,7 +59,7 @@ class GradesRepository implements GradesInterface
             $grade->update();
             toastr()->success(trans('messages.update'));
             return redirect(route('grades.index'));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
     }

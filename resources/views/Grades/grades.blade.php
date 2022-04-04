@@ -192,7 +192,7 @@ Grades
                             <div class="col">
                                 <label for="Name" class="mr-sm-2">{{ trans('Grades.Grade Name_ar') }}
                                     :</label>
-                                <input id="Name" type="text" name="name" class="form-control">
+                                <input id="Name" type="text" name="name" class="form-control" required>
                             </div>
                             <div class="col">
                                 <label for="Name_en" class="mr-sm-2">{{ trans('Grades.Grade Name_en') }}

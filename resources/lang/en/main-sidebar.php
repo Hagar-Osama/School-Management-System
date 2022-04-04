@@ -6,6 +6,7 @@ return [
     'Grades List' => 'Grades List',
     'Grades' => 'Grades ',
     'Classes'=>'Classes',
+    'Classes List' => 'Classes List',
     'Sections'=>'Sections',
     'Students'=>'Students',
     'Teachers'=>'Teachers',

@@ -24,10 +24,19 @@ class UpdateGradesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'name_en' => 'required',
+            'name' => 'required|unique:grades,name->ar,'.$this->grade_id,
+            'name_en' => 'required|unique:grades,name->en,'.$this->grade_id,
             'notes' => 'min:5|max:100',
             'grade_id' => 'required|exists:grades,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => trans('validation.required'),
+            'name_en.required' => trans('validation.required'),
+           
         ];
     }
 }

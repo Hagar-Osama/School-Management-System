@@ -24,15 +24,18 @@ class AddClassRequest extends FormRequest
     public function rules()
     {
         return [
-            'class_lists.*.name' => 'required',
-            'class_lists.*.name_en' => 'required',
+            'class_lists.*.name' => 'required|unique:classes,name->ar',
+            'class_lists.*.name_en' => 'required|unique:classes,name->en',
             'class_lists.*.grade_id' => 'required|exists:grades,id'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => trans('validation.required'),
+            'class_lists.*.name.required' => trans('validation.required'),
+            'class_lists.*.name_en.required' => trans('validation.required'),
+            'class_lists.*.name.unique' => trans('validation.unique'),
+            'class_lists.*.name_en.unique' => trans('validation.unique'),
         ];
     }
 }

@@ -13,7 +13,7 @@ class UpdateClassRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class UpdateClassRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:classes,name->ar,'.$this->class_id,
+            'name_en' => 'required|unique:classes,name->en,'.$this->class_id,
+            'grade_id' => 'required|exists:grades,id',
+            'class_id' => 'required|exists:classes,id'
+
+        
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => trans('validation.required'),
+            'name_en.required' => trans('validation.required'),
+            'grade_id.required' => trans('validation.required'),
+            'class_id.required' => trans('validation.required'),
         ];
     }
 }

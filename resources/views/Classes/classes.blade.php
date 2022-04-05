@@ -102,10 +102,11 @@ Grades
                                                 <div class="form-group">
                                                     <label for="exampleFormControlTextarea1">{{ trans('Grades.Grade Name') }}
                                                         :</label>
-                                                    <select name="grade_id" hidden disabled selected value>Select an Option</select>
-                                                    @foreach ($grades as $grade)
-                                                    <option value="{{$grade->id}}" {{$class->grade_id == $grade->id ? 'selected' : ''}}>{{$grade->name}}</option>
-                                                    @endforeach
+                                                    <select name="grade_id" class="custom-select">
+                                                        @foreach ($grades as $grade)
+                                                        <option value=" {{$grade->id}}" {{$class->grade_id == $grade->id ? 'selected' : ""}}>{{$grade->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <br><br>
 

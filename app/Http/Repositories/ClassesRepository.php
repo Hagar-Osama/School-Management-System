@@ -50,6 +50,11 @@ class ClassesRepository implements ClassesInterface
     public function update($request)
     {
         try {
+            $class = $this->GetClassById($request->class_id);
+            $class->update([
+                $class->name =['ar' => $request->name, 'en' => $request->name_en],
+                $class->grade_id = $request->grade_id
+            ]);
 
             toastr()->success(trans('messages.update'));
             return redirect(route('classes.index'));
@@ -60,7 +65,8 @@ class ClassesRepository implements ClassesInterface
 
     public function destroy($request)
     {
-
+        $class = $this->GetClassById($request->class_id);
+        $class->delete();
         toastr()->error(trans('messages.delete'));
         return redirect(route('classes.index'));
     }

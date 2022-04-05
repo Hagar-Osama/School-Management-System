@@ -28,4 +28,12 @@ class DeleteGradesRequest extends FormRequest
 
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'grade_id.required' => trans('validation.required'),
+           
+        ];
+    }
 }

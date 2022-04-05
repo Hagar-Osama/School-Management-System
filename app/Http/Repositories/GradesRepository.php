@@ -25,9 +25,9 @@ class GradesRepository implements GradesInterface
 
     public function store($request)
     {
-        if($this->gradesModel::where('name->ar', $request->name)->orWhere('name->en', $request->name_en)->exists()) {
-            return redirect()->back()->withErrors(trans('grades.Exists'));
-        }
+        // if($this->gradesModel::where('name->ar', $request->name)->orWhere('name->en', $request->name_en)->exists()) {
+        //     return redirect()->back()->withErrors(trans('grades.Exists'));
+        // }
         try {
             $grade = new grade();
             $grade->name = [

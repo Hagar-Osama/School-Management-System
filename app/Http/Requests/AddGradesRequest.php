@@ -24,8 +24,8 @@ class AddGradesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'english name' => 'required',
+            'name' => 'required|unique:grades,name->ar',
+            'name_en' => 'required|unique:grades,name->en',
             'notes' => 'min:5|max:100'
         ];
     }
@@ -34,6 +34,12 @@ class AddGradesRequest extends FormRequest
     {
         return [
             'name.required' => trans('validation.required'),
+            'name_en.required' => trans('validation.required'),
+            'name.unique' => trans('validation.unique'),
+            'name_en.unique' => trans('validation.unique'),
+
+
+
         ];
     }
 }

@@ -13,7 +13,7 @@ class DeleteClassRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class DeleteClassRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'class_id' => 'required|exists:classes,id'
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'class_id.required' => trans('validation.required'),
         ];
     }
 }

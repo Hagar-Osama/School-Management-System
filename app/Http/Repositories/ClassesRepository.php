@@ -70,4 +70,24 @@ class ClassesRepository implements ClassesInterface
         toastr()->error(trans('messages.delete'));
         return redirect(route('classes.index'));
     }
+
+    public function deleteAll($request)
+    {
+        $delete_all = explode(',', $request->delete_all_id);
+        //whereIn used in array.
+        $this->classModel::whereIn('id', $delete_all)->delete();
+        toastr()->error(trans('messages.delete'));
+        return redirect(route('classes.index'));
+
+    }
+
+    public function filterClasses($request)
+    {
+        $grades = $this->getAllGrades();
+        $search = $this->classModel::select('*')->where('grade_id', $request->grade_id)->get();
+        return view('Classes.classes', compact('grades'))->withDetails($search);
+
+    }
+
+   
 }

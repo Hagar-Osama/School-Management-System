@@ -36,6 +36,8 @@ Route::group(
             Route::post('/store', [ClassController::class, 'store'])->name('classes.store');
             Route::put('/update', [ClassController::class, 'update'])->name('classes.update');
             Route::delete('/delete', [ClassController::class, 'destroy'])->name('classes.destroy');
+            Route::delete('/deleteAll', [ClassController::class, 'deleteAll'])->name('classes.deleteAll');
+            Route::post('/filter', [ClassController::class, 'filterClasses'])->name('classes.filter');
         });
     }
 );

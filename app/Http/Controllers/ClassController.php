@@ -38,4 +38,13 @@ class ClassController extends Controller
         return $this->classesInterface->destroy($request);
     }
 
+    public function deleteAll(Request $request)
+    {
+        return $this->classesInterface->deleteAll($request);
+    }
+
+    public function filterClasses(Request $request)
+    {
+        return $this->classesInterface->filterClasses($request);
+    }
 }

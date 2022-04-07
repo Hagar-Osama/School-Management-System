@@ -10,4 +10,8 @@ interface ClassesInterface {
     public function update($request);
 
     public function destroy($request);
+
+    public function deleteAll($request);
+
+    public function filterClasses($request);
 }

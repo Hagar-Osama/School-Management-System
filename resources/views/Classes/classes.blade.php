@@ -44,11 +44,25 @@ Grades
                 <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                     {{ trans('classes.Add Class') }}
                 </button>
+                <button type="button" class="button x-small" id="btn_delete_all">
+                    {{ trans('classes.Checkbox Delete') }}
+                </button>
+
+                <form action="{{ route('classes.filter') }}" method="POST">
+                    @csrf
+                    <select class="selectpicker" data-style="btn-info" name="grade_id" required onchange="this.form.submit()">
+                        <option value="" selected disabled>{{ trans('classes.Search_By_Grade') }}</option>
+                        @foreach ($grades as $grade)
+                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                        @endforeach
+                    </select>
+                </form>
                 <br><br>
                 <div class="table-responsive">
                     <table id="datatable" class="table table-striped table-bordered p-0">
                         <thead>
                             <tr>
+                                <td><input type="checkbox" name="select-all" id="example-select-all" onclick="checkAll('all-boxes', this)"></td>
                                 <th>#</th>
                                 <th>{{trans('classes.Class Name')}}</th>
                                 <th>{{trans('grades.Grade Name')}}</th>
@@ -57,10 +71,15 @@ Grades
                             </tr>
                         </thead>
                         <tbody>
+                            @if(isset($details))
+                            <?php $search = $details; ?>
+                            @else
+                            <?php $search = $classes; ?>
+                            @endif
                             <?php $counter = 1; ?>
-                            @isset($classes)
-                            @foreach($classes as $class)
+                            @foreach($search as $class)
                             <tr>
+                                <td><input type="checkbox" class="all-boxes" value="{{$class->id}}" </td>
                                 <td>{{$counter++}}</td>
                                 <td>{{$class->name}}</td>
                                 <td>{{$class->grade->name}}</td>
@@ -158,10 +177,10 @@ Grades
                                 </div>
                             </div>
                             @endforeach
-                            @endisset
                         </tbody>
                         <tfoot>
                             <tr>
+                                <td><input type="checkbox" name="select-all" id="example-select-all" onclick="checkAll('all-boxes', this)"></td>
                                 <th>#</th>
                                 <th>{{trans('classes.Class Name')}}</th>
                                 <th>{{trans('grades.Grade Name')}}</th>
@@ -254,6 +273,36 @@ Grades
         </div>
     </div>
 
+    <!--   Delete All Classes -->
+    <div class="modal fade" id="delete_all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                        {{ trans('classes.Delete Class') }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="{{route('classes.deleteAll')}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        {{ trans('grades.Delete Warning') }}
+                        <input class="text" type="hidden" id="delete_all_id" name="delete_all_id" value=''>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('classes.Close') }}</button>
+                        <button type="submit" class="btn btn-danger">{{ trans('classes.Submit') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 <!-- row closed -->
@@ -261,4 +310,27 @@ Grades
 @section('js')
 @toastr_js
 @toastr_render
+
+<script type="text/javascript">
+    $(function() {
+        //when i click on the button to delete all classes
+        $("#btn_delete_all").click(function() {
+            //it will be in an array and we will put it in a variable called selected
+            var selected = new Array();
+            //go inside the table whic has id datatable, make for each on these checkboxes  and get me the value of the check box inside the table
+            $("#datatable input[type=checkbox]:checked").each(function() {
+                //take the value of these checkboxes
+                selected.push(this.value);
+            });
+            //if the check box selected
+            if (selected.length > 0) {
+                //1-show the modal
+                $('#delete_all').modal('show')
+                //you have inside the modal input id = delete_all_id,get me the id of the selected items
+                $('input[id="delete_all_id"]').val(selected);
+                //this delete_all_id is an array which has the values of the classes id which wanted to be deleted
+            }
+        });
+    });
+</script>
 @endsection

@@ -8,6 +8,7 @@ return [
     'Add Class' => 'Add Class',
     'Edit Class' => 'Edit Class',
     'Delete Class' => 'Delete Class',
+    'Checkbox Delete' => 'Delete Selected Items',
     'Class Name_en' => 'Class Name In English',
     'Class Name_ar' => 'Class Name In Arabic',
     'Delete Warning' => 'Are you sure you want to delete this row ?',
@@ -15,5 +16,7 @@ return [
     'Submit' => 'Submit',
     'Delete Row' => 'Delete Row',
     'Data Repeater' => 'Another Row',
+    'Search_By_Grade' => 'Search By Grade',
+
 
 ];

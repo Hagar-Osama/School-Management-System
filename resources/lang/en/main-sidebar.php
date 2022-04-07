@@ -8,6 +8,7 @@ return [
     'Classes'=>'Classes',
     'Classes List' => 'Classes List',
     'Sections'=>'Sections',
+    'Sections List' => 'Sections List',
     'Students'=>'Students',
     'Teachers'=>'Teachers',
     'Parents'=>'Parents',

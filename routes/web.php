@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -38,6 +39,10 @@ Route::group(
             Route::delete('/delete', [ClassController::class, 'destroy'])->name('classes.destroy');
             Route::delete('/deleteAll', [ClassController::class, 'deleteAll'])->name('classes.deleteAll');
             Route::post('/filter', [ClassController::class, 'filterClasses'])->name('classes.filter');
+        });
+        ////Sections Routes///
+        Route::group(['prefix' => 'sections'], function(){
+            Route::get('/', [SectionController::class, 'index'])->name('sections.index');
         });
     }
 );

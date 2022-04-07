@@ -11,7 +11,7 @@
                             </div>
                             <div class="clearfix"></div>
                         </a>
-                        
+
                     </li>
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Components </li>
@@ -45,9 +45,8 @@
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="sectionss-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="calendar.html">Events Calendar </a> </li>
-                            <li> <a href="calendar-list.html">List Calendar</a> </li>
+                        <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{route('sections.index')}}">{{trans('main-sidebar.Sections List')}} </a> </li>
                         </ul>
                     </li>
                     <!-- menu item students-->

@@ -36,6 +36,8 @@ class AddClassRequest extends FormRequest
             'class_lists.*.name_en.required' => trans('validation.required'),
             'class_lists.*.name.unique' => trans('validation.unique'),
             'class_lists.*.name_en.unique' => trans('validation.unique'),
+            'class_lists.*.grade_id.required' => trans('validation.required'),
+
         ];
     }
 }

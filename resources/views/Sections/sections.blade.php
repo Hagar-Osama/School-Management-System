@@ -49,10 +49,10 @@
                 <div class="card-body">
                     <div class="accordion gray plus-icon round">
 
-                        @foreach ($gradeSections as $gradeSection)
+                        @foreach ($grades as $grade)
 
                         <div class="acd-group">
-                            <a href="#" class="acd-heading">{{ $gradeSection->name }}</a>
+                            <a href="#" class="acd-heading">{{ $grade->name }}</a>
                             <div class="acd-des">
 
                                 <div class="row">
@@ -77,18 +77,18 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php $i = 0; ?>
-                                                            @foreach ($gradeSection->sections as $section)
+                                                            @foreach ($grade->sections as $section)
                                                             <tr>
                                                                 <?php $i++; ?>
                                                                 <td>{{ $i }}</td>
                                                                 <td>{{ $section->name }}</td>
-                                                                <td>{{ $section->classs->name }}
+                                                                <td>{{ $section->class->name }}
                                                                 </td>
                                                                 <td>
-                                                                    @if ($section->status === 1)
-                                                                    <label class="badge badge-success">{{ trans('Sections_trans.Status_Section_AC') }}</label>
+                                                                    @if ($section->status == 1)
+                                                                    <label class="badge badge-success">{{ trans('Sections.Section Status Active') }}</label>
                                                                     @else
-                                                                    <label class="badge badge-danger">{{ trans('Sections_trans.Status_Section_No') }}</label>
+                                                                    <label class="badge badge-danger">{{ trans('Sections.Section Status Unactive') }}</label>
                                                                     @endif
 
                                                                 </td>
@@ -100,7 +100,7 @@
                                                             </tr>
 
 
-                                                            <!--تعديل قسم جديد -->
+                                                            <!--  Update Section -->
                                                             <div class="modal fade" id="edit{{ $section->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
@@ -114,16 +114,16 @@
                                                                         </div>
                                                                         <div class="modal-body">
 
-                                                                            <form action="" method="POST">
-                                                                                {{ method_field('patch') }}
-                                                                                {{ csrf_field() }}
+                                                                            <form action="{{route('section.update')}}" method="POST">
+                                                                                @method('PUT')
+                                                                                @csrf
                                                                                 <div class="row">
                                                                                     <div class="col">
-                                                                                        <input type="text" name="Name_Section_Ar" class="form-control" value="{{ $section->getTranslation('name', 'ar') }}">
+                                                                                        <input type="text" name="name" class="form-control" value="{{ $section->getTranslation('name', 'ar') }}">
                                                                                     </div>
 
                                                                                     <div class="col">
-                                                                                        <input type="text" name="Name_Section_En" class="form-control" value="{{ $section->getTranslation('name', 'en') }}">
+                                                                                        <input type="text" name="name_en" class="form-control" value="{{ $section->getTranslation('name', 'en') }}">
                                                                                         <input id="id" type="hidden" name="section_id" class="form-control" value="{{ $section->id }}">
                                                                                     </div>
 
@@ -133,13 +133,11 @@
 
                                                                                 <div class="col">
                                                                                     <label for="inputName" class="control-label">{{ trans('grades.Grade Name') }}</label>
-                                                                                    <select name="Grade_id" class="custom-select" onclick="console.log($(this).val())">
+                                                                                    <select name="grade_id" class="custom-select" onclick="console.log($(this).val())">
                                                                                         <!--placeholder-->
-                                                                                        <option value="{{ $grade->id }}">
-                                                                                            {{ $Grade->name }}
-                                                                                        </option>
+
                                                                                         @foreach ($grades as $grade)
-                                                                                        <option value="{{ $grades->id }}">
+                                                                                        <option value="{{ $grade->id }}" {{$section->grade_id == $grade->id ? 'selected' : ''}}>
                                                                                             {{ $grade->name }}
                                                                                         </option>
                                                                                         @endforeach
@@ -149,9 +147,9 @@
 
                                                                                 <div class="col">
                                                                                     <label for="inputName" class="control-label">{{ trans('classes.Class Name') }}</label>
-                                                                                    <select name="Class_id" class="custom-select">
-                                                                                        <option value="{{ $section->classs->id }}">
-                                                                                            {{ $list_Sections->My_classs->Name_Class }}
+                                                                                    <select name="class_id" class="custom-select">
+                                                                                        <option value="{{ $section->class->id }}">
+                                                                                            {{ $section->class->name }}
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -160,25 +158,14 @@
                                                                                 <div class="col">
                                                                                     <div class="form-check">
 
-                                                                                        @if ($section->status === 1)
+                                                                                        @if ($section->status == 1)
                                                                                         <input type="checkbox" checked class="form-check-input" name="status" id="exampleCheck1">
                                                                                         @else
                                                                                         <input type="checkbox" class="form-check-input" name="status" id="exampleCheck1">
                                                                                         @endif
                                                                                         <label class="form-check-label" for="exampleCheck1">{{ trans('Sections.Section Status') }}</label><br>
 
-                                                                                        <div class="col">
-                                                                                            <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Teacher') }}</label>
-                                                                                            <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
-                                                                                                @foreach($list_Sections->teachers as $teacher)
-                                                                                                <option selected value="{{$teacher['id']}}">{{$teacher['Name']}}</option>
-                                                                                                @endforeach
 
-                                                                                                @foreach($teachers as $teacher)
-                                                                                                <option value="{{$teacher->id}}">{{$teacher->Name}}</option>
-                                                                                                @endforeach
-                                                                                            </select>
-                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
@@ -186,7 +173,7 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('Sections.Close') }}</button>
-                                                                            <button type="submit" class="btn btn-danger">{{ trans('Sections.submit') }}</button>
+                                                                            <button type="submit" class="btn btn-danger">{{ trans('Sections.Submit') }}</button>
                                                                         </div>
                                                                         </form>
                                                                     </div>
@@ -207,14 +194,14 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form action="" method="post">
-                                                                                {{ method_field('Delete') }}
+                                                                            <form action="{{route('section.destroy')}}" method="post">
+                                                                                @method('DELETE')
                                                                                 @csrf
                                                                                 {{ trans('Sections.Delete Warning') }}
                                                                                 <input id="id" type="hidden" name="section_id" class="form-control" value="{{ $section->id }}">
                                                                                 <div class="modal-footer">
                                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('Sections.Close') }}</button>
-                                                                                    <button type="submit" class="btn btn-danger">{{ trans('Sections.submit') }}</button>
+                                                                                    <button type="submit" class="btn btn-danger">{{ trans('Sections.Submit') }}</button>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -239,7 +226,7 @@
                     </div>
                 </div>
 
-                <!--اضافة قسم جديد -->
+                <!--  Add New Section -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -253,15 +240,15 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="" method="POST">
-                                    {{ csrf_field() }}
+                                <form action="{{route('section.store')}}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col">
-                                            <input type="text" name="Name_Section_Ar" class="form-control" placeholder="{{ trans('Sections.Section Name_ar') }}">
+                                            <input type="text" name="name" class="form-control" placeholder="{{ trans('Sections.Section Name_ar') }}">
                                         </div>
 
                                         <div class="col">
-                                            <input type="text" name="Name_Section_En" class="form-control" placeholder="{{ trans('Sections.Section Name_en') }}">
+                                            <input type="text" name="name_en" class="form-control" placeholder="{{ trans('Sections.Section Name_en') }}">
                                         </div>
 
                                     </div>
@@ -270,7 +257,7 @@
 
                                     <div class="col">
                                         <label for="inputName" class="control-label">{{ trans('grades.Grade Name') }}</label>
-                                        <select name="Grade_id" class="custom-select" onchange="console.log($(this).val())">
+                                        <select name="grade_id" class="custom-select" onchange="console.log($(this).val())">
                                             <!--placeholder-->
                                             <option value="" selected disabled>{{ trans('Sections.Select Grade') }}
                                             </option>
@@ -284,7 +271,7 @@
 
                                     <div class="col">
                                         <label for="inputName" class="control-label">{{ trans('classes.Class Name') }}</label>
-                                        <select name="Class_id" class="custom-select">
+                                        <select name="class_id" class="custom-select">
 
                                         </select>
                                     </div><br>
@@ -310,4 +297,28 @@
     @section('js')
     @toastr_js
     @toastr_render
+
+    <script>
+        $(document).ready(function() {
+            $('select[name="grade_id"]').on('change', function() {
+                var Grade_id = $(this).val();
+                if (Grade_id) {
+                    $.ajax({
+                        url: "{{ URL::to('sections/classes') }}/" + Grade_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="class_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="class_id"]').append('<option value="' + key + '">' + value + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+        });
+    </script>
+
     @endsection

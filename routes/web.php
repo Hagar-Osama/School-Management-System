@@ -43,6 +43,10 @@ Route::group(
         ////Sections Routes///
         Route::group(['prefix' => 'sections'], function(){
             Route::get('/', [SectionController::class, 'index'])->name('sections.index');
+            Route::get('/classes/{gradeId}', [SectionController::class, 'getClasses']);
+            Route::post('/store', [SectionController::class, 'store'])->name('section.store');
+            Route::put('/update', [SectionController::class, 'update'])->name('section.update');
+            Route::delete('/delete', [SectionController::class, 'destroy'])->name('section.destroy');
         });
     }
 );

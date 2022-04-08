@@ -13,7 +13,7 @@ class UpdateSectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class UpdateSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:sections,name->ar,'.$this->section_id,
+            'name_en' => 'required|unique:sections,name->en,'.$this->section_id,
+            'class_id' => 'required|exists:classes,id',
+            'grade_id' => 'required|exists:grades,id',
+            'section_id' => 'required|exists:sections,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => trans('validation.required'),
+            'name_en.required' => trans('validation.required'),
+            'grade_id.required' => trans('validation.required'),
+            'class_id.required' => trans('validation.required'),
+            'section_id.required' => trans('validation.required'),
         ];
     }
 }

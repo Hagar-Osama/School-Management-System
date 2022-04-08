@@ -13,7 +13,7 @@ class DeleteSectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class DeleteSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'section_id' => 'required|exists:sections,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'section_id.required' => trans('validation.required'),
         ];
     }
 }

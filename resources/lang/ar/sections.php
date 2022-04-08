@@ -16,6 +16,9 @@ return [
     'Delete Class ' => 'حذف القسم',
     'Section Status' => 'حالة القسم',
     'Select Grade' => 'اختار مرحلة دراسية',
+    'Section Status Active' => 'مفعل',
+    'Section Status Unactive' => 'غير مفعل',
+
 
 
 

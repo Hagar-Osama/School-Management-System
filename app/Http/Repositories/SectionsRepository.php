@@ -29,16 +29,30 @@ class SectionsRepository implements SectionsInterface
 
     public function index()
     {
-        $gradeSections = $this->gradesModel::with('sections')->get();
-        $grades = $this->getAllGrades();
-        return view('Sections.sections', compact('gradeSections', 'grades'));
+        $grades = $this->gradesModel::with('sections')->get();
+        // $grades = $this->getAllGrades();
+        return view('Sections.sections', compact( 'grades'));
+    }
+
+    public function getClasses($gradeId)
+    {
+        //when i choose the grades i want to get the classes belongs to this grade
+        $classes = $this->classModel::where('grade_id', $gradeId)->pluck('name', 'id');
+        return json_encode($classes);
     }
 
     public function store($request)
     {
         try {
-
-
+            $sections = new section();
+            $sections->name = [
+                'ar' => $request->name,
+                'en' => $request->name_en
+            ];
+            $sections->class_id = $request->class_id;
+            $sections->grade_id = $request->grade_id;
+            $sections->status = 1;
+            $sections->save();
             toastr()->success(trans('messages.success'));
             return redirect(route('sections.index'));
         } catch (Exception $e) {
@@ -49,9 +63,23 @@ class SectionsRepository implements SectionsInterface
     public function update($request)
     {
         try {
+            $section = $this->GetSectionById($request->section_id);
 
+            $section->name = [
+                'ar' => $request->name,
+                'en' => $request->name_en
+            ];
+            $section->class_id = $request->class_id;
+            $section->grade_id = $request->grade_id;
+            if (isset($request->status)) {
+                $section->status = 1;
+            } else {
+                $section->status = 2;
+            }
+            $section->save();
             toastr()->success(trans('messages.update'));
             return redirect(route('sections.index'));
+
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
@@ -59,11 +87,9 @@ class SectionsRepository implements SectionsInterface
 
     public function destroy($request)
     {
+        $section = $this->GetSectionById($request->section_id);
+        $section->delete();
         toastr()->error(trans('messages.delete'));
         return redirect(route('sections.index'));
     }
-
-
-
-
 }

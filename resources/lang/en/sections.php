@@ -16,6 +16,8 @@ return [
     'Delete Class' => 'Delete class',
     'Section Status' => ' Section Status',
     'Select Grade' => 'Select Grade',
+    'Section Status Active' => 'Active',
+    'Section Status Unactive' => 'Unactive',
 
 
 

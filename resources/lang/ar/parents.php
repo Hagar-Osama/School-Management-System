@@ -1,0 +1,38 @@
+<?php
+
+return [
+    'add parent' => 'اضافة ولي امر',
+    'Edit Parent' => 'تعديل ولي امر',
+    'Step1' => 'معلومات الاب',
+    'Step2' => 'معلومات الام',
+    'Step3' => 'تاكيد المعلومات',
+    'Email' => 'البريد الالكتروني',
+    'Password' => 'كلمة المرور',
+    'Father Name' => 'اسم الاب بالعربي',
+    'Father Name_en' => 'اسم الاب بالانجليزي',
+    'Father Job' => 'اسم الوظيفة بالعربي',
+    'Father Job_en' => 'اسم الوظيفة بالانجليزي',
+    'Father National ID' => 'الرقم القومي',
+    'Father Passport ID' => 'رقم جواز السفر',
+    'Father Phone' => 'رقم التليفون',
+    'Nationality_Father_id' => 'الجنسية',
+    'Father Blood Type Id' => 'فصيلة الدم',
+    'Father Religion Id' => 'الديانة',
+    'Father Adress' => 'عنوان الاب',
+
+    'Mother Name' => 'اسم الام بالعربي',
+    'Mother Name_en' => 'اسم الام بالانجليزي',
+    'Mother Job' => 'اسم الوظيفة بالعربي',
+    'Mother Job_en' => 'اسم الوظيفة بالانجليزي',
+    'Mother National Id' => ' الرقم القومي',
+    'Mother Passport Id' => 'رقم جواز السفر',
+    'Mother Phone' => 'رقم التليفون',
+    'Mother Address' => 'عنوان الام',
+
+    'Next' => 'التالي',
+    'Back' => 'السابق',
+    'Finish' => 'تاكيد',
+    'Choose' => 'اختيار من القائمة',
+    'Attachments' => 'المرفقات',
+    'Actions' => 'العمليات',
+];

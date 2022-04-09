@@ -12,6 +12,8 @@ return [
     'Students'=>'Students',
     'Teachers'=>'Teachers',
     'Parents'=>'Parents',
+    'Parents List'=>'Parents List',
+    'Add Parent' => 'Add Parent',
     'Accountings'=>'Accountings',
     'Attendance'=>'Attendance',
     'Exams'=>'Exams',

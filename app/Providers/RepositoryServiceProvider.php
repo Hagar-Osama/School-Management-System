@@ -30,6 +30,10 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Http\Interfaces\SectionsInterface",
             "App\Http\Repositories\SectionsRepository"
         );
+        $this->app->bind(
+            "App\Http\Interfaces\ParentsInterface",
+            "App\Http\Repositories\ParentsRepository"
+        );
     }
 
     /**

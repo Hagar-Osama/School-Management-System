@@ -66,9 +66,18 @@ class GradesRepository implements GradesInterface
 
     public function destroy($request)
     {
-        $grade = $this->GetGradeById($request->grade_id);
-        $grade->delete();
-        toastr()->error(trans('messages.delete'));
-        return redirect(route('grades.index'));
+        //here we get the grade_id from classes table and check whether it has grade belonges to it or not
+        //if it has he cant delete the grades until he delete the classes first
+        $grades = $this->classesModel::where('grade_id', $request->grade_id)->pluck('grade_id');
+        if($grades->count() == 0) {
+            $grade = $this->GetGradeById($request->grade_id);
+            $grade->delete();
+            toastr()->error(trans('messages.delete'));
+            return redirect(route('grades.index'));
+
+        }else {
+            toastr()->error(trans('messages.delete_warning'));
+            return redirect(route('grades.index'));
+        }
     }
 }

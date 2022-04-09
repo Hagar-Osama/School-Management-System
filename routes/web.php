@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -25,14 +26,14 @@ Route::group(
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::post('/signout', [AuthController::class, 'signout'])->name('signout');
         ///Grades Routes///
-        Route::group(['prefix' => 'grades'], function(){
+        Route::group(['prefix' => 'grades'], function() {
             Route::get('/', [GradeController::class, 'index'])->name('grades.index');
             Route::post('/store', [GradeController::class, 'store'])->name('grades.store');
             Route::put('/update', [GradeController::class, 'update'])->name('grades.update');
             Route::delete('/delete', [GradeController::class, 'destroy'])->name('grades.destroy');
         });
         ///Classes Routes///
-        Route::group(['prefix' => 'classes'], function(){
+        Route::group(['prefix' => 'classes'], function() {
             Route::get('/', [ClassController::class, 'index'])->name('classes.index');
             Route::post('/store', [ClassController::class, 'store'])->name('classes.store');
             Route::put('/update', [ClassController::class, 'update'])->name('classes.update');
@@ -41,13 +42,21 @@ Route::group(
             Route::post('/filter', [ClassController::class, 'filterClasses'])->name('classes.filter');
         });
         ////Sections Routes///
-        Route::group(['prefix' => 'sections'], function(){
+        Route::group(['prefix' => 'sections'], function() {
             Route::get('/', [SectionController::class, 'index'])->name('sections.index');
             Route::get('/classes/{gradeId}', [SectionController::class, 'getClasses']);
             Route::post('/store', [SectionController::class, 'store'])->name('section.store');
             Route::put('/update', [SectionController::class, 'update'])->name('section.update');
             Route::delete('/delete', [SectionController::class, 'destroy'])->name('section.destroy');
         });
+        /////Parents Routes/////
+        Route::view('add-parent', 'livewire.showForm');
+        // Route::group(['prefix' => 'parents', 'as' => 'parents.'], function() {
+        //     Route::get('/', [ParentController::class, 'index'])->name('index');
+        //     Route::post('/store', [ParentController::class, 'store'])->name('store');
+        //     Route::put('/update', [ParentController::class, 'update'])->name('update');
+        //     Route::delete('/delete', [ParentController::class, 'destroy'])->name('destroy');
+        // });
     }
 );
 Route::get('/signin', [AuthController::class, 'signinPage'])->name('signinpage');

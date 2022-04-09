@@ -11,4 +11,5 @@ class myParent extends Model
     protected $guarded = [];
 
     public $translatable = ['father_name', 'mother_name', 'father_job', 'mother_job'];
+    protected $table = 'parents';
 }

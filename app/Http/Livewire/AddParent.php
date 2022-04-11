@@ -120,13 +120,14 @@ class AddParent extends Component
 
             if (!empty($this->photos)) {
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs($this->father_national_id, $photo->getClientOriginalName(), $disk ='parentsAttachments');
+                    $photo->storeAs($this->father_national_id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
                     ParentAttachment::create([
                         'file_name' => $photo->getClientOriginalName(),
-                        'parent_id' => myParent::latest()->first()->id
+                        'parent_id' => myParent::latest()->first()->id,
                     ]);
                 }
             }
+
             $this->successMessage = trans('messages.success');
             $this->clearForm();
             $this->currentStep = 1;

@@ -5,7 +5,7 @@ return [
     'edit Parent' => 'Edit Parent',
     'Step1' => 'Father information',
     'Step2' => 'Mother information',
-    'Step3' => 'Confirm information',
+    'Step3' => 'Attachments & Confirm information',
     'Email' => 'Email',
     'Password' => 'Password',
     'Father Name' => 'Father Name In Arabic',

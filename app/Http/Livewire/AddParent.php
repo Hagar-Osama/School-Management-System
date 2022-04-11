@@ -6,16 +6,21 @@ use App\Http\Requests\AddParentRequest;
 use App\Models\Blood;
 use App\Models\myParent;
 use App\Models\Nationality;
+use App\Models\ParentAttachment;
 use App\Models\Religion;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddParent extends Component
 {
+    use WithFileUploads;
+
     public $catchError = false;
     public $successMessage = '';
-    public $currentStep = 1,
+    public $updateMode = false;
+    public $currentStep = 1, $photos,
         $email, $password, $father_name, $father_name_en, $father_job, $father_job_en,
         $father_passport_id, $father_national_id, $father_phone, $father_nationality_id,
         $father_blood_id, $father_religion_id, $father_address,
@@ -85,7 +90,7 @@ class AddParent extends Component
 
     public function submitForm()
     {
-        try{
+        try {
             $parents = new myParent();
 
             $parents->email = $this->email;
@@ -112,12 +117,20 @@ class AddParent extends Component
             $parents->mother_phone = $this->mother_phone;
 
             $parents->save();
+
+            if (!empty($this->photos)) {
+                foreach ($this->photos as $photo) {
+                    $photo->storeAs($this->father_national_id, $photo->getClientOriginalName(), $disk ='parentsAttachments');
+                    ParentAttachment::create([
+                        'file_name' => $photo->getClientOriginalName(),
+                        'parent_id' => myParent::latest()->first()->id
+                    ]);
+                }
+            }
             $this->successMessage = trans('messages.success');
             $this->clearForm();
-            $this->currentStep = 1 ;
-
-
-        }catch(Exception $e) {
+            $this->currentStep = 1;
+        } catch (Exception $e) {
             $this->catchError = $e->getMessage();
         }
     }
@@ -149,13 +162,10 @@ class AddParent extends Component
         $this->mother_blood_id = '';
         $this->mother_religion_id = '';
         $this->mother_address = '';
-
     }
 
     public function back($step)
     {
         $this->currentStep = $step;
     }
-
-
 }

@@ -12,4 +12,9 @@ class myParent extends Model
 
     public $translatable = ['father_name', 'mother_name', 'father_job', 'mother_job'];
     protected $table = 'parents';
+
+    public function parentAttachments()
+    {
+        return $this->hasMany(ParentAttachment::class);
+    }
 }

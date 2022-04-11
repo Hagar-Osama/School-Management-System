@@ -1,7 +1,7 @@
 <div>
     <div>
         @if(!empty($successMessage))
-        <div class ="alert alert-success" id="success-alert">
+        <div class="alert alert-success" id="success-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             {{$successMessage}}
         </div>
@@ -41,15 +41,22 @@
                     <label style="color: red">{{trans('Parents.Attachments')}}</label>
                     <div class="form-group">
                         <input type="file" wire:model="photos" accept="image/*" multiple>
+                        @error('photos.*')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <br>
 
                     <input type="hidden" wire:model="parent_id">
 
                     <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(2)">{{ trans('Parents.Back') }}</button>
+                    @if($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="submitForm_edit" type="button">{{trans('Parents.Finish')}}
+                    </button>
+                    @else
 
                     <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitForm" type="button">{{ trans('Parents.Finish') }}</button>
-
+                    @endif
                 </div>
             </div>
         </div>

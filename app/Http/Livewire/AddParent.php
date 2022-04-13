@@ -10,6 +10,7 @@ use App\Models\ParentAttachment;
 use App\Models\Religion;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -20,7 +21,7 @@ class AddParent extends Component
     public $catchError = false;
     public $successMessage = '';
     public $updateMode = false;
-    public $currentStep = 1, $photos,
+    public $currentStep = 1, $photos, $showParentTable = true, $parent_id,
         $email, $password, $father_name, $father_name_en, $father_job, $father_job_en,
         $father_passport_id, $father_national_id, $father_phone, $father_nationality_id,
         $father_blood_id, $father_religion_id, $father_address,
@@ -46,8 +47,14 @@ class AddParent extends Component
         return view('livewire.add-parent', [
             'Nationalities' => Nationality::get(),
             'bloodTypes' => Blood::get(),
-            'Religions' => Religion::get()
+            'Religions' => Religion::get(),
+            'parents' => myParent::get()
         ]);
+    }
+
+    public function showAddForm()
+    {
+        $this->showParentTable = false;
     }
 
     public function firstStepSubmit()
@@ -120,14 +127,13 @@ class AddParent extends Component
 
             if (!empty($this->photos)) {
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs($this->father_national_id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
+                    $photo->storeAs($this->father_address, $photo->getClientOriginalName(), $disk = 'parent_attachments');
                     ParentAttachment::create([
                         'file_name' => $photo->getClientOriginalName(),
                         'parent_id' => myParent::latest()->first()->id,
                     ]);
                 }
             }
-
             $this->successMessage = trans('messages.success');
             $this->clearForm();
             $this->currentStep = 1;
@@ -168,5 +174,113 @@ class AddParent extends Component
     public function back($step)
     {
         $this->currentStep = $step;
+    }
+
+    public function edit($parentId)
+    {
+        $this->showParentTable = false;
+        $this->updateMode = true;
+        $parent = myParent::where('id', $parentId)->first();
+        $this->parent_id = $parentId;
+        $this->email = $parent->email;
+        $this->password = $parent->password;
+        $this->father_name = $parent->getTranslation('father_name', 'ar');
+        $this->father_name_en = $parent->getTranslation('father_name', 'en');
+        $this->father_job = $parent->getTranslation('father_job', 'ar');
+        $this->father_job_en = $parent->getTranslation('father_job', 'en');
+        $this->father_passport_id = $parent->father_passport_id;
+        $this->father_national_id = $parent->father_national_id;
+        $this->father_phone = $parent->father_phone;
+        $this->father_nationality_id = $parent->father_nationality_id;
+        $this->father_blood_id = $parent->father_blood_id;
+        $this->father_religion_id = $parent->father_religion_id;
+        $this->father_address = $parent->father_address;
+        ///Mother Inputs
+        $this->mother_name = $parent->getTranslation('mother_name', 'ar');
+        $this->mother_name_en = $parent->getTranslation('mother_name', 'en');
+        $this->mother_job = $parent->getTranslation('mother_job', 'ar');
+        $this->mother_job_en = $parent->getTranslation('mother_job', 'en');
+        $this->mother_passport_id = $parent->mother_passport_id;
+        $this->mother_national_id = $parent->mother_national_id;
+        $this->mother_phone = $parent->mother_phone;
+        $this->mother_nationality_id = $parent->mother_nationality_id;
+        $this->mother_blood_id = $parent->mother_blood_id;
+        $this->mother_religion_id = $parent->mother_religion_id;
+        $this->mother_address = $parent->mother_address;
+    }
+    //this method is activated when we click next to go to mother form (step 1)
+    public function firstStepSubmitEdit()
+    {
+        $this->updateMode = true;
+        $this->currentStep = 2;
+    }
+    ///this method is activated when we click next to go to attachments and confirmation (step 2)
+    public function secondStepSubmitEdit()
+    {
+        $this->updateMode = true;
+        $this->currentStep = 3;
+    }
+    //this method is activated when we want to click confirm (step 3)
+    public function submitFormEdit()
+    {
+        if ($this->parent_id) {
+            $parent = myParent::find($this->parent_id);
+            $parent->update([
+                'email' => $this->email,
+                'password' => $this->password,
+                'father_name' => ['ar' => $this->father_name,  'en' => $this->father_name_en],
+                'father_job' => ['ar' => $this->father_job, 'en' => $this->father_job_en],
+                'father_passport_id' => $this->father_passport_id,
+                'father_national_id' => $this->father_national_id,
+                'father_phone' => $this->father_phone,
+                'father_nationality_id' => $this->father_nationality_id,
+                'father_blood_id' =>  $this->father_blood_id,
+                'father_religion_id' => $this->father_religion_id,
+                'father_address' =>  $this->father_address,
+                ///Mother Inputs
+                'mother_name' => ['ar' => $this->mother_name,  'en' => $this->mother_name_en],
+                'mother_job' => ['ar' => $this->mother_job,  'en' => $this->mother_job_en],
+                'mother_passport_id' => $this->mother_passport_id,
+                'mother_national_id' =>  $this->mother_national_id,
+                'mother_phone' => $this->mother_phone,
+                'mother_nationality_id' =>  $this->mother_nationality_id,
+                'mother_blood_id' => $this->mother_blood_id,
+                'mother_religion_id' =>  $this->mother_religion_id,
+                'mother_address' => $this->mother_address,
+            ]);
+            // $parentAttachments = ParentAttachment::where('parent_id', $this->parent_id);
+            // if (!empty($this->photos)) {
+            //     foreach ($this->photos as $photo) {
+            //         $photo->storeAs($this->father_address, $photo->getClientOriginalName(), $disk = 'parent_attachments');
+            //         $parentAttachments->update([
+            //             'file_name' => $photo->getClientOriginalName(),
+            //             'parent_id' => $this->parent_id,
+            //         ]);
+            //     }
+            // }
+
+
+        }
+        return redirect()->to('add-parent');
+    }
+
+    public function delete($parentId)
+    {
+        $parentAttachments = ParentAttachment::where('parent_id', $parentId);
+        if ($parentAttachments->count() == 0) {
+            $parent = myParent::find($parentId);
+            $parent->delete();
+            return redirect()->to('add-parent');
+        } else {
+                foreach($this->photos as $photo) {
+                    if(Storage::disk('parent_attachments')->exists($photo)) {
+                    Storage::disk('parent_attachments')->delete($photo);
+
+                }
+
+            }
+
+            return redirect()->to('add-parent');
+        }
     }
 }

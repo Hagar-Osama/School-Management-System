@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'add parent' => 'اضافة ولي امر',
+    'Add Parent' => 'اضافة ولي امر',
     'Edit Parent' => 'تعديل ولي امر',
     'Step1' => 'معلومات الاب',
     'Step2' => 'معلومات الام',
@@ -38,4 +38,7 @@ return [
     'Choose' => 'اختيار من القائمة',
     'Attachments' => 'المرفقات',
     'Actions' => 'العمليات',
+
+    'Edit Parent' => 'تعديل ولي امر',
+    'Delete Parent' => 'حذف ولي امر',
 ];

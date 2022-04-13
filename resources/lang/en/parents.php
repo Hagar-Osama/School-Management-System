@@ -38,5 +38,8 @@ return [
     'Attachments' => 'Attachments',
     'Actions' => 'Actions',
 
+    'Edit Parent' => 'Edit Parent',
+    'Delete Parent' => 'Delete Parent',
+
 
 ];

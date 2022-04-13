@@ -5,16 +5,19 @@ namespace App\Http\Repositories;
 use App\Models\Grade;
 use App\Http\Interfaces\GradesInterface;
 use App\Http\Traits\GradesTraits;
+use App\Models\Classes;
 use Exception;
 
 class GradesRepository implements GradesInterface
 {
     private $gradesModel;
+    private $classesModel;
     use GradesTraits;
 
-    public function __construct(Grade $grades)
+    public function __construct(Grade $grades, Classes $classes)
     {
         $this->gradesModel = $grades;
+        $this->classesModel = $classes;
     }
 
     public function index()

@@ -133,8 +133,14 @@
             </button>
 
 
-            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepSubmit" type="button">{{trans('Parents.Next')}}
-            </button>
+            @if($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepSubmitEdit"
+                            type="button">{{trans('Parents.Next')}}
+                    </button>
+                @else
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
+                            wire:click="secondStepSubmit">{{trans('Parents.Next')}}</button>
+                @endif
 
         </div>
     </div>

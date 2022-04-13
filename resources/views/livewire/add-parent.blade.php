@@ -13,6 +13,9 @@
         {{ $catchError }}
     </div>
     @endif
+    @if($showParentTable)
+    @include('livewire.parentTable')
+    @else
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
@@ -41,17 +44,13 @@
                     <label style="color: red">{{trans('Parents.Attachments')}}</label>
                     <div class="form-group">
                         <input type="file" wire:model="photos" accept="image/*" multiple>
-                        @error('photos.*')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
                     <br>
 
                     <input type="hidden" wire:model="parent_id">
 
                     <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(2)">{{ trans('Parents.Back') }}</button>
                     @if($updateMode)
-                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="submitForm_edit" type="button">{{trans('Parents.Finish')}}
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="submitFormEdit" type="button">{{trans('Parents.Finish')}}
                     </button>
                     @else
 
@@ -61,5 +60,5 @@
             </div>
         </div>
 
-
+        @endif
     </div>

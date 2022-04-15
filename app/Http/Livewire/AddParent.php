@@ -9,6 +9,7 @@ use App\Models\Nationality;
 use App\Models\ParentAttachment;
 use App\Models\Religion;
 use Exception;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -21,7 +22,7 @@ class AddParent extends Component
     public $catchError = false;
     public $successMessage = '';
     public $updateMode = false;
-    public $currentStep = 1, $photos, $showParentTable = true, $parent_id,
+    public $currentStep = 1, $photos = [], $showParentTable = true, $parent_id,
         $email, $password, $father_name, $father_name_en, $father_job, $father_job_en,
         $father_passport_id, $father_national_id, $father_phone, $father_nationality_id,
         $father_blood_id, $father_religion_id, $father_address,
@@ -127,7 +128,7 @@ class AddParent extends Component
 
             if (!empty($this->photos)) {
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs($this->father_address, $photo->getClientOriginalName(), $disk = 'parent_attachments');
+                    $photo->storeAs('parent_attachments/' . $this->father_phone, $photo->getClientOriginalName(), $disk = 'public');
                     ParentAttachment::create([
                         'file_name' => $photo->getClientOriginalName(),
                         'parent_id' => myParent::latest()->first()->id,
@@ -175,7 +176,7 @@ class AddParent extends Component
     {
         $this->currentStep = $step;
     }
-
+    //in this function when we clicked on edit button we activated the updatemode and hide the table
     public function edit($parentId)
     {
         $this->showParentTable = false;
@@ -248,39 +249,44 @@ class AddParent extends Component
                 'mother_religion_id' =>  $this->mother_religion_id,
                 'mother_address' => $this->mother_address,
             ]);
-            // $parentAttachments = ParentAttachment::where('parent_id', $this->parent_id);
-            // if (!empty($this->photos)) {
-            //     foreach ($this->photos as $photo) {
-            //         $photo->storeAs($this->father_address, $photo->getClientOriginalName(), $disk = 'parent_attachments');
-            //         $parentAttachments->update([
-            //             'file_name' => $photo->getClientOriginalName(),
-            //             'parent_id' => $this->parent_id,
-            //         ]);
-            //     }
-            // }
+            $parentAttachments = ParentAttachment::where('parent_id', $this->parent_id)->get();
+            if (!empty($this->photos)) {
+                    foreach ($this->photos as $photo) {
+                        $photo->storeAs('parent_attachments/'.$this->father_phone, $photo->getClientOriginalName(),'public');
+                        if (File::exists(storage_path('app/public/parent_attachments/' . $this->father_phone))) {
+                            File::delete(storage_path('app/public/parent_attachments/' . $this->father_phone));
+                            $parentAttachments->update([
+                                'file_name' => $photo->getClientOriginalName(),
+                                'parent_id' => myParent::latest()->first()->id,
+                            ]);
+                        }
+
+                    }
+
+
+            }
 
 
         }
-        return redirect()->to('add-parent');
+        return redirect()->to('add-parent')->with('success', 'data updated successfully');
     }
 
     public function delete($parentId)
     {
         $parentAttachments = ParentAttachment::where('parent_id', $parentId);
-        if ($parentAttachments->count() == 0) {
+        if ($parentAttachments->count() !== 0) {
+            $parentAttachments->delete();
+            if (Storage::exists(public_path('app/public/parent_attachments/' . $this->father_phone))) {
+               Storage::delete(public_path('app/public/parent_attachments/' . $this->father_phone));
+           }
             $parent = myParent::find($parentId);
             $parent->delete();
-            return redirect()->to('add-parent');
+            return redirect()->to('add-parent')->with('success', 'Data Deleted Successfully');
         } else {
-                foreach($this->photos as $photo) {
-                    if(Storage::disk('parent_attachments')->exists($photo)) {
-                    Storage::disk('parent_attachments')->delete($photo);
 
-                }
-
-            }
-
-            return redirect()->to('add-parent');
+            $parent = myParent::find($parentId);
+            $parent->delete();
+            return redirect()->to('add-parent')->with('success', 'Data Deleted Successfully');
         }
     }
 }

@@ -1,19 +1,5 @@
+@include('partials.session')
 <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="showAddForm" type="button">{{ trans('Parents.Add Parent') }}</button><br><br>
-<div>
-    @if(!empty($successMessage))
-    <div class="alert alert-success" id="success-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        {{$successMessage}}
-    </div>
-    @endif
-    @if ($catchError)
-    <div class="alert alert-danger" id="success-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        {{ $catchError }}
-    </div>
-    @endif
-</div>
-
 <div class="table-responsive">
     <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
         <thead>

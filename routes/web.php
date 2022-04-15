@@ -6,7 +6,10 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TeacherController;
+use App\Models\ParentAttachment;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -51,16 +54,26 @@ Route::group(
         });
         /////Parents Routes/////
         Route::view('add-parent', 'livewire.showForm');
-        // Route::group(['prefix' => 'parents', 'as' => 'parents.'], function() {
-        //     Route::get('/', [ParentController::class, 'index'])->name('index');
-        //     Route::post('/store', [ParentController::class, 'store'])->name('store');
-        //     Route::put('/update', [ParentController::class, 'update'])->name('update');
-        //     Route::delete('/delete', [ParentController::class, 'destroy'])->name('destroy');
-        // });
+        /////Teachers Route//////
+        Route::group(['prefix' => 'teachers', 'as' => 'teachers.'], function() {
+            Route::get('/', [TeacherController::class, 'index'])->name('index');
+            Route::get('/edit/{id}',[TeacherController::class, 'edit'])->name('edit');
+            Route::get('/create',[TeacherController::class, 'create'])->name('create');
+            Route::post('/store', [TeacherController::class, 'store'])->name('store');
+            Route::put('/update', [TeacherController::class, 'update'])->name('update');
+            Route::delete('/delete', [TeacherController::class, 'destroy'])->name('destroy');
+        });
     }
 );
 Route::get('/signin', [AuthController::class, 'signinPage'])->name('signinpage');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
+
+// Route::get('/test', function() {
+//     $parentAttachments = ParentAttachment::with('parent')->first();
+
+//     $path = Storage::disk('public')->delete('parent_attachments/'. $parentAttachments->file_name);
+// return $path;
+// });
 
 
 

@@ -10,6 +10,7 @@ return [
     'Sections List' => 'قائمة الاقسام',
     'Students' => 'الطلاب',
     'Teachers' => 'المعلمين',
+    'Teachers List' => 'قائمة المعلمين',
     'Parents' => 'اولياء الامور',
     'Parents List' => 'قائمة اولياء الامور',
     'Add Parent' => 'اضافة ولي امر',

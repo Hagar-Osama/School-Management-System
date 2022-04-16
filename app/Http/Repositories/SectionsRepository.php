@@ -6,9 +6,11 @@ use App\Http\Interfaces\SectionsInterface;
 use App\Http\Traits\ClassesTraits;
 use App\Http\Traits\GradesTraits;
 use App\Http\Traits\SectionsTraits;
+use App\Http\Traits\TeachersTraits;
 use App\Models\Classes;
 use App\Models\Grade;
 use App\Models\Section;
+use App\Models\Teacher;
 use Exception;
 
 class SectionsRepository implements SectionsInterface
@@ -16,22 +18,26 @@ class SectionsRepository implements SectionsInterface
     private $classModel;
     private $sectionModel;
     private $gradesModel;
+    private $teacherModel;
     use SectionsTraits;
     use ClassesTraits;
     use GradesTraits;
+    use TeachersTraits;
 
-    public function __construct(Classes $classes, Section $section, Grade $grade)
+    public function __construct(Classes $classes, Section $section, Grade $grade, Teacher $teacher)
     {
         $this->classModel = $classes;
         $this->sectionModel = $section;
         $this->gradesModel = $grade;
+        $this->teacherModel = $teacher;
     }
 
     public function index()
     {
         $grades = $this->gradesModel::with('sections')->get();
         // $grades = $this->getAllGrades();
-        return view('Sections.sections', compact( 'grades'));
+        $teachers = $this->getAllTeachers();
+        return view('Sections.sections', compact( 'grades', 'teachers'));
     }
 
     public function getClasses($gradeId)
@@ -53,6 +59,7 @@ class SectionsRepository implements SectionsInterface
             $sections->grade_id = $request->grade_id;
             $sections->status = 1;
             $sections->save();
+            $sections->teachers()->attach($request->teacher_id);
             toastr()->success(trans('messages.success'));
             return redirect(route('sections.index'));
         } catch (Exception $e) {
@@ -75,6 +82,11 @@ class SectionsRepository implements SectionsInterface
                 $section->status = 1;
             } else {
                 $section->status = 2;
+            }
+            if(isset($request->teacher_id)) {
+                $section->teachers()->sync($request->teacher_id);
+            }else{
+                $section->teachers()->sync(array());
             }
             $section->save();
             toastr()->success(trans('messages.update'));

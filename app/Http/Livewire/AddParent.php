@@ -128,7 +128,7 @@ class AddParent extends Component
 
             if (!empty($this->photos)) {
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs('parent_attachments/' . $this->father_phone, $photo->getClientOriginalName(), $disk = 'public');
+                    $photo->storeAs('parent_attachments/' .$this->father_phone, $photo->getClientOriginalName(), $disk = 'public');
                     ParentAttachment::create([
                         'file_name' => $photo->getClientOriginalName(),
                         'parent_id' => myParent::latest()->first()->id,
@@ -249,22 +249,6 @@ class AddParent extends Component
                 'mother_religion_id' =>  $this->mother_religion_id,
                 'mother_address' => $this->mother_address,
             ]);
-            $parentAttachments = ParentAttachment::where('parent_id', $this->parent_id)->get();
-            if (!empty($this->photos)) {
-                    foreach ($this->photos as $photo) {
-                        $photo->storeAs('parent_attachments/'.$this->father_phone, $photo->getClientOriginalName(),'public');
-                        if (File::exists(storage_path('app/public/parent_attachments/' . $this->father_phone))) {
-                            File::delete(storage_path('app/public/parent_attachments/' . $this->father_phone));
-                            $parentAttachments->update([
-                                'file_name' => $photo->getClientOriginalName(),
-                                'parent_id' => myParent::latest()->first()->id,
-                            ]);
-                        }
-
-                    }
-
-
-            }
 
 
         }
@@ -276,9 +260,7 @@ class AddParent extends Component
         $parentAttachments = ParentAttachment::where('parent_id', $parentId);
         if ($parentAttachments->count() !== 0) {
             $parentAttachments->delete();
-            if (Storage::exists(public_path('app/public/parent_attachments/' . $this->father_phone))) {
-               Storage::delete(public_path('app/public/parent_attachments/' . $this->father_phone));
-           }
+           Storage::delete('public/'.$this->father_phone);
             $parent = myParent::find($parentId);
             $parent->delete();
             return redirect()->to('add-parent')->with('success', 'Data Deleted Successfully');

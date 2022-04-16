@@ -167,7 +167,20 @@
 
 
                                                                                     </div>
+                                                                                    <div class="col">
+                                                                                        <label for="inputName" class="control-label">{{ trans('teachers.Teacher Name') }}</label>
+                                                                                        <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
+                                                                                            @foreach($section->teachers as $teacher)
+                                                                                            <option selected value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                                                                            @endforeach
+
+                                                                                            @foreach($teachers as $teacher)
+                                                                                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
+
 
 
                                                                         </div>
@@ -272,11 +285,17 @@
                                     <div class="col">
                                         <label for="inputName" class="control-label">{{ trans('classes.Class Name') }}</label>
                                         <select name="class_id" class="custom-select">
-
                                         </select>
                                     </div><br>
 
-
+                                    <div class="col">
+                                        <label for="inputName" class="control-label">{{ trans('teachers.Teacher Name') }}</label>
+                                        <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
+                                            @foreach($teachers as $teacher)
+                                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
 
                             </div>

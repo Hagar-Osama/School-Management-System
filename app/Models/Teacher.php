@@ -22,4 +22,9 @@ class Teacher extends Model
     {
         return $this->belongsTo(Specialization::class);
     }
+
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class);
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddTeacherRequest extends FormRequest
+class UpdateTeacherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,11 @@ class AddTeacherRequest extends FormRequest
             'name_en' => 'required',
             'address' => 'required',
             'hiring_date' => 'required',
-            'email'  => 'required|unique:teachers,email',
+            'email'  => 'required|unique:teachers,email,'.$this->teacher_id,
             'password' =>  'required|min:5|max:100',
             'specialization_id'  => 'required|exists:specializations,id',
             'gender_id'  => 'required|exists:genders,id',
+            'teacher_id' => 'required|exists:teachers,id'
         ];
     }
 
@@ -46,6 +47,8 @@ class AddTeacherRequest extends FormRequest
             'password.required' => trans('validation.required'),
             'gender_id.required' => trans('validation.required'),
             'specialization_id.required' => trans('validation.required'),
+            'teacher_id.required' => trans('validation.required'),
+
 
 
         ];

@@ -11,13 +11,15 @@ return [
     'Teacher Name_en' => 'Teacher Name In English',
     'Teacher Name_ar' => 'Teacher Name In Arabic',
     'Teacher Address' => 'Teacher Address',
+    'Email' => 'Email',
+    'Password' => 'password',
     'Gender' => 'Gender',
     'Specialization' => 'specialization',
     'Hiring Date' => 'Hiring Date',
     'Close' => 'Close',
     'Submit' => 'Submit',
     'Delete Row' => 'Delete Row',
-    'Delete Warning' => 'Are you sure you want to delete this class ?',
+    'Delete Warning' => 'Are you sure you want to delete this Teacher ?',
 
 
 

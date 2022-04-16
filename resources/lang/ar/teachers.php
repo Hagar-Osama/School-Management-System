@@ -11,13 +11,15 @@ return [
     'Teacher Name_ar' =>  'اسم المعلم بالعربي',
     'Teacher Name_en' =>  'اسم المعلم بالانجليزي',
     'Teacher Address' => 'عنوان المعلم',
+    'Email' => 'البريد الالكتروني',
+    'Password' => 'كلمة المرور',
     'Gender' => 'الجنس',
     'Specialization' => 'التخصص',
     'Hiring Date' => 'تاريخ التعيين',
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
     'Delete Row ' => 'حذف صف',
-    'Delete Warning' => 'هل انت متاكد من حذف هذا القسم ؟',
+    'Delete Warning' => 'هل انت متاكد من حذف هذا المعلم ؟',
 
 
 

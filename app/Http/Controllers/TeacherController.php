@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Interfaces\TeachersInterface;
+use App\Http\Requests\AddTeacherRequest;
+use App\Http\Requests\DeleteTeacherRequest;
+use App\Http\Requests\UpdateTeacherRequest;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -26,7 +29,7 @@ class TeacherController extends Controller
 
     }
 
-    public function store( $request)
+    public function store(AddTeacherRequest $request)
     {
         return $this->teacherInterface->store($request);
     }
@@ -37,12 +40,12 @@ class TeacherController extends Controller
 
     }
 
-    public function update( $request)
+    public function update(UpdateTeacherRequest $request)
     {
         return $this->teacherInterface->update($request);
     }
 
-    public function destroy( $request)
+    public function destroy(DeleteTeacherRequest $request)
     {
         return $this->teacherInterface->destroy($request);
     }

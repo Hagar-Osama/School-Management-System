@@ -228,7 +228,7 @@ class AddParent extends Component
             $parent = myParent::find($this->parent_id);
             $parent->update([
                 'email' => $this->email,
-                'password' => $this->password,
+                'password' => Hash::make($this->password),
                 'father_name' => ['ar' => $this->father_name,  'en' => $this->father_name_en],
                 'father_job' => ['ar' => $this->father_job, 'en' => $this->father_job_en],
                 'father_passport_id' => $this->father_passport_id,

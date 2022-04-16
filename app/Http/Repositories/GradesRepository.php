@@ -59,7 +59,6 @@ class GradesRepository implements GradesInterface
                 $grade->notes = $request->notes,
             ]);
 
-            $grade->update();
             toastr()->success(trans('messages.update'));
             return redirect(route('grades.index'));
         } catch (Exception $e) {

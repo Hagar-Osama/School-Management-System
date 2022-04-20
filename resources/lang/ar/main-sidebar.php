@@ -9,6 +9,7 @@ return [
     'Sections' => 'الاقسام',
     'Sections List' => 'قائمة الاقسام',
     'Students' => 'الطلاب',
+    'Students List' => 'قائمة الطلاب',
     'Teachers' => 'المعلمين',
     'Teachers List' => 'قائمة المعلمين',
     'Parents' => 'اولياء الامور',

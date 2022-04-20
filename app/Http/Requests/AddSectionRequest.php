@@ -28,6 +28,8 @@ class AddSectionRequest extends FormRequest
             'name_en' => 'required|unique:sections,name->en',
             'class_id' => 'required|exists:classes,id',
             'grade_id' => 'required|exists:grades,id',
+            'teacher_id' => 'required|exists:teachers,id'
+
 
         ];
 
@@ -39,6 +41,7 @@ class AddSectionRequest extends FormRequest
             'name.required' => trans('validation.required'),
             'name_en.required' => trans('validation.required'),
             'grade_id.required' => trans('validation.required'),
+            'teacher_id.required' => trans('validation.required'),
             'class_id.required' => trans('validation.required'),
             'name.unique' => trans('validation.unique'),
             'name_en.unique' => trans('validation.unique'),

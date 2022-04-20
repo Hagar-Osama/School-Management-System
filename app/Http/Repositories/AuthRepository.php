@@ -19,10 +19,14 @@ class AuthRepository implements AuthInterface
     {
         $adminData = $request->only('email', 'password');
         if(auth()->attempt($adminData)) {
-            return redirect(route('admin.index'));
+            $request->session()->regenerate();
+            return redirect()->intended('/'); //intended method takes url not route name
         }
-        session()->flash('error', 'Email or Password is wrong');
-        return redirect()->back();
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+        // session()->flash('error', 'The provided credentials do not match our records.');
+        // return redirect()->back();
     }
 
     public function signout()

@@ -13,4 +13,9 @@ class Nationality extends Model
 
     public $translatable = ['name'];
 
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
 }

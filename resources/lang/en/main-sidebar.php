@@ -10,6 +10,7 @@ return [
     'Sections'=>'Sections',
     'Sections List' => 'Sections List',
     'Students'=>'Students',
+    'Students List' => 'Students List',
     'Teachers'=>'Teachers',
     'Teachers List' => 'Teachers List',
     'Parents'=>'Parents',

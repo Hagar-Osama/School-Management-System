@@ -28,7 +28,9 @@ class UpdateSectionRequest extends FormRequest
             'name_en' => 'required|unique:sections,name->en,'.$this->section_id,
             'class_id' => 'required|exists:classes,id',
             'grade_id' => 'required|exists:grades,id',
-            'section_id' => 'required|exists:sections,id'
+            'section_id' => 'required|exists:sections,id',
+            'teacher_id' => 'required|exists:teachers,id'
+
         ];
     }
 
@@ -40,6 +42,8 @@ class UpdateSectionRequest extends FormRequest
             'grade_id.required' => trans('validation.required'),
             'class_id.required' => trans('validation.required'),
             'section_id.required' => trans('validation.required'),
+            'teacher_id.required' => trans('validation.required'),
+
         ];
     }
 }

@@ -17,4 +17,9 @@ class myParent extends Model
     {
         return $this->hasMany(ParentAttachment::class);
     }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

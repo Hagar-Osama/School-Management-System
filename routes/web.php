@@ -6,6 +6,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Models\ParentAttachment;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,17 @@ Route::group(
             Route::post('/store', [TeacherController::class, 'store'])->name('store');
             Route::put('/update', [TeacherController::class, 'update'])->name('update');
             Route::delete('/delete', [TeacherController::class, 'destroy'])->name('destroy');
+        });
+        //////Students Routes/////
+        Route::group(['prefix' => 'students', 'as' => 'students.'], function() {
+            Route::get('/', [StudentController::class, 'index'])->name('index');
+            Route::get('/classes/{gradeId}', [StudentController::class, 'getClasses']);
+            Route::get('/sections/{classId}', [StudentController::class, 'getSections']);
+            Route::get('/edit/{id}',[StudentController::class, 'edit'])->name('edit');
+            Route::get('/create',[StudentController::class, 'create'])->name('create');
+            Route::post('/store', [StudentController::class, 'store'])->name('store');
+            Route::put('/update', [StudentController::class, 'update'])->name('update');
+            Route::delete('/delete', [StudentController::class, 'destroy'])->name('destroy');
         });
     }
 );

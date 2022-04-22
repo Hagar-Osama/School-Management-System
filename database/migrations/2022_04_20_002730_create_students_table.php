@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->date('birth_date');
-            $table->date('academic_year');
+            $table->string('academic_year');
 
             $table->unsignedBigInteger('parent_id');
             $table->foreign('parent_id')->references('id')->on('parents')->onDelete('CASCADE')->onUpdate('CASCADE');

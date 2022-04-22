@@ -9,7 +9,7 @@ trait GradesTraits {
 
     public function GetGradeById($gradeId)
     {
-        return $this->gradesModel::find($gradeId);
+        return $this->gradesModel::findOrFail($gradeId);
     }
 
 }

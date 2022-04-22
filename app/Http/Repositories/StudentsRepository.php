@@ -14,6 +14,7 @@ use App\Models\Nationality;
 use App\Models\Section;
 use App\Models\Student;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class StudentsRepository implements StudentsInterface
 {
@@ -48,14 +49,14 @@ class StudentsRepository implements StudentsInterface
 
     public function getClasses($gradeId)
     {
-        //when i choose the grades i want to get the classes belongs to this grade
+        //when i choose the grades in blade i want to get the classes belongs to this grade
         $classes = $this->classModel::where('grade_id', $gradeId)->pluck('name', 'id');
         return json_encode($classes);
     }
 
     public function getSections($classId)
     {
-        //when i choose the classes i want to get the sections belongs to this class
+        //when i choose the classes in blade i want to get the sections belongs to this class
 
         $sections = $this->sectionModel::where('class_id', $classId)->pluck('name', 'id');
         return json_encode($sections);
@@ -73,8 +74,23 @@ class StudentsRepository implements StudentsInterface
 
     public function store($request)
     {
-
         try {
+            $students = new Student();
+            $students->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
+            $students->email = $request->email;
+            $students->password = Hash::make($request->password);
+            $students->academic_year = $request->academic_year;
+            $students->birth_date = $request->birth_date;
+            $students->parent_id = $request->parent_id;
+            $students->grade_id = $request->grade_id;
+            $students->gender_id = $request->gender_id;
+            $students->class_id = $request->class_id;
+            $students->blood_id = $request->blood_id;
+            $students->nationality_id = $request->nationality_id;
+            $students->section_id = $request->section_id;
+
+            $students->save();
+
 
             toastr()->success(trans('messages.success'));
             return redirect(route('students.index'));
@@ -83,14 +99,36 @@ class StudentsRepository implements StudentsInterface
         }
     }
 
-    public function edit($id)
+    public function edit($student_id)
     {
-        return view('Students.edit');
+        $student = $this->GetStudentById($student_id);
+        $data['parents'] = $this->parentModel::get();
+        $data['bloods'] = $this->bloodModel::get();
+        $data['genders'] = $this->genderModel::get();
+        $data['grades'] = $this->getAllGrades();
+        $data['nationalities'] = $this->nationalityModel::get();
+       
+        return view('Students.edit', $data, compact('student'));
     }
 
     public function update($request)
     {
         try {
+            $student = $this->GetStudentById($request->student_id);
+            $student->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
+            $student->email = $request->email;
+            $student->password = Hash::make($request->password);
+            $student->academic_year = $request->academic_year;
+            $student->birth_date = $request->birth_date;
+            $student->parent_id = $request->parent_id;
+            $student->grade_id = $request->grade_id;
+            $student->gender_id = $request->gender_id;
+            $student->class_id = $request->class_id;
+            $student->blood_id = $request->blood_id;
+            $student->nationality_id = $request->nationality_id;
+            $student->section_id = $request->section_id;
+
+            $student->save();
 
 
             toastr()->success(trans('messages.update'));
@@ -102,8 +140,9 @@ class StudentsRepository implements StudentsInterface
 
     public function destroy($request)
     {
-
+        $student = $this->GetStudentById($request->student_id);
+        $student->delete();
         toastr()->error(trans('messages.delete'));
-        return redirect(route('grades.index'));
+        return redirect(route('students.index'));
     }
 }

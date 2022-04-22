@@ -9,7 +9,7 @@ trait ClassesTraits {
 
     public function GetClassById($classId)
     {
-        return $this->classModel::find($classId);
+        return $this->classModel::findOrFail($classId);
     }
 
 }

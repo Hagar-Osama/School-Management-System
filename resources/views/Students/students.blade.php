@@ -47,11 +47,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i = 0; ?>
                                         @foreach($students as $student)
                                         <tr>
-                                            <?php $i++; ?>
-                                            <td>{{ $i }}</td>
+                                          
+                                            <td>{{ $loop->first }}</td>
                                             <td>{{$student->name}}</td>
                                             <td>{{$student->email}}</td>
                                             <td>{{$student->gender->name}}</td>
@@ -62,6 +61,7 @@
                                             <td>
                                                 <a href="{{route('students.edit',[$student->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_student{{ $student->id }}" title="{{ trans('students.Delete Student') }}"><i class="fa fa-trash"></i></button>
+                                                <a href="#" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
                                             </td>
                                         </tr>
 

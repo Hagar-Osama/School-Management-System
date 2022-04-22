@@ -9,7 +9,7 @@ trait StudentsTraits {
 
     public function GetStudentById($studentId)
     {
-        return $this->studentModel::find($studentId);
+        return $this->studentModel::findOrFail($studentId);
     }
 
 }

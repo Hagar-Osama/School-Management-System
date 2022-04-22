@@ -9,7 +9,7 @@ trait SectionsTraits {
 
     public function GetSectionById($sectionId)
     {
-        return $this->sectionModel::find($sectionId);
+        return $this->sectionModel::findOrFail($sectionId);
     }
 
 }

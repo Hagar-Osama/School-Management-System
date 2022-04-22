@@ -39,6 +39,7 @@
                     </button>
                 </div>
                 @endif
+                @include('partials._errors')
                 <div class="col-xs-12">
                     <div class="col-md-12">
                         <br>
@@ -180,15 +181,12 @@
                                     </div>
                                 </div>
                             </div><br>
-
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="academic_year">{{trans('Students.Attachments')}} : <span class="text-danger">*</span></label>
                                     <input type="file" accept="image/*" name="photos[]" multiple>
                                 </div>
                             </div>
-
-
 
                             <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{trans('Students.Submit')}}</button>
                         </form>
@@ -240,6 +238,7 @@
                     dataType: "json",
                     success: function(data) {
                         $('select[name="section_id"]').empty();
+                        $('select[name="section_id"]').append('<option selected disabled >{{trans('parents.Choose')}}...</option>');
                         $.each(data, function(key, value) {
                             $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });

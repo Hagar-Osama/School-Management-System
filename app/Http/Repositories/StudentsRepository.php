@@ -3,17 +3,20 @@
 namespace App\Http\Repositories;
 
 use App\Http\Interfaces\StudentsInterface;
+use App\Http\Traits\FilesTraits;
 use App\Http\Traits\GradesTraits;
 use App\Http\Traits\StudentsTraits;
 use App\Models\Blood;
 use App\Models\Classes;
 use App\Models\Gender;
 use App\Models\Grade;
+use App\Models\Image;
 use App\Models\myParent;
 use App\Models\Nationality;
 use App\Models\Section;
 use App\Models\Student;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentsRepository implements StudentsInterface
@@ -26,10 +29,12 @@ class StudentsRepository implements StudentsInterface
     private $gradesModel;
     private $sectionModel;
     private $classModel;
+    private $imageModel;
     use StudentsTraits;
     use GradesTraits;
+    use FilesTraits;
 
-    public function __construct(Student $student, myParent $parent, Gender $gender, Blood $blood, Nationality $nationality, Grade $grade, Section $section, Classes $class)
+    public function __construct(Student $student, myParent $parent, Gender $gender, Blood $blood, Nationality $nationality, Grade $grade, Section $section, Classes $class, Image $image)
     {
         $this->studentModel = $student;
         $this->parentModel = $parent;
@@ -39,6 +44,7 @@ class StudentsRepository implements StudentsInterface
         $this->gradesModel = $grade;
         $this->sectionModel = $section;
         $this->classModel = $class;
+        $this->imageModel = $image;
     }
 
     public function index()
@@ -74,6 +80,7 @@ class StudentsRepository implements StudentsInterface
 
     public function store($request)
     {
+        DB::beginTransaction();
         try {
             $students = new Student();
             $students->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
@@ -92,9 +99,25 @@ class StudentsRepository implements StudentsInterface
             $students->save();
 
 
+            if ($request->hasFile('photos')) {
+                $images = $request->file('photos');
+                foreach ($images as $image) {
+                    $imageName = $image->hashName();
+                    // $image->storeAs('students/'.$students->name, time() . '_students.' .$image->extension(), 'public');
+                    $this->uploadFile($image, 'students/' . $students->name, $imageName);
+                    $this->imageModel::create([
+                        'file_name' => $imageName,
+                        'imageable_id' => $students->id,
+                        'imageable_type' => Student::class,
+
+                    ]);
+                }
+            }
+            DB::commit();
             toastr()->success(trans('messages.success'));
             return redirect(route('students.index'));
         } catch (Exception $e) {
+            DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
     }
@@ -107,7 +130,7 @@ class StudentsRepository implements StudentsInterface
         $data['genders'] = $this->genderModel::get();
         $data['grades'] = $this->getAllGrades();
         $data['nationalities'] = $this->nationalityModel::get();
-       
+
         return view('Students.edit', $data, compact('student'));
     }
 

@@ -43,7 +43,7 @@
                 <div class="col-xs-12">
                     <div class="col-md-12">
                         <br>
-                        <form action="{{route('students.store')}}" method="post">
+                        <form action="{{route('students.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{trans('Students.Personal Information')}}</h6><br>
                             <div class="row">

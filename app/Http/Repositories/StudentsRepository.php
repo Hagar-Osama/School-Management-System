@@ -102,9 +102,9 @@ class StudentsRepository implements StudentsInterface
             if ($request->hasFile('photos')) {
                 $images = $request->file('photos');
                 foreach ($images as $image) {
-                    $imageName = $image->hashName();
+                    // $imageName = $image->hashName();
                     // $image->storeAs('students/'.$students->name, time() . '_students.' .$image->extension(), 'public');
-                    $this->uploadFile($image, 'students/' . $students->name, $imageName);
+                    $imageName = $this->uploadFile($image, 'students/' . $students->name);
                     $this->imageModel::create([
                         'file_name' => $imageName,
                         'imageable_id' => $students->id,

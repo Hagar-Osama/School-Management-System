@@ -161,9 +161,9 @@ class StudentsRepository implements StudentsInterface
     {
         $image = $this->getImageById($request->file_id);
         $image->delete();
-        $this->deleteFile('storage/students/'.$request->student_name. '/'. $request->file_name);
+        $this->deleteFile('storage/students/'.$image->imageable->name. '/'. $image->file_name);
         toastr()->error(trans('messages.delete'));
-        return redirect(route('students.show', $request->student_id));
+        return redirect(route('students.show', $image->imageable_id));
 
         
     }

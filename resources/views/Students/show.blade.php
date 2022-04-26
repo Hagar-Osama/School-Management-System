@@ -139,8 +139,7 @@
                                                                 @method('DELETE')
                                                                 <input type="hidden" name="file_id" value="{{$attachment->id}}">
 
-                                                                <input type="hidden" name="student_name" value="{{$attachment->imageable->name}}">
-                                                                <input type="hidden" name="student_id" value="{{$attachment->imageable->id}}">
+                                                                
 
                                                                 <p> {{ trans('students.Delete Warning') }}</p>
                                                                 <input type="text" name="file_name" readonly value="{{$attachment->file_name}}" class="form-control">

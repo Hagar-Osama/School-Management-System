@@ -69,11 +69,17 @@ Route::group(
             Route::get('/', [StudentController::class, 'index'])->name('index');
             Route::get('/classes/{gradeId}', [StudentController::class, 'getClasses']);
             Route::get('/sections/{classId}', [StudentController::class, 'getSections']);
-            Route::get('/edit/{id}',[StudentController::class, 'edit'])->name('edit');
             Route::get('/create',[StudentController::class, 'create'])->name('create');
             Route::post('/store', [StudentController::class, 'store'])->name('store');
+            Route::get('/show/{id}',[StudentController::class, 'show'])->name('show');
+            Route::get('/edit/{id}',[StudentController::class, 'edit'])->name('edit');
             Route::put('/update', [StudentController::class, 'update'])->name('update');
             Route::delete('/delete', [StudentController::class, 'destroy'])->name('destroy');
+            Route::post('upload/attachments', [StudentController::class, 'updateFiles'])->name('updateFiles');
+            Route::get('download/attachments/{studentName}/{fileName}', [StudentController::class, 'downloadAttachments'])->name('downloadAttachment');
+            Route::delete('delete/attachments', [StudentController::class, 'deleteAttachments'])->name('deleteAttachments');
+
+
         });
     }
 );

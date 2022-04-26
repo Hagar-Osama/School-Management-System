@@ -17,7 +17,9 @@ use App\Models\Section;
 use App\Models\Student;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class StudentsRepository implements StudentsInterface
 {
@@ -102,9 +104,9 @@ class StudentsRepository implements StudentsInterface
             if ($request->hasFile('photos')) {
                 $images = $request->file('photos');
                 foreach ($images as $image) {
-                    // $imageName = $image->hashName();
-                    // $image->storeAs('students/'.$students->name, time() . '_students.' .$image->extension(), 'public');
-                    $imageName = $this->uploadFile($image, 'students/' . $students->name);
+                    $imageName = $image->hashName();
+                    // $image->storeAs('students/'.$students->name, $imageName, 'public');
+                    $this->uploadFile($image, 'students/' . $students->name, $imageName);
                     $this->imageModel::create([
                         'file_name' => $imageName,
                         'imageable_id' => $students->id,
@@ -120,6 +122,50 @@ class StudentsRepository implements StudentsInterface
             DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
         }
+    }
+
+    public function show($student_id)
+    {
+        $student = $this->GetStudentById($student_id);
+        return view('Students.show', compact('student'));
+    }
+
+    public function updateFiles($request)
+    {
+        try {
+            //we take the student name coz it's the one which will be stored in the disc
+            $images = $request->file('photos');
+            foreach ($images as $image) {
+                $imageName = $image->hashName();
+                $this->uploadFile($image, 'students/' . $request->student_name, $imageName);
+                $this->imageModel::create([
+                    'file_name' => $imageName,
+                    'imageable_id' => $request->student_id,
+                    'imageable_type' => Student::class,
+                ]);
+            }
+            toastr()->success(trans('messages.success'));
+            return redirect(route('students.show', $request->student_id));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+        }
+    }
+
+    public function downloadAttachments($studentName, $fileName)
+    {
+        return response()->download(public_path('storage/students/'. $studentName .'/'. $fileName));
+
+    }
+
+    public function deleteAttachments($request)
+    {
+        $image = $this->getImageById($request->file_id);
+        $image->delete();
+        $this->deleteFile('storage/students/'.$request->student_name. '/'. $request->file_name);
+        toastr()->error(trans('messages.delete'));
+        return redirect(route('students.show', $request->student_id));
+
+        
     }
 
     public function edit($student_id)
@@ -152,7 +198,6 @@ class StudentsRepository implements StudentsInterface
             $student->section_id = $request->section_id;
 
             $student->save();
-
 
             toastr()->success(trans('messages.update'));
             return redirect(route('students.index'));

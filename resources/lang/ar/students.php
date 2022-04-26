@@ -24,7 +24,11 @@ return [
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
     'Delete Row ' => 'حذف صف',
-    'Delete Warning' => 'هل انت متاكد من حذف هذا الطالب ؟',
+    'Delete Warning' => 'هل انت متاكد من حذف هذا المرفق ؟',
+    'Delete Attachments' => 'حذف مرفق',
+    'Download' => 'تنزيل',
+    'File Name' => 'اسم الملف',
+    'Created At' => 'ميعاد انشاءه',
 
 
 

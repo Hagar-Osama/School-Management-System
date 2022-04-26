@@ -24,7 +24,11 @@ return [
     'Close' => 'Close',
     'Submit' => 'Submit',
     'Delete Row' => 'Delete Row',
-    'Delete Warning' => 'Are you sure you want to delete this Student ?',
+    'Delete Warning' => 'Are you sure you want to delete this File ?',
+    'Delete Attachments' => 'Delete Attachments ',
+    'Download' => 'Download',
+    'File Name' => 'File Name ',
+    'Created At' => 'Created At ',
 
 
 

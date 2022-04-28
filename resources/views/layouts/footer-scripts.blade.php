@@ -42,3 +42,51 @@
         }
     }
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('select[name="grade_id"]').on('change', function() {
+            var Grade_id = $(this).val();
+            if (Grade_id) {
+                $.ajax({
+                    url: "{{ URL::to('students/classes') }}/" + Grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="class_id"]').empty();
+                        $('select[name="class_id"]').append('<option selected disabled >{{trans('parents.Choose')}}...</option>');
+                        $.each(data, function(key, value) {
+                            $('select[name="class_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('select[name="class_id"]').on('change', function() {
+            var class_id = $(this).val();
+            if (class_id) {
+                $.ajax({
+                    url: "{{ URL::to('students/sections') }}/" + class_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="section_id"]').empty();
+                        $('select[name="section_id"]').append('<option selected disabled >{{trans('parents.Choose')}}...</option>');
+                        $.each(data, function(key, value) {
+                            $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>

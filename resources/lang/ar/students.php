@@ -29,6 +29,10 @@ return [
     'Download' => 'تنزيل',
     'File Name' => 'اسم الملف',
     'Created At' => 'ميعاد انشاءه',
+    'Upgraded Students' => 'ترقية الطلاب',
+    'Old Grades' => 'المرحلة الدراسية القديمة',
+    'New Grades' => 'المرحلة الدراسية الجديدة',
+
 
 
 

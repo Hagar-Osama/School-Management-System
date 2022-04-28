@@ -29,6 +29,10 @@ return [
     'Download' => 'Download',
     'File Name' => 'File Name ',
     'Created At' => 'Created At ',
+    'Upgraded Students' => 'Upgraded Students',
+    'Old Grades' => 'Old Grades',
+    'New Grades' => 'New Grades',
+
 
 
 

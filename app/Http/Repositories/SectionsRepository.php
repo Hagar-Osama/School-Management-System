@@ -86,6 +86,7 @@ class SectionsRepository implements SectionsInterface
             if(isset($request->teacher_id)) {
                 $section->teachers()->sync($request->teacher_id);
             }else{
+                //here i add more than one id
                 $section->teachers()->sync(array());
             }
             $section->save();

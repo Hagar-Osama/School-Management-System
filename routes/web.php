@@ -8,6 +8,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UpgradeStudentController;
 use App\Models\ParentAttachment;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -78,7 +79,11 @@ Route::group(
             Route::post('upload/attachments', [StudentController::class, 'updateFiles'])->name('updateFiles');
             Route::get('download/attachments/{studentName}/{fileName}', [StudentController::class, 'downloadAttachments'])->name('downloadAttachment');
             Route::delete('delete/attachments', [StudentController::class, 'deleteAttachments'])->name('deleteAttachments');
-
+        });
+        //Upgraded Students Routes
+        Route::group(['prefix' => 'upgradedStudents', 'as' => 'upgradedStudents.'], function() {
+            Route::get('/', [UpgradeStudentController::class, 'index'])->name('index');
+            Route::post('/store', [UpgradeStudentController::class, 'store'])->name('store');
 
         });
     }
@@ -86,12 +91,6 @@ Route::group(
 Route::get('/signin', [AuthController::class, 'signinPage'])->name('signinpage');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
 
-// Route::get('/test', function() {
-//     $parentAttachments = ParentAttachment::with('parent')->first();
-
-//     $path = Storage::disk('public')->delete('parent_attachments/'. $parentAttachments->file_name);
-// return $path;
-// });
 
 
 

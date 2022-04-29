@@ -48,7 +48,7 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
             //now we need to enter the new data in the student table and coz it may be more the one student we need to make for each for each student
             foreach($students as $student) {
                 $studentIds = explode(',', $student->id);
-                $this->studentModel::where('id', $studentIds)
+                $this->studentModel::whereIn('id', $studentIds)//will compare every index in the array while where will compare with just first value of the array
                 ->update([
                     'grade_id' => $request->new_grade_id,
                     'class_id' => $request->new_class_id,

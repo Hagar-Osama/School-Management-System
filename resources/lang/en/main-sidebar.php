@@ -12,6 +12,7 @@ return [
     'Students'=>'Students',
     'Students List' => 'Students List',
     'Upgraded Students' => 'Upgraded Students',
+    'Upgraded Students Management' => 'Upgraded Students Management',
     'Teachers'=>'Teachers',
     'Teachers List' => 'Teachers List',
     'Parents'=>'Parents',

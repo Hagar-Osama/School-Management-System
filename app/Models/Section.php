@@ -33,4 +33,14 @@ class Section extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    public function upgradedtudents()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'from_section');
+    }
+
+    public function newUpgradedtudents()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'to_section');
+    }
 }

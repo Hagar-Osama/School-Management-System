@@ -32,5 +32,15 @@ class Grade extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function upgradedtudents()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'from_grade');
+    }
+
+    public function newUpgradedtudents()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'to_grade');
+    }
+
 
 }

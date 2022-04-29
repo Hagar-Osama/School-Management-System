@@ -25,13 +25,20 @@ return [
     'Submit' => 'تنفيذ',
     'Delete Row ' => 'حذف صف',
     'Delete Warning' => 'هل انت متاكد من حذف هذا المرفق ؟',
+    'Undo Warning' => 'هل انت متاكد من الغاء التغيير ؟',
+    'Undo Upgrades' => 'الغاء التغيير',
     'Delete Attachments' => 'حذف مرفق',
     'Download' => 'تنزيل',
     'File Name' => 'اسم الملف',
     'Created At' => 'ميعاد انشاءه',
     'Upgraded Students' => 'ترقية الطلاب',
-    'Old Grades' => 'المرحلة الدراسية القديمة',
+    'Upgraded Students Management' => ' ادارة ترقية الطلاب',
+    'Old Grades' => 'المرحلة الدراسية السابقة',
     'New Grades' => 'المرحلة الدراسية الجديدة',
+    'Old Class Name' => 'اسم الصف السابق',
+    'New Class Name' => 'اسم الصف الحالي',
+    'Old Section Name' => 'اسم الفصل السابق',
+    'New Section Name' => 'اسم الفصل الحالي',
 
 
 

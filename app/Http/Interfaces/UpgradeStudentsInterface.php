@@ -7,7 +7,9 @@ interface UpgradeStudentsInterface {
 
     public function store($request);
 
-    public function update($request);
+    public function create();
 
-    public function destroy($request);
+    public function undoChanges($request);
+
+    // public function destroy($request);
 }

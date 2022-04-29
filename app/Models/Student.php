@@ -50,4 +50,9 @@ class Student extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function upgradedStudent()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'student_id');
+    }
 }

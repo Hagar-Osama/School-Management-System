@@ -25,13 +25,20 @@ return [
     'Submit' => 'Submit',
     'Delete Row' => 'Delete Row',
     'Delete Warning' => 'Are you sure you want to delete this File ?',
+    'Undo Warning' => 'Are you sure you want to undo upgrade ?',
+    'Undo Upgrades' => 'Undo Upgrades',
     'Delete Attachments' => 'Delete Attachments ',
     'Download' => 'Download',
     'File Name' => 'File Name ',
     'Created At' => 'Created At ',
     'Upgraded Students' => 'Upgraded Students',
+    'Upgraded Students Management' => 'Upgraded Students Management',
     'Old Grades' => 'Old Grades',
     'New Grades' => 'New Grades',
+    'Old Class Name' => 'Old Class Name',
+    'New Class Name' => 'New Class Name',
+    'Old Section Name' => 'Old Section Name',
+    'New Section Name' => 'New Section Name',
 
 
 

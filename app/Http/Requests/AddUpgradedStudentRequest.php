@@ -31,6 +31,8 @@ class AddUpgradedStudentRequest extends FormRequest
             'to_grade.*' =>'required',
             'to_class.*' =>'required',
             'to_section.*' =>'required',
+            'academic_year.*' => 'required',
+            'new_academic_year.*' => 'required'
         ];
     }
 }

@@ -84,6 +84,8 @@ Route::group(
         Route::group(['prefix' => 'upgradedStudents', 'as' => 'upgradedStudents.'], function() {
             Route::get('/', [UpgradeStudentController::class, 'index'])->name('index');
             Route::post('/store', [UpgradeStudentController::class, 'store'])->name('store');
+            Route::get('/create', [UpgradeStudentController::class, 'create'])->name('create');
+            Route::post('/undoChanges', [UpgradeStudentController::class, 'undoChanges'])->name('undoChanges');
 
         });
     }

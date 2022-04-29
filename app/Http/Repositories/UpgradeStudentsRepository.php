@@ -42,18 +42,19 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
         DB::beginTransaction();
         try {
             //first we go to the students table and get the info we needed to change from that table 
-            $students = $this->studentModel::where([['grade_id', $request->grade_id],['class_id', $request->class_id],['section_id', $request->section_id]])->get();
-            if($students->count() < 1)
-            return redirect()->back()->with('error_promotions', trans('messages.There are no students found'));
+            $students = $this->studentModel::where([['grade_id', $request->grade_id], ['class_id', $request->class_id], ['section_id', $request->section_id], ['academic_year', $request->academic_year]])->get();
+            if ($students->count() < 1)
+                return redirect()->back()->with('error_promotions', trans('messages.There are no students found'));
             //now we need to enter the new data in the student table and coz it may be more the one student we need to make for each for each student
-            foreach($students as $student) {
+            foreach ($students as $student) {
                 $studentIds = explode(',', $student->id);
-                $this->studentModel::whereIn('id', $studentIds)//will compare every index in the array while where will compare with just first value of the array
-                ->update([
-                    'grade_id' => $request->new_grade_id,
-                    'class_id' => $request->new_class_id,
-                    'section_id' => $request->new_section_id
-                ]);
+                $this->studentModel::whereIn('id', $studentIds) //will compare every index in the array while where will compare with just first value of the array
+                    ->update([
+                        'grade_id' => $request->new_grade_id,
+                        'class_id' => $request->new_class_id,
+                        'section_id' => $request->new_section_id,
+                        'academic_year' => $request->new_academic_year
+                    ]);
 
                 $this->upgradeStudentModel::updateOrCreate([
                     'student_id' => $student->id,
@@ -63,10 +64,12 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
                     'to_grade' => $request->new_grade_id,
                     'to_class' => $request->new_class_id,
                     'to_section' => $request->new_section_id,
+                    'academic_year' => $request->academic_year,
+                    'new_academic_year' => $request->new_academic_year
                 ]);
             }
 
-             DB::commit();
+            DB::commit();
             toastr()->success(trans('messages.success'));
             return redirect(route('upgradedStudents.index'));
         } catch (Exception $e) {
@@ -76,22 +79,47 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
     }
 
 
-    public function update($request)
+    public function create()
     {
+        $upgrades = $this->getAllUpgradedStudents();
+        return view('Students.upgradedStudentsManagement', compact('upgrades'));
+    }
+
+    public function undoChanges($request)
+    {
+        DB::beginTransaction();
         try {
-
-
-            toastr()->success(trans('messages.update'));
-            return redirect(route('upgradedStudents.index'));
+            if ($request->undo_upgrade == 'all') {
+                $upgradedStudents = $this->getAllUpgradedStudents();
+                foreach ($upgradedStudents as $upgradedStudent) {
+                    $upgradedStudentsIds = explode(',', $upgradedStudent->student_id);
+                    $this->studentModel::whereIn('id', $upgradedStudentsIds) //will compare every index in the array while where will compare with just first value of the array
+                        ->update([
+                            'grade_id' => $upgradedStudent->from_grade,
+                            'class_id' => $upgradedStudent->from_class,
+                            'section_id' => $upgradedStudent->from_section,
+                            'academic_year' => $upgradedStudent->academic_year
+                        ]);
+                }
+                $this->upgradeStudentModel::truncate();
+                DB::commit();
+                return redirect()->back();
+            } else {
+                return '404';
+            }
         } catch (Exception $e) {
+            DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+
+            toastr()->error(trans('messages.delete'));
+            return redirect(route('upgradedStudents.index'));
         }
     }
 
-    public function destroy($request)
-    {
+    // public function destroy($request)
+    // {
 
-        toastr()->error(trans('messages.delete'));
-        return redirect(route('upgradedStudents.index'));
-    }
+    //     toastr()->error(trans('messages.delete'));
+    //     return redirect(route('upgradedStudents.index'));
+    // }
 }

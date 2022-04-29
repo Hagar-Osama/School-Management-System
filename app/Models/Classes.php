@@ -30,4 +30,16 @@ class Classes extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function upgradedtudents()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'from_class');
+    }
+
+    public function newUpgradedtudents()
+    {
+        return $this->hasMany(UpgradeStudent::class, 'to_class');
+    }
+
+
+
 }

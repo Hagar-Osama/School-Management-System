@@ -11,6 +11,7 @@ return [
     'Students' => 'الطلاب',
     'Students List' => 'قائمة الطلاب',
     'Upgraded Students' => 'ترقية الطلاب',
+    'Upgraded Students Management' => ' ادارة ترقية الطلاب',
     'Teachers' => 'المعلمين',
     'Teachers List' => 'قائمة المعلمين',
     'Parents' => 'اولياء الامور',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\UpgradeStudentsInterface;
 use App\Http\Requests\AddUpgradedStudentRequest;
+use App\Http\Requests\UndoUpgradeChangesRequest;
 
 class UpgradeStudentController extends Controller
 {
@@ -25,13 +26,18 @@ class UpgradeStudentController extends Controller
         return $this->upgradeStudentsInterface->store($request);
     }
 
-    public function update( $request)
+    public function create()
     {
-        return $this->upgradeStudentsInterface->update($request);
+        return $this->upgradeStudentsInterface->create();
     }
 
-    public function destroy( $request)
+    public function undoChanges(UndoUpgradeChangesRequest $request)
     {
-        return $this->upgradeStudentsInterface->destroy($request);
+        return $this->upgradeStudentsInterface->undoChanges($request);
     }
+
+    // public function destroy( $request)
+    // {
+    //     return $this->upgradeStudentsInterface->destroy($request);
+    // }
 }

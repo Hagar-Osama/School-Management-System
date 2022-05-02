@@ -32,8 +32,14 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
 
     public function index()
     {
+        $upgrades = $this->getAllUpgradedStudents();
+        return view('Students.upgradedStudentsIndex', compact('upgrades'));
+    }
+
+    public function create()
+    {
         $grades = $this->getAllGrades();
-        return view('Students.upgraded', compact('grades'));
+        return view('Students.upgradedCreate', compact('grades'));
     }
 
 
@@ -79,12 +85,6 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
     }
 
 
-    public function create()
-    {
-        $upgrades = $this->getAllUpgradedStudents();
-        return view('Students.upgradedStudentsManagement', compact('upgrades'));
-    }
-
     public function undoChanges($request)
     {
         DB::beginTransaction();
@@ -104,15 +104,26 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
                 $this->upgradeStudentModel::truncate();
                 DB::commit();
                 return redirect()->back();
+                toastr()->error(trans('messages.delete'));
+                return redirect(route('upgradedStudents.index'));
             } else {
-                return '404';
+                $upgradedStudent = $this->GetUpgradedStudentById($request->upgrade_id);
+               $this->studentModel::where('id', $upgradedStudent->student_id)
+                ->update([
+                    'grade_id' => $upgradedStudent->from_grade,
+                    'class_id' => $upgradedStudent->from_class,
+                    'section_id' => $upgradedStudent->from_section,
+                    'academic_year' => $upgradedStudent->academic_year
+                ]);
+                $upgradedStudent->delete();
+                DB::commit();
+                return redirect()->back();
+                toastr()->error(trans('messages.delete'));
+                return redirect(route('upgradedStudents.index'));
             }
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
-
-            toastr()->error(trans('messages.delete'));
-            return redirect(route('upgradedStudents.index'));
         }
     }
 

@@ -2,7 +2,7 @@
 @section('css')
 @toastr_css
 @section('title')
-{{trans('students.Upgraded Students')}}
+{{trans('students.Add New Upgraded Student')}}
 @stop
 @endsection
 @section('page-header')
@@ -10,12 +10,12 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0"> {{trans('students.Upgraded Students')}}</h4>
+            <h4 class="mb-0"> {{trans('students.Add New Upgraded Student')}}</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                 <li class="breadcrumb-item"><a href="{{route('admin.index')}}" class="default-color">{{trans('students.Home')}}</a></li>
-                <li class="breadcrumb-item active">{{trans('students.Upgraded Students')}}</li>
+                <li class="breadcrumb-item active">{{trans('students.Add New Upgraded Student')}}</li>
             </ol>
         </div>
     </div>

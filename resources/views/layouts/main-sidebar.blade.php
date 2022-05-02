@@ -58,8 +58,13 @@
                         </a>
                         <ul id="students-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('students.index')}}">{{trans('main-sidebar.Students List')}}</a> </li>
-                            <li> <a href="{{route('upgradedStudents.index')}}">{{trans('main-sidebar.Upgraded Students')}}</a> </li>
-                            <li> <a href="{{route('upgradedStudents.create')}}">{{trans('main-sidebar.Upgraded Students Management')}}</a> </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">{{trans('main-sidebar.Upgraded Students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                                <ul id="Students_upgrade" class="collapse">
+                                    <li> <a href="{{route('upgradedStudents.index')}}">{{trans('main-sidebar.Upgraded Students List')}}</a></li>
+                                    <li> <a href="{{route('upgradedStudents.create')}}">{{trans('main-sidebar.Add New Upgraded Student')}}</a> </li>
+                                </ul>
+                            </li>
 
 
                         </ul>

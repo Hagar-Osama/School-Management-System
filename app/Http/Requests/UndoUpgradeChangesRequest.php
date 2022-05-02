@@ -24,11 +24,11 @@ class UndoUpgradeChangesRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_id.*' =>'required|exists:students,id',
-            'grade_id.*' =>'required|exists:students,grade_id',
-            'class_id.*' =>'required|exists:students,class_id',
-            'section_id.*' =>'required|exists:students,section_id',
-            'academic_year.*' => 'required',
+            // 'student_id.*' =>'required|exists:students,id',
+            // 'grade_id.*' =>'required|exists:students,grade_id',
+            // 'class_id.*' =>'required|exists:students,class_id',
+            // 'section_id.*' =>'required|exists:students,section_id',
+            // 'academic_year.*' => 'required',
         ];
     }
 }

@@ -96,7 +96,7 @@ Route::group(
             Route::get('/create', [GraduatedStudentController::class, 'create'])->name('create');
             Route::post('/softDelete', [GraduatedStudentController::class, 'graduateStudent'])->name('delete');
             Route::post('/unarchiveStudent', [GraduatedStudentController::class, 'unarchiveStudent'])->name('restore');
-            Route::delete('/softDelete/graduatedStudent', [GraduatedStudentController::class, 'destroy'])->name('destroy');
+            Route::delete('/delete/graduatedStudent', [GraduatedStudentController::class, 'destroy'])->name('destroy');
         });
     }
 );

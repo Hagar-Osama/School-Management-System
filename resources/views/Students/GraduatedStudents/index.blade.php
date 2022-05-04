@@ -65,7 +65,7 @@
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_Student{{ $student->id }}" title="{{ trans('students.Delete Student') }}">{{ trans('students.Delete Student') }}</button>
                                             </td>
                                         </tr>
-                                        <!---Delete one Graduated Student modal-->
+                                        <!---Force Delete one Graduated Student modal-->
                                         <div class="modal fade" id="Delete_Student{{$student->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <form action="{{route('graduatedStudents.destroy')}}" method="post">

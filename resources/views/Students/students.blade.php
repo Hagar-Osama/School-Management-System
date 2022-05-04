@@ -78,7 +78,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p> {{ trans('students.Delete Warning') }}</p>
+                                                            <p> {{ trans('students.Delete Student Warning') }}</p>
                                                             <input type="hidden" name="student_id" value="{{$student->id}}">
                                                         </div>
                                                         <div class="modal-footer">

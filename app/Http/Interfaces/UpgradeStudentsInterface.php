@@ -11,5 +11,6 @@ interface UpgradeStudentsInterface {
 
     public function undoChanges($request);
 
-    // public function destroy($request);
+    public function destroy($request);
+
 }

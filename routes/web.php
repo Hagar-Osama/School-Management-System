@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
@@ -86,7 +87,16 @@ Route::group(
             Route::get('/create', [UpgradeStudentController::class, 'create'])->name('create');
             Route::post('/store', [UpgradeStudentController::class, 'store'])->name('store');
             Route::post('/undoChanges', [UpgradeStudentController::class, 'undoChanges'])->name('undoChanges');
+            Route::delete('/delete/upgradedStudents', [UpgradeStudentController::class, 'destroy'])->name('destroy');
 
+        });
+         //graduated Students Routes
+         Route::group(['prefix' => 'graduatedStudents', 'as' => 'graduatedStudents.'], function() {
+            Route::get('/', [GraduatedStudentController::class, 'index'])->name('index');
+            Route::get('/create', [GraduatedStudentController::class, 'create'])->name('create');
+            Route::post('/softDelete', [GraduatedStudentController::class, 'graduateStudent'])->name('delete');
+            Route::post('/unarchiveStudent', [GraduatedStudentController::class, 'unarchiveStudent'])->name('restore');
+            Route::delete('/delete/graduatedStudent', [GraduatedStudentController::class, 'destroy'])->name('destroy');
         });
     }
 );

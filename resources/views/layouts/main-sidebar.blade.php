@@ -65,6 +65,13 @@
                                     <li> <a href="{{route('upgradedStudents.create')}}">{{trans('main-sidebar.Add New Upgraded Student')}}</a> </li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_graduated">{{trans('main-sidebar.Graduated Students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                                <ul id="Students_graduated" class="collapse">
+                                    <li> <a href="{{route('graduatedStudents.index')}}">{{trans('main-sidebar.Graduated Students List')}}</a></li>
+                                    <li> <a href="{{route('graduatedStudents.create')}}">{{trans('main-sidebar.Add New Graduated Student')}}</a> </li>
+                                </ul>
+                            </li>
 
 
                         </ul>

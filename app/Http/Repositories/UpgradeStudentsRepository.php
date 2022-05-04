@@ -33,13 +33,13 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
     public function index()
     {
         $upgrades = $this->getAllUpgradedStudents();
-        return view('Students.upgradedStudentsIndex', compact('upgrades'));
+        return view('Students.UpgradedStudents.index', compact('upgrades'));
     }
 
     public function create()
     {
         $grades = $this->getAllGrades();
-        return view('Students.upgradedCreate', compact('grades'));
+        return view('Students.UpgradedStudents.create', compact('grades'));
     }
 
 
@@ -127,10 +127,12 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
         }
     }
 
-    // public function destroy($request)
-    // {
+    public function destroy($request)
+    {
+        $upgradedStudent = $this->GetUpgradedStudentById($request->upgrade_id);
+        $upgradedStudent->delete();
+        toastr()->error(trans('messages.delete'));
+        return redirect(route('upgradedStudents.index'));
+    }
 
-    //     toastr()->error(trans('messages.delete'));
-    //     return redirect(route('upgradedStudents.index'));
-    // }
 }

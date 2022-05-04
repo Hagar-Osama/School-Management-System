@@ -87,7 +87,7 @@ Route::group(
             Route::get('/create', [UpgradeStudentController::class, 'create'])->name('create');
             Route::post('/store', [UpgradeStudentController::class, 'store'])->name('store');
             Route::post('/undoChanges', [UpgradeStudentController::class, 'undoChanges'])->name('undoChanges');
-            Route::delete('/delete/upgradedStudents', [UpgradeStudentController::class, 'destroy'])->name('destroy');
+            Route::delete('/softDelete/upgradedStudents', [UpgradeStudentController::class, 'destroy'])->name('destroy');
 
         });
          //graduated Students Routes
@@ -96,7 +96,7 @@ Route::group(
             Route::get('/create', [GraduatedStudentController::class, 'create'])->name('create');
             Route::post('/softDelete', [GraduatedStudentController::class, 'graduateStudent'])->name('delete');
             Route::post('/unarchiveStudent', [GraduatedStudentController::class, 'unarchiveStudent'])->name('restore');
-            Route::delete('/delete/graduatedStudent', [GraduatedStudentController::class, 'destroy'])->name('destroy');
+            Route::delete('/softDelete/graduatedStudent', [GraduatedStudentController::class, 'destroy'])->name('destroy');
         });
     }
 );

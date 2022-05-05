@@ -23,6 +23,7 @@ return [
     'Parents List'=>'Parents List',
     'Add Parent' => 'Add Parent',
     'Accountings'=>'Accountings',
+    'Tuition Fees'=>'Tuition Fees',
     'Attendance'=>'Attendance',
     'Exams'=>'Exams',
     'Library'=>'Library',

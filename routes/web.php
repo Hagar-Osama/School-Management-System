@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\FeeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\ParentController;
@@ -97,6 +98,16 @@ Route::group(
             Route::post('/softDelete', [GraduatedStudentController::class, 'graduateStudent'])->name('delete');
             Route::post('/unarchiveStudent', [GraduatedStudentController::class, 'unarchiveStudent'])->name('restore');
             Route::delete('/delete/graduatedStudent', [GraduatedStudentController::class, 'destroy'])->name('destroy');
+        });
+        //  Fees Routes
+        Route::group(['prefix' => 'fees', 'as' => 'fees.'], function() {
+            Route::get('/', [FeeController::class, 'index'])->name('index');
+            Route::get('/create', [FeeController::class, 'create'])->name('create');
+            Route::post('/store', [FeeController::class, 'store'])->name('store');
+            Route::get('/show/{feeId}', [FeeController::class, 'show'])->name('show');
+            Route::get('/edit/{feeId}', [FeeController::class, 'edit'])->name('edit');
+            Route::put('/update', [FeeController::class, 'update'])->name('update');
+            Route::delete('/delete', [FeeController::class, 'destroy'])->name('destroy');
         });
     }
 );

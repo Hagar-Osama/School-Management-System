@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Http\Interfaces\FeesInterface;
 use App\Http\Interfaces\GraduatedStudentsInterface;
 use App\Http\Interfaces\StudentsInterface;
 use App\Http\Interfaces\TeachersInterface;
 use App\Http\Interfaces\UpgradeStudentsInterface;
+use App\Http\Repositories\FeesRepository;
 use App\Http\Repositories\GraduatedStudentsRepository;
 use App\Http\Repositories\StudentsRepository;
 use App\Http\Repositories\TeachersRepository;
@@ -45,6 +47,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UpgradeStudentsInterface::class, UpgradeStudentsRepository::class);
 
         $this->app->bind(GraduatedStudentsInterface::class, GraduatedStudentsRepository::class);
+
+        $this->app->bind(FeesInterface::class, FeesRepository::class);
+
 
 
     }

@@ -40,6 +40,11 @@ class Classes extends Model
         return $this->hasMany(UpgradeStudent::class, 'to_class');
     }
 
+    public function fees()
+    {
+        return $this->hasMany(Fee::class);
+    }
+
 
 
 }

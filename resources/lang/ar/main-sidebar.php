@@ -22,6 +22,7 @@ return [
     'Parents List' => 'قائمة اولياء الامور',
     'Add Parent' => 'اضافة ولي امر',
     'Accountings' => 'الحسابات',
+    'Tuition Fees' => 'رسوم دراسية',
     'Attendance' => 'الحضور والغياب',
     'Exams' => 'الامتحانات',
     'Library' => 'المكتبة',

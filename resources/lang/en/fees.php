@@ -1,0 +1,22 @@
+<?php
+return [
+    'Tuition Fees'=>'Tuition Fees',
+    'Title' => 'Title',
+    'Amount' => 'Amount',
+    'Description' => 'Description',
+    'Academic Year' => 'Academic Year',
+    'Home' => 'Home',
+    'Grade Name' => 'Grade Name',
+    'Class Name' => 'Class Name',
+    'Actions' => 'Actions',
+    'Add Fee' => 'Add Fee',
+    'Edit Fee' => 'Edit Fee',
+    'Delete Fee' => 'Delete Fee',
+    'Show Fee' => 'Show Fee',
+    'Fee Name_en' => 'Fee Name In English',
+    'Fee Name_ar' => 'Fee Name In Arabic',
+    'Delete Warning' => 'Are you sure you want to delete this row ?',
+    'Close' => 'Close',
+    'Submit' => 'Submit',
+    'Delete Row' => 'Delete Row',
+];

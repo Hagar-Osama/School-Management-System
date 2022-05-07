@@ -317,7 +317,7 @@ Grades
         $("#btn_delete_all").click(function() {
             //it will be in an array and we will put it in a variable called selected
             var selected = new Array();
-            //go inside the table whic has id datatable, make for each on these checkboxes  and get me the value of the check box inside the table
+            //go inside the table which has id datatable, make for each on these checkboxes  and get me the value of the check box inside the table
             $("#datatable input[type=checkbox]:checked").each(function() {
                 //take the value of these checkboxes
                 selected.push(this.value);

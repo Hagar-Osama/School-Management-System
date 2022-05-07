@@ -29,7 +29,7 @@ class UpdateFeesRequest extends FormRequest
             'grade_id' => 'required|exists:grades,id',
             'class_id' => 'required|unique:fees,class_id,'.$this->fee_id,
             'amount' => 'required|numeric',
-            'description' => 'nullable|min:3|max:200',
+            'description' => 'required|min:3|max:200',
             'year' => 'required',
             'fee_id' => 'required|exists:fees,id'
         ];

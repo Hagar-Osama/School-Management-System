@@ -77,6 +77,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
                                         </div>
 
                                         <div class="col">
@@ -115,7 +116,8 @@
 @section('js')
 @toastr_js
 @toastr_render
-<script>
+
+<!-- <script>
     $(document).ready(function() {
         $('select[name="fee_id"]').on('change', function() {
             var fee_id = $(this).val();
@@ -126,10 +128,8 @@
                     dataType: "json",
                     success: function(data) {
                         $('select[name="amount"]').empty();
-                        $('select[name="amount"]').append('<option selected disabled >{{trans('
-                            parents.Choose ')}}...</option>');
                         $.each(data, function(key, value) {
-                            $('select[name="amount"]').append('<option value="' + key + '">' + value + '</option>');
+                            $('select[name="amount"]').append('<option value="' + value + '">' + value + '</option>');
                         });
                     },
                 });
@@ -138,6 +138,6 @@
             }
         });
     });
-</script>
+</script> -->
 
 @endsection

@@ -21,11 +21,11 @@ class FeeInvoiceController extends Controller
 
     }
 
-    public function getAmount($feeId)
-    {
-        return $this->feesInvoicesInterface->getAmount($feeId);
+    // public function getAmount($feeId)
+    // {
+    //     return $this->feesInvoicesInterface->getAmount($feeId);
 
-    }
+    // }
 
 
     public function create($student_id)

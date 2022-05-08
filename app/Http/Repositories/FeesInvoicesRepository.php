@@ -48,11 +48,11 @@ class FeesInvoicesRepository implements FeesInvoicesInterface
         return view('Fees.addInvoice', compact('student', 'fees'));
     }
 
-    public function getAmount($feeId)
-    {
-        $amount  = $this->feeModel::where('id', $feeId)->pluck('amount', 'id');
-        return json_encode($amount);
-    }
+    // public function getAmount($feeId)
+    // {
+    //     $amount  = $this->feeModel::where('id', $feeId)->pluck('amount', 'id');
+    //     return json_encode($amount);
+    // }
 
     public function store($request)
     {

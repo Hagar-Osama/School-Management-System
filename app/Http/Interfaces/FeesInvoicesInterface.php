@@ -5,7 +5,7 @@ interface FeesInvoicesInterface {
 
     public function index();
 
-    public function getAmount($feeId);
+    // public function getAmount($feeId);
 
     public function create($student_id);
 

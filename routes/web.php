@@ -115,7 +115,7 @@ Route::group(
             Route::group(['prefix' => 'feesInvoices', 'as' => 'feesInvoices.'], function() {
                 Route::get('/', [FeeInvoiceController::class, 'index'])->name('index');
                 Route::get('/create/{studentId}', [FeeInvoiceController::class, 'create'])->name('create');
-                Route::get('/{feeId}',[FeeInvoiceController::class, 'getAmount']);
+                // Route::get('/{feeId}',[FeeInvoiceController::class, 'getAmount']);
                 Route::post('/store', [FeeInvoiceController::class, 'store'])->name('store');
 
             });

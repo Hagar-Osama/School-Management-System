@@ -42,6 +42,7 @@
                                             <th>{{trans('fees.Grade Name')}}</th>
                                             <th>{{trans('fees.Class Name')}}</th>
                                             <th>{{trans('fees.Academic Year')}}</th>
+                                            <th>{{trans('fees.Fees Type')}}</th>
                                             <th>{{trans('fees.Description')}}</th>
                                             <th>{{trans('fees.Actions')}}</th>
                                         </tr>
@@ -55,6 +56,7 @@
                                             <td>{{$fee->grade->name}}</td>
                                             <td>{{$fee->class->name}}</td>
                                             <td>{{$fee->year}}</td>
+                                            <td>{{$fee->fees_type}}</td>
                                             <td>{{$fee->description}}</td>
                                             <td>
                                                 <a href="{{route('fees.edit',$fee->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>

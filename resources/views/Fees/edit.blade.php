@@ -94,6 +94,14 @@
                                     @endfor
                                 </select>
                             </div>
+                            <div class="form-group col">
+                                <label for="inputState"> {{trans('fees.Fees Type')}}</label>
+                                <select class="custom-select mr-sm-2" name="fees_type">
+                                    <option selected disabled>{{trans('Parents.Choose')}}...</option>
+                                        <option value="tuition fees"@if($fee->fees_type == 'tuition fees') selected @else ""@endif>{{trans('fees.Tuition Fees')}}</option>
+                                        <option value="transportation fees"@if($fee->fees_type == 'transportation fees') selected @else ""@endif>{{trans('fees.Transportation Fees')}}</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group">

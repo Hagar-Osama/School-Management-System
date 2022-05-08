@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddFeesRequest extends FormRequest
+class AddFeesInvoiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class AddFeesRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_ar' => 'required',
-            'title_en' => 'required',
+            'fees_list.*student_id' => 'required|exists:students,id',
+            'fees_list.*amount' => 'required',
+            'fees_list.*description' => 'required',
+            'fees_list.*fee_id' => 'required|exists:fees,id',
             'grade_id' => 'required|exists:grades,id',
-            'class_id' => 'required',
-            'amount' => 'required|numeric',
-            'description' => 'required|min:3|max:200',
-            'year' => 'required',
-            'fees_type' => 'required|in:tuition fees,transportation fees',
+            'class_id' => 'required|exists:classes,id',
+
+
         ];
     }
 }

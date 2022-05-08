@@ -10,13 +10,20 @@ return [
     'Class Name' => 'اسم الصف',
     'Actions' => 'العمليات',
     'Add Fee' => 'اضافة رسوم',
+    'Add Invoice Fees' => 'اضافة فاتورة رسوم',
     'Edit Fee' => 'تعديل رسوم',
     'Delete Fee' => 'حذف رسوم',
     'Show Fee' => 'عرض الرسوم',
     'Fee Name_en' => 'اسم الرسوم باللغة الانجليزية',
     'Fee Name_ar' => 'اسم الرسوم باللغة العربية',
+    'Fees Name' => 'اسم الرسوم',
+    'Fees Type' => 'نوع الرسوم',
+    'Transportation Fees' => 'رسوم باص',
     'Delete Warning' => 'هل انت متاكد من حذف هذه المصاريف ؟',
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
     'Delete Row ' => 'حذف رسم',
+
+    'Add Invoice' => 'اضافة فاتورة',
+
 ];

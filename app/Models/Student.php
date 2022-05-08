@@ -57,4 +57,9 @@ class Student extends Model
     {
         return $this->hasMany(UpgradeStudent::class, 'student_id');
     }
+
+    public function feeInvoices()
+    {
+        return $this->hasMany(FeeInvoice::class);
+    }
 }

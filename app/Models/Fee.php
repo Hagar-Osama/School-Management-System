@@ -8,7 +8,7 @@ use Spatie\Translatable\HasTranslations;
 class Fee extends Model
 {
     use HasTranslations;
-    protected $fillable = ['title', 'amount', 'grade_id', 'class_id', 'description', 'year'];
+    protected $fillable = ['title', 'amount', 'grade_id', 'class_id', 'description', 'year', 'fees_type'];
     public $translatable = ['title'];
 
     public function grade()
@@ -19,5 +19,10 @@ class Fee extends Model
     public function class()
     {
         return $this->belongsTo(Classes::class);
+    }
+
+    public function feeInvoice()
+    {
+        return $this->hasMany(FeeInvoice::class);
     }
 }

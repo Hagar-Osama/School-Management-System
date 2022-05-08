@@ -14,7 +14,7 @@ return [
     'Delete Warning' => 'هل انت متاكد من حذف هذا الصف ؟',
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
-    'Delete Row ' => 'حذف صف',
+    'Delete Row' => 'حذف صف',
     'Data Repeater' => 'ادراج صف اخر',
     'Search_By_Grade' => 'البحث باسم المرحلة',
 

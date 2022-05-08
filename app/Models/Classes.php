@@ -45,6 +45,11 @@ class Classes extends Model
         return $this->hasMany(Fee::class);
     }
 
+    public function feeInvoices()
+    {
+        return $this->hasMany(feeInvoices::class);
+    }
+
 
 
 }

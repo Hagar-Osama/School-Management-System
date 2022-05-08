@@ -27,10 +27,11 @@ class UpdateFeesRequest extends FormRequest
             'title_ar' => 'required',
             'title_en' => 'required',
             'grade_id' => 'required|exists:grades,id',
-            'class_id' => 'required|unique:fees,class_id,'.$this->fee_id,
+            'class_id' => 'required',
             'amount' => 'required|numeric',
             'description' => 'required|min:3|max:200',
             'year' => 'required',
+            'fees_type' => 'required|in:tuition fees,transportation fees',
             'fee_id' => 'required|exists:fees,id'
         ];
     }

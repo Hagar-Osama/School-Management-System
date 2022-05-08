@@ -47,6 +47,7 @@ class FeesRepository implements FeesInterface
             $fees->class_id = $request->class_id;
             $fees->year = $request->year;
             $fees->description = $request->description;
+            $fees->fees_type = $request->fees_type;
 
             $fees->save();
 
@@ -74,6 +75,7 @@ class FeesRepository implements FeesInterface
             $fee->class_id = $request->class_id;
             $fee->year = $request->year;
             $fee->description = $request->description;
+            $fee->fees_type = $request->fees_type;
 
             $fee->save();
             toastr()->success(trans('messages.update'));

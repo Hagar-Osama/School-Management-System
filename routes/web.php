@@ -4,10 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\FeeController;
+use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentAccountController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UpgradeStudentController;
@@ -109,6 +111,23 @@ Route::group(
             Route::put('/update', [FeeController::class, 'update'])->name('update');
             Route::delete('/delete', [FeeController::class, 'destroy'])->name('destroy');
         });
+            //  Fees Invoices Routes
+            Route::group(['prefix' => 'feesInvoices', 'as' => 'feesInvoices.'], function() {
+                Route::get('/', [FeeInvoiceController::class, 'index'])->name('index');
+                Route::get('/create/{studentId}', [FeeInvoiceController::class, 'create'])->name('create');
+                Route::get('/{feeId}',[FeeInvoiceController::class, 'getAmount']);
+                Route::post('/store', [FeeInvoiceController::class, 'store'])->name('store');
+
+            });
+               //  Student Account Routes
+               Route::group(['prefix' => 'studentAccount', 'as' => 'studentAccount.'], function() {
+                Route::get('/', [StudentAccountController::class, 'index'])->name('index');
+                Route::get('/create', [StudentAccountController::class, 'create'])->name('create');
+                Route::post('/store', [StudentAccountController::class, 'store'])->name('store');
+                Route::get('/edit/{studentAccountId}', [StudentAccountController::class, 'edit'])->name('edit');
+                Route::put('/update', [StudentAccountController::class, 'update'])->name('update');
+                Route::delete('/delete', [StudentAccountController::class, 'destroy'])->name('destroy');
+            });
     }
 );
 Route::get('/signin', [AuthController::class, 'signinPage'])->name('signinpage');

@@ -108,7 +108,7 @@
                         </a>
                         <ul id="accountings-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{route('fees.index')}}">{{trans('main-sidebar.Tuition Fees')}}</a> </li>
-                            <li> <a href="calendar-list.html">List Calendar</a> </li>
+                            <li> <a href="{{route('feesInvoices.index')}}">{{trans('main-sidebar.Tuition Invoices')}}</a> </li>
                         </ul>
                     </li>
 

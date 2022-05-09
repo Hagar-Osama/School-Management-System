@@ -16,10 +16,11 @@ class CreateStudentAccountsTable extends Migration
         Schema::create('student_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('class_id')->constrained('classes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('fee_invoice_id')->nullable()->constrained('fee_invoices')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('type');
+            $table->date('date');
             $table->text('description')->nullable();
-            $table->decimal('cretit')->nullable();
+            $table->decimal('credit')->nullable();
             $table->decimal('debit')->nullable();
             $table->timestamps();
         });

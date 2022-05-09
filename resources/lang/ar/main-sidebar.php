@@ -23,6 +23,7 @@ return [
     'Add Parent' => 'اضافة ولي امر',
     'Accountings' => 'الحسابات',
     'Tuition Fees' => 'رسوم دراسية',
+    'Tuition Invoices' => 'الفواتير الدراسية',
     'Attendance' => 'الحضور والغياب',
     'Exams' => 'الامتحانات',
     'Library' => 'المكتبة',

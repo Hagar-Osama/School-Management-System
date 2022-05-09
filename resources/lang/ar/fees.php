@@ -19,11 +19,14 @@ return [
     'Fees Name' => 'اسم الرسوم',
     'Fees Type' => 'نوع الرسوم',
     'Transportation Fees' => 'رسوم باص',
-    'Delete Warning' => 'هل انت متاكد من حذف هذه المصاريف ؟',
+    'Delete Warning' => 'هل انت متاكد من حذف هذه الفاتورة ؟',
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
     'Delete Row ' => 'حذف رسم',
 
     'Add Invoice' => 'اضافة فاتورة',
+    'Edit Invoice' => 'تعديل فاتورة',
+    'Delete Invoice' => 'حذف فاتورة',
+    'Tuition Invoices' => 'الفواتير الدراسية',
 
 ];

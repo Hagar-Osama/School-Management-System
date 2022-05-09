@@ -117,6 +117,10 @@ Route::group(
                 Route::get('/create/{studentId}', [FeeInvoiceController::class, 'create'])->name('create');
                 // Route::get('/{feeId}',[FeeInvoiceController::class, 'getAmount']);
                 Route::post('/store', [FeeInvoiceController::class, 'store'])->name('store');
+                Route::get('/edit/{feeInvoiceId}', [FeeInvoiceController::class, 'edit'])->name('edit');
+                Route::put('/update', [FeeInvoiceController::class, 'update'])->name('update');
+                Route::delete('/delete', [FeeInvoiceController::class, 'destroy'])->name('destroy');
+
 
             });
                //  Student Account Routes

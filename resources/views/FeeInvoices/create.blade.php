@@ -99,8 +99,6 @@
                                     <input class="button" data-repeater-create type="button" value="{{ trans('classes.Data Repeater') }}" />
                                 </div>
                             </div><br>
-                            <input type="hidden" name="grade_id" value="{{$student->grade_id}}">
-                            <input type="hidden" name="class_id" value="{{$student->class_id}}">
 
                             <button type="submit" class="btn btn-primary">{{trans('fees.Submit')}}</button>
                         </div>

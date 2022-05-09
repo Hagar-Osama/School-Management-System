@@ -11,6 +11,14 @@ interface FeesInvoicesInterface {
 
     public function store($request);
 
+    public function edit($feeInvoiceId);
+
+    public function update($request);
+
+    public function destroy($request);
+
+
+
 
 
 }

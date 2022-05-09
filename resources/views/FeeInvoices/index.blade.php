@@ -2,7 +2,7 @@
 @section('css')
     @toastr_css
 @section('title')
-    الفواتير الدراسية
+ {{trans('fees.Tuition Invoices')}}
 @stop
 @endsection
 @section('page-header')
@@ -10,12 +10,12 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0"> {{trans('fees.Tuition Fees')}}</h4>
+            <h4 class="mb-0"> {{trans('fees.Tuition Invoices')}}</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                 <li class="breadcrumb-item"><a href="{{route('admin.index')}}" class="default-color">{{trans('classes.Home')}}</a></li>
-                <li class="breadcrumb-item active">{{trans('fees.Tuition Fees')}}</li>
+                <li class="breadcrumb-item active">{{trans('fees.Tuition Invoices')}}</li>
             </ol>
         </div>
     </div>
@@ -58,8 +58,13 @@
                                             <td>{{$invoice->class->name}}</td>
                                             <td>{{$invoice->description}}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#" ><i class="fa fa-trash"></i></button>
+                                                    <a href="{{route('feesInvoices.edit',[$invoice->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                                    <form action="{{route('feesInvoices.destroy')}}" method="post" style="display: inline-block;">
+                                                    @csrf 
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="feeInvoice_id" value="{{$invoice->id}}">
+                                                    <button type="submit" onclick="return confirm('Are You Sure?')" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#" ><i class="fa fa-trash"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

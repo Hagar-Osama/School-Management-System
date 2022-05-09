@@ -23,5 +23,9 @@ return [
     'Close' => 'Close',
     'Submit' => 'Submit',
     'Delete Row' => 'Delete Row',
+
     'Add Invoice' => 'Add Invoice',
+    'Edit Invoice' => 'Edit Invoice',
+    'Delete Invoice' => 'Delete Invoice',
+    'Tuition Invoices' => 'Tuition Invoices',
 ];

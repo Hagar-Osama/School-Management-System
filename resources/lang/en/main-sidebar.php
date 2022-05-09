@@ -24,6 +24,7 @@ return [
     'Add Parent' => 'Add Parent',
     'Accountings'=>'Accountings',
     'Tuition Fees'=>'Tuition Fees',
+    'Tuition Invoices' => 'Tuition Invoices',
     'Attendance'=>'Attendance',
     'Exams'=>'Exams',
     'Library'=>'Library',

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\FeesInvoicesInterface;
 use App\Http\Requests\AddFeesInvoiceRequest;
+use App\Http\Requests\DeleteFeeInvoiceRequest;
+use App\Http\Requests\UpdateFeeInvoiceRequest;
 use Illuminate\Http\Request;
 
 class FeeInvoiceController extends Controller
@@ -37,4 +39,21 @@ class FeeInvoiceController extends Controller
     {
         return $this->feesInvoicesInterface->store($request);
     }
+
+    public function edit($feeInvoiceId)
+    {
+        return $this->feesInvoicesInterface->edit($feeInvoiceId);
+    }
+
+    public function update(UpdateFeeInvoiceRequest $request)
+    {
+        return $this->feesInvoicesInterface->update($request);
+    }
+
+    public function destroy(DeleteFeeInvoiceRequest $request)
+    {
+        return $this->feesInvoicesInterface->destroy($request);
+    }
+
+    
 }

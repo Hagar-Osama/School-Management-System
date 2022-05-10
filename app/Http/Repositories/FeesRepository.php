@@ -85,9 +85,6 @@ class FeesRepository implements FeesInterface
         }
     }
 
-    public function show($id)
-    {
-    }
 
     public function destroy($request)
     {

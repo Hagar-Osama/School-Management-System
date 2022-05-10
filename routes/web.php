@@ -8,6 +8,7 @@ use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentAccountController;
 use App\Http\Controllers\StudentController;
@@ -131,6 +132,15 @@ Route::group(
                 Route::get('/edit/{studentAccountId}', [StudentAccountController::class, 'edit'])->name('edit');
                 Route::put('/update', [StudentAccountController::class, 'update'])->name('update');
                 Route::delete('/delete', [StudentAccountController::class, 'destroy'])->name('destroy');
+            });
+               //  Payments Routes
+               Route::group(['prefix' => 'payments', 'as' => 'payments.'], function() {
+                Route::get('/', [PaymentController::class, 'index'])->name('index');
+                Route::get('/create/{studentId}', [PaymentController::class, 'create'])->name('create');
+                Route::post('/store', [PaymentController::class, 'store'])->name('store');
+                Route::get('/edit/{paymentId}', [PaymentController::class, 'edit'])->name('edit');
+                Route::put('/update', [PaymentController::class, 'update'])->name('update');
+                Route::delete('/delete', [PaymentController::class, 'destroy'])->name('destroy');
             });
     }
 );

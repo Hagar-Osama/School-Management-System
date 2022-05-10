@@ -64,10 +64,13 @@
                                                         {{trans('students.Actions')}}
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="{{route('students.edit',[$student->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i style="color:green" class="fa fa-edit"></i>&nbsp;{{trans('students.Edit Student')}}&nbsp;</a>
-                                                    <a class="dropdown-item" data-target="#delete_student{{ $student->id }}" title="{{ trans('students.Delete Student') }}"><i class="fa fa-trash"></i>&nbsp;{{trans('students.Delete Student')}}&nbsp;</a>
                                                     <a class="dropdown-item" href="{{route('students.show', [$student->id])}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i style="color: #ffc107" class="far fa-eye"></i>&nbsp;{{trans('students.Student Information')}}&nbsp;</a>
-                                                    <a class="dropdown-item" href="{{route('feesInvoices.create',$student->id)}}"><i style="color: #0000cc" style="color: #0000cc" class="fa fa-edit"></i>&nbsp;{{trans('fees.Add Invoice Fees')}}&nbsp;</a>
+                                                    <a class="dropdown-item" href="{{route('students.edit',[$student->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i style="color:green" class="fa fa-edit"></i>&nbsp;{{trans('students.Edit Student')}}&nbsp;</a>
+                                                    <a class="dropdown-item" href="{{route('feesInvoices.create',[$student->id])}}"><i style="color: #0000cc" class="fa fa-edit"></i>&nbsp;{{trans('fees.Add Invoice Fees')}}&nbsp;</a>
+                                                    <a class="dropdown-item" href="{{route('payments.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('payments.Add Payments')}}</a>
+                                                    <a class="dropdown-item" data-target="#delete_student{{ $student->id }}" title="{{ trans('students.Delete Student') }}"><i style="color: red" class="fa fa-trash"></i>&nbsp;{{trans('students.Delete Student')}}&nbsp;</a>
+
+
                                                     </div>
                                                 </div>
                                             </td>

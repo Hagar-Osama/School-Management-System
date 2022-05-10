@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Interfaces;
 
-interface FeesInterface {
+interface PaymentsInterface {
 
     public function index();
 
-    public function create();
+    public function create($student_id);
 
     public function store($request);
 

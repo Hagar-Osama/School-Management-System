@@ -24,6 +24,7 @@ return [
     'Accountings' => 'الحسابات',
     'Tuition Fees' => 'رسوم دراسية',
     'Tuition Invoices' => 'الفواتير الدراسية',
+    'Payments' => 'سندات قبض',
     'Attendance' => 'الحضور والغياب',
     'Exams' => 'الامتحانات',
     'Library' => 'المكتبة',

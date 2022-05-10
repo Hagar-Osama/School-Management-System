@@ -44,11 +44,6 @@ class FeeController extends Controller
         return $this->feesInterface->update($request);
     }
 
-    public function show($id)
-    {
-        return $this->feesInterface->show($id);
-    }
-
     public function destroy(DeleteFeesRequest $request)
     {
         return $this->feesInterface->destroy($request);

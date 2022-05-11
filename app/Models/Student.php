@@ -67,4 +67,14 @@ class Student extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function studentAccount()
+    {
+        return $this->hasMany(StudentAccount::class);
+    }
+
+    public function refund()
+    {
+        return $this->hasOne(Refund::class);
+    }
 }

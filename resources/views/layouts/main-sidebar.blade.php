@@ -110,6 +110,7 @@
                             <li> <a href="{{route('fees.index')}}">{{trans('main-sidebar.Tuition Fees')}}</a> </li>
                             <li> <a href="{{route('feesInvoices.index')}}">{{trans('main-sidebar.Tuition Invoices')}}</a> </li>
                             <li> <a href="{{route('payments.index')}}">{{trans('main-sidebar.Payments')}}</a> </li>
+                            <li> <a href="{{route('refunds.index')}}">{{trans('main-sidebar.Refunds')}}</a> </li>
 
                         </ul>
                     </li>

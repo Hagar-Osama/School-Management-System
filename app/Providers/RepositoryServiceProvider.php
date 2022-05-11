@@ -6,6 +6,7 @@ use App\Http\Interfaces\FeesInterface;
 use App\Http\Interfaces\FeesInvoicesInterface;
 use App\Http\Interfaces\GraduatedStudentsInterface;
 use App\Http\Interfaces\PaymentsInterface;
+use App\Http\Interfaces\RefundsInterface;
 use App\Http\Interfaces\StudentsAccountInterface;
 use App\Http\Interfaces\StudentsInterface;
 use App\Http\Interfaces\TeachersInterface;
@@ -14,6 +15,7 @@ use App\Http\Repositories\FeesInvoicesRepository;
 use App\Http\Repositories\FeesRepository;
 use App\Http\Repositories\GraduatedStudentsRepository;
 use App\Http\Repositories\PaymentsRepository;
+use App\Http\Repositories\RefundsRepository;
 use App\Http\Repositories\StudentsAccountRepository;
 use App\Http\Repositories\StudentsRepository;
 use App\Http\Repositories\TeachersRepository;
@@ -61,6 +63,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(StudentsAccountInterface::class, StudentsAccountRepository::class);
 
         $this->app->bind(PaymentsInterface::class, PaymentsRepository::class);
+
+        $this->app->bind(RefundsInterface::class, RefundsRepository::class);
 
 
     }

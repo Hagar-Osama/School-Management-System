@@ -13,11 +13,8 @@ return [
     'Delete Warning' => 'هل انت متاكد من حذف هذا السند ؟',
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
-    'Delete Row ' => 'حذف رسم',
+    'Delete Row ' => 'حذف سند',
 
-    'Add Invoice' => 'اضافة فاتورة',
-    'Edit Invoice' => 'تعديل فاتورة',
-    'Delete Invoice' => 'حذف فاتورة',
-    'Tuition Invoices' => 'الفواتير الدراسية',
+   
 
 ];

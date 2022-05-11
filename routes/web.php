@@ -9,6 +9,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\RefundController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentAccountController;
 use App\Http\Controllers\StudentController;
@@ -141,6 +142,15 @@ Route::group(
                 Route::get('/edit/{paymentId}', [PaymentController::class, 'edit'])->name('edit');
                 Route::put('/update', [PaymentController::class, 'update'])->name('update');
                 Route::delete('/delete', [PaymentController::class, 'destroy'])->name('destroy');
+            });
+               //  Refunds Routes
+               Route::group(['prefix' => 'refunds', 'as' => 'refunds.'], function() {
+                Route::get('/', [RefundController::class, 'index'])->name('index');
+                Route::get('/create/{refundId}', [RefundController::class, 'create'])->name('create');
+                Route::post('/store', [RefundController::class, 'store'])->name('store');
+                Route::get('/edit/{refundId}', [RefundController::class, 'edit'])->name('edit');
+                Route::put('/update', [RefundController::class, 'update'])->name('update');
+                Route::delete('/delete', [RefundController::class, 'destroy'])->name('destroy');
             });
     }
 );

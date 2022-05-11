@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StudentAccount extends Model
+class Refund extends Model
 {
     protected $guarded = [];
 
-    public function student()
+    public function Student()
     {
         return $this->belongsTo(Student::class);
     }
-
-   
-
 }

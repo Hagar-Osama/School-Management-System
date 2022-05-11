@@ -26,6 +26,7 @@ return [
     'Tuition Fees'=>'Tuition Fees',
     'Tuition Invoices' => 'Tuition Invoices',
     'Payments' => 'Payments',
+    'Refunds' => 'Refunds',
     'Attendance'=>'Attendance',
     'Exams'=>'Exams',
     'Library'=>'Library',

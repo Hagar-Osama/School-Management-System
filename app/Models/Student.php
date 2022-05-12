@@ -77,4 +77,9 @@ class Student extends Model
     {
         return $this->hasOne(Refund::class);
     }
+
+    public function studentRefund()
+    {
+        return $this->hasMany(StudentRefund::class);
+    }
 }

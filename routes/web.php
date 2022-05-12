@@ -13,6 +13,7 @@ use App\Http\Controllers\RefundController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentAccountController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentRefundController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UpgradeStudentController;
 use App\Models\ParentAttachment;
@@ -146,11 +147,20 @@ Route::group(
                //  Refunds Routes
                Route::group(['prefix' => 'refunds', 'as' => 'refunds.'], function() {
                 Route::get('/', [RefundController::class, 'index'])->name('index');
-                Route::get('/create/{refundId}', [RefundController::class, 'create'])->name('create');
+                Route::get('/create/{studentId}', [RefundController::class, 'create'])->name('create');
                 Route::post('/store', [RefundController::class, 'store'])->name('store');
                 Route::get('/edit/{refundId}', [RefundController::class, 'edit'])->name('edit');
                 Route::put('/update', [RefundController::class, 'update'])->name('update');
                 Route::delete('/delete', [RefundController::class, 'destroy'])->name('destroy');
+            });
+              // Students Refunds Routes
+              Route::group(['prefix' => 'studentRefunds', 'as' => 'studentRefunds.'], function() {
+                Route::get('/', [StudentRefundController::class, 'index'])->name('index');
+                Route::get('/create/{studentId}', [StudentRefundController::class, 'create'])->name('create');
+                Route::post('/store', [StudentRefundController::class, 'store'])->name('store');
+                Route::get('/edit/{studentRefundId}', [StudentRefundController::class, 'edit'])->name('edit');
+                Route::put('/update', [StudentRefundController::class, 'update'])->name('update');
+                Route::delete('/delete', [StudentRefundController::class, 'destroy'])->name('destroy');
             });
     }
 );

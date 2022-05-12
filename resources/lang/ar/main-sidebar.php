@@ -26,6 +26,7 @@ return [
     'Tuition Invoices' => 'الفواتير الدراسية',
     'Payments' => 'سندات قبض',
     'Refunds' => 'مرتجعات',
+    'Student Refunds' => 'سند صرف',
     'Attendance' => 'الحضور والغياب',
     'Exams' => 'الامتحانات',
     'Library' => 'المكتبة',

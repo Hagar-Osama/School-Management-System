@@ -55,7 +55,7 @@ class PaymentsRepository implements PaymentsInterface
                 'description' => $request->description
             ]);
             //then we store in the funds table
-            //bec. fund is taking money the credit is zerocoz in this case fund is debtor
+            //bec. fund is taking money the credit is zero coz in this case fund is debtor
             $this->fundModel::create([
                 'date' => date('y-m-d'),
                 'payment_id' => $payment->id,

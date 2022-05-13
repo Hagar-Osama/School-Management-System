@@ -82,4 +82,9 @@ class Student extends Model
     {
         return $this->hasMany(StudentRefund::class);
     }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

@@ -28,6 +28,7 @@ return [
     'Refunds' => 'مرتجعات',
     'Student Refunds' => 'سند صرف',
     'Attendance' => 'الحضور والغياب',
+    'Attendance & Absence List' => 'قائمة الحضور والغياب',
     'Exams' => 'الامتحانات',
     'Library' => 'المكتبة',
     'Onlineclasses' => 'حصص اونلاين',

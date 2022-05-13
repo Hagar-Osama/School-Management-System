@@ -29,6 +29,7 @@ return [
     'Refunds' => 'Refunds',
     'Student Refunds' => 'Student Refunds',
     'Attendance'=>'Attendance',
+    'Attendance & Absence List' => ' Attendance & Absence List',
     'Exams'=>'Exams',
     'Library'=>'Library',
     'Onlineclasses'=>'Online classes',

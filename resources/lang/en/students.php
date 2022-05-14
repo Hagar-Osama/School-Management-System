@@ -15,7 +15,7 @@ return [
     'Blood Type' => 'Blood Type',
     'Nationality' => 'Nationality',
     'Parents' => 'Parents',
-    'Academic Year' => 'academic Year',
+    'Academic Year' => 'Academic Year',
     'Birth Date' => 'Birth Date',
     'Attachments' => 'Attachments',
     'Student Information' => 'Student Information',

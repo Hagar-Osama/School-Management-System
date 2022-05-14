@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeeController;
 use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\GradeController;
@@ -172,10 +173,18 @@ Route::group(
             Route::get('/', [SubjectController::class, 'index'])->name('index');
             Route::get('/create', [SubjectController::class, 'create'])->name('create');
             Route::post('/store', [SubjectController::class, 'store'])->name('store');
-            Route::get('/show/{subjectId}', [SubjectController::class, 'show'])->name('show');
             Route::get('/edit/{subjectId}', [SubjectController::class, 'edit'])->name('edit');
             Route::put('/update', [SubjectController::class, 'update'])->name('update');
             Route::delete('/delete', [SubjectController::class, 'destroy'])->name('destroy');
+        });
+         //  Exams Routes
+         Route::group(['prefix' => 'exams', 'as' => 'exams.'], function () {
+            Route::get('/', [ExamController::class, 'index'])->name('index');
+            Route::get('/create', [ExamController::class, 'create'])->name('create');
+            Route::post('/store', [ExamController::class, 'store'])->name('store');
+            Route::get('/edit/{examId}', [ExamController::class, 'edit'])->name('edit');
+            Route::put('/update', [ExamController::class, 'update'])->name('update');
+            Route::delete('/delete', [ExamController::class, 'destroy'])->name('destroy');
         });
     }
 );

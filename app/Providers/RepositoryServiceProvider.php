@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Interfaces\AttendanceInterface;
+use App\Http\Interfaces\ExamsInterface;
 use App\Http\Interfaces\FeesInterface;
 use App\Http\Interfaces\FeesInvoicesInterface;
 use App\Http\Interfaces\GraduatedStudentsInterface;
@@ -15,6 +16,7 @@ use App\Http\Interfaces\SubjectsInterface;
 use App\Http\Interfaces\TeachersInterface;
 use App\Http\Interfaces\UpgradeStudentsInterface;
 use App\Http\Repositories\AttendanceRepository;
+use App\Http\Repositories\ExamsRepository;
 use App\Http\Repositories\FeesInvoicesRepository;
 use App\Http\Repositories\FeesRepository;
 use App\Http\Repositories\GraduatedStudentsRepository;
@@ -77,6 +79,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AttendanceInterface::class, AttendanceRepository::class);
 
         $this->app->bind(SubjectsInterface::class, SubjectsRepository::class);
+
+        $this->app->bind(ExamsInterface::class, ExamsRepository::class);
+
 
 
     }

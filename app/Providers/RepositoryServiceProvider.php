@@ -11,6 +11,7 @@ use App\Http\Interfaces\RefundsInterface;
 use App\Http\Interfaces\StudentRefundsInterface;
 use App\Http\Interfaces\StudentsAccountInterface;
 use App\Http\Interfaces\StudentsInterface;
+use App\Http\Interfaces\SubjectsInterface;
 use App\Http\Interfaces\TeachersInterface;
 use App\Http\Interfaces\UpgradeStudentsInterface;
 use App\Http\Repositories\AttendanceRepository;
@@ -22,6 +23,7 @@ use App\Http\Repositories\RefundsRepository;
 use App\Http\Repositories\StudentRefundsRepository;
 use App\Http\Repositories\StudentsAccountRepository;
 use App\Http\Repositories\StudentsRepository;
+use App\Http\Repositories\SubjectsRepository;
 use App\Http\Repositories\TeachersRepository;
 use App\Http\Repositories\UpgradeStudentsRepository;
 use Illuminate\Support\ServiceProvider;
@@ -73,6 +75,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(StudentRefundsInterface::class, StudentRefundsRepository::class);
 
         $this->app->bind(AttendanceInterface::class, AttendanceRepository::class);
+
+        $this->app->bind(SubjectsInterface::class, SubjectsRepository::class);
+
 
     }
 

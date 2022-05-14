@@ -60,7 +60,7 @@ class AttendanceRepository implements AttendanceInterface
             toastr()->success(trans('messages.success'));
             return redirect()->route('attendance.create', $request->section_id);
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 }

@@ -43,7 +43,7 @@ class StudentsAccountRepository implements StudentsAccountInterface
             toastr()->success(trans('messages.success'));
             return redirect(route('fees.index'));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -59,7 +59,7 @@ class StudentsAccountRepository implements StudentsAccountInterface
             toastr()->success(trans('messages.update'));
             return redirect(route('fees.index'));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

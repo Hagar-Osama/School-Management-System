@@ -63,7 +63,7 @@ class SectionsRepository implements SectionsInterface
             toastr()->success(trans('messages.success'));
             return redirect(route('sections.index'));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -94,7 +94,7 @@ class SectionsRepository implements SectionsInterface
             return redirect(route('sections.index'));
 
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

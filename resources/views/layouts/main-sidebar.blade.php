@@ -131,6 +131,21 @@
 
                         </ul>
                     </li>
+
+                             <!-- menu subjects-->
+                             <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#subject">
+                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">
+                                    {{trans('main-sidebar.Subjects')}}
+                                </span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="subject" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{route('subjects.index')}}">{{trans('main-sidebar.Subjects')}}</a> </li>
+
+                        </ul>
+                    </li>
                     <!-- menu exams-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">

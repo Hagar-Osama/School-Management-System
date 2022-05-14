@@ -80,7 +80,7 @@ class PaymentsRepository implements PaymentsInterface
             return redirect(route('payments.index'));
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

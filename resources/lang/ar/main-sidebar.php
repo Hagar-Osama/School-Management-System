@@ -29,6 +29,7 @@ return [
     'Student Refunds' => 'سند صرف',
     'Attendance' => 'الحضور والغياب',
     'Attendance & Absence List' => 'قائمة الحضور والغياب',
+    'Subjects' => 'المواد الدراسية',
     'Exams' => 'الامتحانات',
     'Library' => 'المكتبة',
     'Onlineclasses' => 'حصص اونلاين',

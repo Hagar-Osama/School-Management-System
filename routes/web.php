@@ -15,6 +15,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentAccountController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentRefundController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UpgradeStudentController;
 use App\Models\ParentAttachment;
@@ -165,6 +166,16 @@ Route::group(
             Route::get('/', [AttendanceController::class, 'index'])->name('index');
             Route::get('/create/{sectionId}', [AttendanceController::class, 'create'])->name('create');
             Route::post('/store', [AttendanceController::class, 'store'])->name('store');
+        });
+          //  Subjects Routes
+          Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function () {
+            Route::get('/', [SubjectController::class, 'index'])->name('index');
+            Route::get('/create', [SubjectController::class, 'create'])->name('create');
+            Route::post('/store', [SubjectController::class, 'store'])->name('store');
+            Route::get('/show/{subjectId}', [SubjectController::class, 'show'])->name('show');
+            Route::get('/edit/{subjectId}', [SubjectController::class, 'edit'])->name('edit');
+            Route::put('/update', [SubjectController::class, 'update'])->name('update');
+            Route::delete('/delete', [SubjectController::class, 'destroy'])->name('destroy');
         });
     }
 );

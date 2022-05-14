@@ -43,7 +43,7 @@ class GradesRepository implements GradesInterface
             toastr()->success(trans('messages.success'));
             return redirect(route('grades.index'));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -62,7 +62,7 @@ class GradesRepository implements GradesInterface
             toastr()->success(trans('messages.update'));
             return redirect(route('grades.index'));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

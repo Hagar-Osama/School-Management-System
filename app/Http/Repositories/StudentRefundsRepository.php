@@ -54,7 +54,7 @@ class StudentRefundsRepository implements StudentRefundsInterface
                 'amount' => $request->debit,
                 'description' => $request->description
             ]);
-            
+
             //and finally store data in student account table
             //coz student is taking his money back but at the same time he owes money to the school, in this case he becomes a debtor thats why credit is zero
             $this->studentAccountModel::create([
@@ -80,7 +80,7 @@ class StudentRefundsRepository implements StudentRefundsInterface
             return redirect(route('studentRefunds.index'));
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -101,7 +101,7 @@ class StudentRefundsRepository implements StudentRefundsInterface
                 'amount' => $request->debit,
                 'description' => $request->description
             ]);
-            
+
             $studentAccount = $this->studentAccountModel::where('student_refund_id', $request->studentRefund_id)->first();
             $studentAccount->update([
                 'date' => date('y-m-d'),
@@ -125,7 +125,7 @@ class StudentRefundsRepository implements StudentRefundsInterface
             return redirect(route('studentRefunds.index'));
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

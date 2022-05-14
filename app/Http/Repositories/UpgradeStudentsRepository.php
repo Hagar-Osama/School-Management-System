@@ -47,7 +47,7 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
     {
         DB::beginTransaction();
         try {
-            //first we go to the students table and get the info we needed to change from that table 
+            //first we go to the students table and get the info we needed to change from that table
             $students = $this->studentModel::where([['grade_id', $request->grade_id], ['class_id', $request->class_id], ['section_id', $request->section_id], ['academic_year', $request->academic_year]])->get();
             if ($students->count() < 1)
                 return redirect()->back()->with('error_promotions', trans('messages.There are no students found'));
@@ -80,7 +80,7 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
             return redirect(route('upgradedStudents.index'));
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -123,7 +123,7 @@ class UpgradeStudentsRepository implements UpgradeStudentsInterface
             }
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

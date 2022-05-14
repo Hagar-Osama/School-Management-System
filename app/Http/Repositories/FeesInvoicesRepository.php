@@ -92,7 +92,7 @@ class FeesInvoicesRepository implements FeesInvoicesInterface
             return redirect(route('feesInvoices.index'));
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -127,7 +127,7 @@ class FeesInvoicesRepository implements FeesInvoicesInterface
             return redirect(route('feesInvoices.index'));
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

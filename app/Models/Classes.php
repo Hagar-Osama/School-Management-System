@@ -50,6 +50,11 @@ class Classes extends Model
         return $this->hasMany(feeInvoices::class);
     }
 
+    public function subject()
+    {
+        return $this->hasMany(Subject::class);
+    }
+
 
 
 }

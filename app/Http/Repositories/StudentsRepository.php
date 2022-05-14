@@ -120,7 +120,7 @@ class StudentsRepository implements StudentsInterface
             return redirect(route('students.index'));
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -147,7 +147,7 @@ class StudentsRepository implements StudentsInterface
             toastr()->success(trans('messages.success'));
             return redirect(route('students.show', $request->student_id));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
@@ -165,7 +165,7 @@ class StudentsRepository implements StudentsInterface
         toastr()->error(trans('messages.delete'));
         return redirect(route('students.show', $image->imageable_id));
 
-        
+
     }
 
     public function edit($student_id)
@@ -202,7 +202,7 @@ class StudentsRepository implements StudentsInterface
             toastr()->success(trans('messages.update'));
             return redirect(route('students.index'));
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['errors' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 

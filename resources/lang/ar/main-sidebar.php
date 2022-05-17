@@ -31,6 +31,7 @@ return [
     'Attendance & Absence List' => 'قائمة الحضور والغياب',
     'Subjects' => 'المواد الدراسية',
     'Exams' => 'الامتحانات',
+    'Online Exams' =>  'امتحانات الاونلاين',
     'Library' => 'المكتبة',
     'Onlineclasses' => 'حصص اونلاين',
     'Settings' => 'الاعدادات',

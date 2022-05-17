@@ -32,6 +32,7 @@ return [
     'Attendance & Absence List' => ' Attendance & Absence List',
     'Subjects' => 'subjects',
     'Exams'=>'Exams',
+    'Online Exams'=>'Online Exams',
     'Library'=>'Library',
     'Onlineclasses'=>'Online classes',
     'Settings'=>'Settings',

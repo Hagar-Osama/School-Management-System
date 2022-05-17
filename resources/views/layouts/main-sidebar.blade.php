@@ -157,7 +157,9 @@
                         </a>
                         <ul id="exams" class="collapse" data-parent="#sidebarnav">
                         <li> <a href="{{route('exams.index')}}">{{trans('main-sidebar.Exams')}}</a> </li>
-                           
+                        <li> <a href="{{route('onlineExams.index')}}">{{trans('main-sidebar.Online Exams')}}</a> </li>
+
+
                         </ul>
                     </li>
                     <!-- menu library-->

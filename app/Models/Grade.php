@@ -57,5 +57,10 @@ class Grade extends Model
         return $this->hasMany(Subject::class);
     }
 
+    public function onlineExam()
+    {
+        return $this->hasMany(OnlineExam::class, 'grade_id');
+    }
+
 
 }

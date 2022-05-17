@@ -43,4 +43,9 @@ class Section extends Model
     {
         return $this->hasMany(UpgradeStudent::class, 'to_section');
     }
+
+    public function onlineExam()
+    {
+        return $this->hasMany(OnlineExam::class, 'section_id');
+    }
 }

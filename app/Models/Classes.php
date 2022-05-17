@@ -55,6 +55,11 @@ class Classes extends Model
         return $this->hasMany(Subject::class);
     }
 
+    public function onlineExam()
+    {
+        return $this->hasMany(OnlineExam::class, 'class_id');
+    }
+
 
 
 }

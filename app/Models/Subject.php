@@ -33,5 +33,10 @@ class Subject extends Model
         return $this->hasMany(Exam::class, 'subject_id');
     }
 
+    public function onlineExam()
+    {
+        return $this->hasMany(OnlineExam::class, 'subject_id');
+    }
+
 
 }

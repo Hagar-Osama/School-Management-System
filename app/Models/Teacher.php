@@ -32,4 +32,9 @@ class Teacher extends Model
     {
         return $this->hasOne(Subject::class);
     }
+
+    public function onlineExam()
+    {
+        return $this->hasMany(OnlineExam::class, 'teacher_id');
+    }
 }

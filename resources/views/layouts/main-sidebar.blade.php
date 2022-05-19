@@ -158,6 +158,8 @@
                         <ul id="exams" class="collapse" data-parent="#sidebarnav">
                         <li> <a href="{{route('exams.index')}}">{{trans('main-sidebar.Exams')}}</a> </li>
                         <li> <a href="{{route('onlineExams.index')}}">{{trans('main-sidebar.Online Exams')}}</a> </li>
+                        <li> <a href="{{route('questions.index')}}">{{trans('main-sidebar.Questions')}}</a> </li>
+
 
 
                         </ul>

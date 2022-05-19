@@ -12,6 +12,7 @@ use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\OnlineExamController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RefundController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentAccountController;
@@ -195,6 +196,15 @@ Route::group(
             Route::get('/edit/{onlineExamId}', [OnlineExamController::class, 'edit'])->name('edit');
             Route::put('/update', [OnlineExamController::class, 'update'])->name('update');
             Route::delete('/delete', [OnlineExamController::class, 'destroy'])->name('destroy');
+        });
+          //  Questions Routes
+          Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
+            Route::get('/', [QuestionController::class, 'index'])->name('index');
+            Route::get('/create', [QuestionController::class, 'create'])->name('create');
+            Route::post('/store', [QuestionController::class, 'store'])->name('store');
+            Route::get('/edit/{questionId}', [QuestionController::class, 'edit'])->name('edit');
+            Route::put('/update', [QuestionController::class, 'update'])->name('update');
+            Route::delete('/delete', [QuestionController::class, 'destroy'])->name('destroy');
         });
     }
 );

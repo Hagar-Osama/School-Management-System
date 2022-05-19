@@ -34,4 +34,9 @@ class OnlineExam extends Model
     {
         return $this->belongsTo(Section::class, 'section_id');
     }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'online_exam_id');
+    }
 }

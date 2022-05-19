@@ -33,6 +33,7 @@ return [
     'Subjects' => 'subjects',
     'Exams'=>'Exams',
     'Online Exams'=>'Online Exams',
+    'Questions' => 'Questions',
     'Library'=>'Library',
     'Onlineclasses'=>'Online classes',
     'Settings'=>'Settings',

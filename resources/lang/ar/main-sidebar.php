@@ -32,6 +32,7 @@ return [
     'Subjects' => 'المواد الدراسية',
     'Exams' => 'الامتحانات',
     'Online Exams' =>  'امتحانات الاونلاين',
+    'Questions' => 'الاسئلة',
     'Library' => 'المكتبة',
     'Onlineclasses' => 'حصص اونلاين',
     'Settings' => 'الاعدادات',

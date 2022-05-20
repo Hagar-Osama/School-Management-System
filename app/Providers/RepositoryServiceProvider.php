@@ -8,6 +8,7 @@ use App\Http\Interfaces\FeesInterface;
 use App\Http\Interfaces\FeesInvoicesInterface;
 use App\Http\Interfaces\GraduatedStudentsInterface;
 use App\Http\Interfaces\OnlineExamsInterface;
+use App\Http\Interfaces\OnlineMeetingsInterface;
 use App\Http\Interfaces\PaymentsInterface;
 use App\Http\Interfaces\QuestionsInterface;
 use App\Http\Interfaces\RefundsInterface;
@@ -23,6 +24,7 @@ use App\Http\Repositories\FeesInvoicesRepository;
 use App\Http\Repositories\FeesRepository;
 use App\Http\Repositories\GraduatedStudentsRepository;
 use App\Http\Repositories\OnlineExamsRepository;
+use App\Http\Repositories\OnlineMeetingsRepository;
 use App\Http\Repositories\PaymentsRepository;
 use App\Http\Repositories\QuestionsRepository;
 use App\Http\Repositories\RefundsRepository;
@@ -89,6 +91,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(OnlineExamsInterface::class, OnlineExamsRepository::class);
 
         $this->app->bind(QuestionsInterface::class, QuestionsRepository::class);
+
+        $this->app->bind(OnlineMeetingsInterface::class, OnlineMeetingsRepository::class);
+
 
 
 

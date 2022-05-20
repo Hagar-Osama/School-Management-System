@@ -6,7 +6,7 @@ return [
     'Score' => 'Score',
     'Answer' => 'Answer',
     'Home' => 'Home',
-    'Actions' => 'العمليات',
+    'Actions' => 'Actions',
     'Add Question' => 'Add Question',
     'Edit Question' =>   'Edit Question',
     'Delete Question' =>  'Delete Question',

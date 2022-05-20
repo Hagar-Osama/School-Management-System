@@ -34,7 +34,7 @@ return [
     'Online Exams' =>  'امتحانات الاونلاين',
     'Questions' => 'الاسئلة',
     'Library' => 'المكتبة',
-    'Onlineclasses' => 'حصص اونلاين',
+    'Online Classes' => 'حصص اونلاين',
     'Settings' => 'الاعدادات',
     'Users' => 'المستخدمين',
 

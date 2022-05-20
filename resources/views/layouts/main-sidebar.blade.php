@@ -183,15 +183,14 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#onlineClasses">
                             <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">
-                                    {{trans('main-sidebar.Onlineclasses')}}
+                                    {{trans('main-sidebar.Online Classes')}}
                                 </span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="onlineClasses" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{route('onlineMeetings.index')}}">{{trans('main-sidebar.Online Classes')}}</a> </li>
+
                         </ul>
                     </li>
                     <!-- menu settings-->

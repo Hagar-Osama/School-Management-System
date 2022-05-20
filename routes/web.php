@@ -10,6 +10,7 @@ use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
 use App\Http\Controllers\OnlineExamController;
+use App\Http\Controllers\OnlineMeetingController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuestionController;
@@ -205,6 +206,13 @@ Route::group(
             Route::get('/edit/{questionId}', [QuestionController::class, 'edit'])->name('edit');
             Route::put('/update', [QuestionController::class, 'update'])->name('update');
             Route::delete('/delete', [QuestionController::class, 'destroy'])->name('destroy');
+        });
+          //  online Meetings Routes (zoom integeration)
+          Route::group(['prefix' => 'onlineMeetings', 'as' => 'onlineMeetings.'], function () {
+            Route::get('/', [OnlineMeetingController::class, 'index'])->name('index');
+            Route::get('/create', [OnlineMeetingController::class, 'create'])->name('create');
+            Route::post('/store', [OnlineMeetingController::class, 'store'])->name('store');
+            Route::delete('/delete', [OnlineMeetingController::class, 'destroy'])->name('destroy');
         });
     }
 );

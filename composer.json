@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.10",
+        "macsidigital/laravel-zoom": "^5.0",
         "mcamara/laravel-localization": "^1.7",
         "spatie/laravel-translatable": "^4.6",
         "yoeunes/toastr": "^1.2"

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OnlineMeeting extends Model
 {
-    protected $fillable = ['grade_id', 'class_id', 'section_id', 'user_id', 'topic', 'meeting_id', 'duration', 'start_at', 'start_url', 'join_url', 'password'];
+    protected $fillable = ['grade_id', 'class_id', 'section_id', 'user_id', 'topic', 'meeting_id', 'duration', 'start_at', 'start_url', 'join_url', 'password', 'integeration'];
 
     public function grades()
     {

@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Password;
 
-class AddMeetingRequest extends FormRequest
+class AddMultipleMeetingsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,10 +29,11 @@ class AddMeetingRequest extends FormRequest
             'section_id' => 'required|exists:sections,id',
             'duration' => 'required|numeric',
             'start_time' => 'required',
-            'topic' => 'required'
-
-
-
+            'topic' => 'required',
+            'join_url' => 'required|url',
+            'start_url' => 'required|url',
+            'password' => 'required',
+            'meeting_id' => 'required',
 
         ];
     }

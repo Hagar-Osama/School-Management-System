@@ -34,7 +34,11 @@
                     <div class="card card-statistics h-100">
                         <div class="card-body">
                             <a href="{{route('onlineMeetings.create')}}" class="btn btn-success btn-sm" role="button" aria-pressed="true"> {{trans('meetings.Add Online Class')}}
+                            </a>
+                            <a href="{{route('multipleMeetings.makeMeeting')}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true"> {{trans('meetings.Add Multiple Online Class')}}
                             </a><br><br>
+                            @include('partials._errors')
+                            @include('partials._session')
                             <div class="table-responsive">
                                 <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
                                     <thead>
@@ -63,10 +67,12 @@
                                             <td>{{$meeting->sections->name}}</td>
                                             <td>{{$meeting->users->name}}</td>
                                             <td class="text-danger"><a href="{{$meeting->join_url}}" target="_blank">{{trans('meetings.Join Url')}}</a></td>
-                                                <td><form action="{{route('onlineMeetings.destroy')}}" method="post" style="display: inline-block;">
+                                            <td>
+                                                <form action="{{route('onlineMeetings.destroy')}}" method="post" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="hidden" name="onlineMeeting_id" value="{{$meeting->meeting_id}}">
+                                                    <input type="hidden" name="id" value="{{$meeting->id}}">
+                                                    <input type="hidden" name="meeting_id" value="{{$meeting->meeting_id}}">
                                                     <button type="submit" onclick="return confirm('Are You Sure?')" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-trash"></i></button>
                                                 </form>
 

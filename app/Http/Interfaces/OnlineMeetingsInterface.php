@@ -7,7 +7,11 @@ interface OnlineMeetingsInterface {
 
     public function create();
 
+    public function makeMeeting();
+
     public function store($request);
+
+    public function storeMeeting($request);
 
     public function destroy($request);
 

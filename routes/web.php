@@ -214,6 +214,11 @@ Route::group(
             Route::post('/store', [OnlineMeetingController::class, 'store'])->name('store');
             Route::delete('/delete', [OnlineMeetingController::class, 'destroy'])->name('destroy');
         });
+           //  multiple Meetings Routes
+           Route::group(['prefix' => 'multipleMeetings', 'as' => 'multipleMeetings.'], function () {
+            Route::get('/multipleMeetings/create', [OnlineMeetingController::class, 'makeMeeting'])->name('makeMeeting');
+            Route::post('/multipleMeetings/store', [OnlineMeetingController::class, 'storeMeeting'])->name('storeMeeting');
+        });
     }
 );
 Route::get('/signin', [AuthController::class, 'signinPage'])->name('signinpage');

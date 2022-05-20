@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Interfaces\OnlineMeetingsInterface;
 use App\Http\Requests\AddMeetingRequest;
+use App\Http\Requests\AddMultipleMeetingsRequest;
 use App\Http\Requests\DeleteMeetingRequest;
 use App\Http\Requests\UpdateMeetingRequest;
 use Illuminate\Http\Request;
@@ -29,9 +30,21 @@ class OnlineMeetingController extends Controller
 
     }
 
+    public function makeMeeting()
+    {
+        return $this->onlineMeetingInterface->makeMeeting();
+
+    }
+
     public function store(AddMeetingRequest $request)
     {
         return $this->onlineMeetingInterface->store($request);
+    }
+
+    public function storeMeeting(AddMultipleMeetingsRequest $request)
+    {
+        
+        return $this->onlineMeetingInterface->storeMeeting($request);
     }
 
     public function destroy(DeleteMeetingRequest $request)

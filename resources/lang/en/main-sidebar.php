@@ -36,6 +36,7 @@ return [
     'Questions' => 'Questions',
     'Library'=>'Library',
     'Online Classes'=>'Online classes',
+    'Multiple Online Classes' => 'Multiple Online Classes',
     'Settings'=>'Settings',
     'Users'=>'Users',
 

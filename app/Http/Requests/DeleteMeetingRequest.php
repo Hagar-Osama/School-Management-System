@@ -24,7 +24,9 @@ class DeleteMeetingRequest extends FormRequest
     public function rules()
     {
         return [
-            'onlineMeeting_id' => 'required|exists:online_meetings,meeting_id'
+            'meeting_id' => 'required|exists:online_meetings,meeting_id',
+            'id' => 'required|exists:online_meetings,id'
+
         ];
     }
 }

@@ -37,6 +37,12 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
         return view('Meetings.create', compact('grades'));
     }
 
+    public function makeMeeting()
+    {
+        $grades = $this->getAllGrades();
+        return view('Meetings.multipleMeetings', compact('grades'));
+    }
+
     public function store($request)
     {
 
@@ -62,7 +68,7 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
                 'audio' => config('zoom.audio'),
                 'auto_recording' => config('zoom.auto_recording')
             ]);
-             $user->meetings()->save($meeting);
+            $user->meetings()->save($meeting);
             $this->meetingModel::create([
                 'grade_id' => $request->grade_id,
                 'class_id' => $request->class_id,
@@ -74,7 +80,36 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
                 'start_at' => $request->start_time,
                 'start_url' => $meeting->start_url,
                 'join_url' => $meeting->join_url,
-                'meeting_id' => $meeting->id
+                'meeting_id' => $meeting->id,
+                'integeration' => true
+
+            ]);
+
+            toastr()->success(trans('messages.success'));
+            return redirect(route('onlineMeetings.index'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function storeMeeting($request)
+    {
+
+        try {
+
+            $this->meetingModel::create([
+                'grade_id' => $request->grade_id,
+                'class_id' => $request->class_id,
+                'section_id' => $request->section_id,
+                'user_id' => auth()->user()->id,
+                'topic' => $request->topic,
+                'duration' => $request->duration,
+                'password' => $request->password,
+                'start_at' => $request->start_time,
+                'start_url' => $request->start_url,
+                'join_url' => $request->join_url,
+                'meeting_id' => $request->meeting_id,
+                'integeration' => false
             ]);
 
             toastr()->success(trans('messages.success'));
@@ -87,13 +122,24 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
 
     public function destroy($request)
     {
-        //first we delete it from zoom website
-        $meeting = Zoom::meeting()->find($request->onlineMeeting_id);
-        $meeting->delete();
-        //then delete it from database
-        $onlineMeeting = $this->meetingModel::where('meeting_id', $request->onlineMeeting_id);
-        $onlineMeeting->delete();
-        toastr()->error(trans('messages.delete'));
-        return redirect(route('onlineMeetings.index'));
+        try {
+
+            $meeting = $this->getMeetingById($request->id);
+            if ($meeting->integeration == true) {
+                //first we delete it from zoom website
+                $zoom = Zoom::meeting()->find($request->meeting_id);
+                $zoom->delete();
+                //then delete it from database
+                $onlineMeeting = $this->meetingModel::where('meeting_id', $request->meeting_id);
+                $onlineMeeting->delete();
+            } else {
+                $meeting->delete();
+            }
+
+            toastr()->error(trans('messages.delete'));
+            return redirect(route('onlineMeetings.index'));
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }

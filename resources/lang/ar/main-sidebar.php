@@ -35,6 +35,7 @@ return [
     'Questions' => 'الاسئلة',
     'Library' => 'المكتبة',
     'Online Classes' => 'حصص اونلاين',
+    'Multiple Online Classes' => 'حصص اونلاين متعددة',
     'Settings' => 'الاعدادات',
     'Users' => 'المستخدمين',
 

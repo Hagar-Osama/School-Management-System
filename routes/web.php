@@ -9,6 +9,7 @@ use App\Http\Controllers\FeeController;
 use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\OnlineExamController;
 use App\Http\Controllers\OnlineMeetingController;
 use App\Http\Controllers\ParentController;
@@ -171,8 +172,8 @@ Route::group(
             Route::get('/create/{sectionId}', [AttendanceController::class, 'create'])->name('create');
             Route::post('/store', [AttendanceController::class, 'store'])->name('store');
         });
-          //  Subjects Routes
-          Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function () {
+        //  Subjects Routes
+        Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function () {
             Route::get('/', [SubjectController::class, 'index'])->name('index');
             Route::get('/create', [SubjectController::class, 'create'])->name('create');
             Route::post('/store', [SubjectController::class, 'store'])->name('store');
@@ -180,8 +181,8 @@ Route::group(
             Route::put('/update', [SubjectController::class, 'update'])->name('update');
             Route::delete('/delete', [SubjectController::class, 'destroy'])->name('destroy');
         });
-         //  Exams Routes
-         Route::group(['prefix' => 'exams', 'as' => 'exams.'], function () {
+        //  Exams Routes
+        Route::group(['prefix' => 'exams', 'as' => 'exams.'], function () {
             Route::get('/', [ExamController::class, 'index'])->name('index');
             Route::get('/create', [ExamController::class, 'create'])->name('create');
             Route::post('/store', [ExamController::class, 'store'])->name('store');
@@ -189,8 +190,8 @@ Route::group(
             Route::put('/update', [ExamController::class, 'update'])->name('update');
             Route::delete('/delete', [ExamController::class, 'destroy'])->name('destroy');
         });
-         //  Online Exams Routes
-         Route::group(['prefix' => 'onlineExams', 'as' => 'onlineExams.'], function () {
+        //  Online Exams Routes
+        Route::group(['prefix' => 'onlineExams', 'as' => 'onlineExams.'], function () {
             Route::get('/', [OnlineExamController::class, 'index'])->name('index');
             Route::get('/create', [OnlineExamController::class, 'create'])->name('create');
             Route::post('/store', [OnlineExamController::class, 'store'])->name('store');
@@ -198,8 +199,8 @@ Route::group(
             Route::put('/update', [OnlineExamController::class, 'update'])->name('update');
             Route::delete('/delete', [OnlineExamController::class, 'destroy'])->name('destroy');
         });
-          //  Questions Routes
-          Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
+        //  Questions Routes
+        Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
             Route::get('/', [QuestionController::class, 'index'])->name('index');
             Route::get('/create', [QuestionController::class, 'create'])->name('create');
             Route::post('/store', [QuestionController::class, 'store'])->name('store');
@@ -207,17 +208,28 @@ Route::group(
             Route::put('/update', [QuestionController::class, 'update'])->name('update');
             Route::delete('/delete', [QuestionController::class, 'destroy'])->name('destroy');
         });
-          //  online Meetings Routes (zoom integeration)
-          Route::group(['prefix' => 'onlineMeetings', 'as' => 'onlineMeetings.'], function () {
+        //  online Meetings Routes (zoom integeration)
+        Route::group(['prefix' => 'onlineMeetings', 'as' => 'onlineMeetings.'], function () {
             Route::get('/', [OnlineMeetingController::class, 'index'])->name('index');
             Route::get('/create', [OnlineMeetingController::class, 'create'])->name('create');
             Route::post('/store', [OnlineMeetingController::class, 'store'])->name('store');
             Route::delete('/delete', [OnlineMeetingController::class, 'destroy'])->name('destroy');
         });
-           //  multiple Meetings Routes
-           Route::group(['prefix' => 'multipleMeetings', 'as' => 'multipleMeetings.'], function () {
+        //  multiple Meetings Routes
+        Route::group(['prefix' => 'multipleMeetings', 'as' => 'multipleMeetings.'], function () {
             Route::get('/multipleMeetings/create', [OnlineMeetingController::class, 'makeMeeting'])->name('makeMeeting');
             Route::post('/multipleMeetings/store', [OnlineMeetingController::class, 'storeMeeting'])->name('storeMeeting');
+        });
+        //    Library Routes
+        Route::group(['prefix' => 'library', 'as' => 'library.'], function () {
+            Route::get('/', [LibraryController::class, 'index'])->name('index');
+            Route::get('/create', [LibraryController::class, 'create'])->name('create');
+            Route::post('/store', [LibraryController::class, 'store'])->name('store');
+            Route::get('/edit/{libraryId}', [LibraryController::class, 'edit'])->name('edit');
+            Route::put('/update', [LibraryController::class, 'update'])->name('update');
+            Route::delete('/delete', [LibraryController::class, 'destroy'])->name('destroy');
+            Route::get('/download/{fileName}', [LibraryController::class, 'download'])->name('download');
+
         });
     }
 );

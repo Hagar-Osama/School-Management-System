@@ -13,9 +13,9 @@ trait FilesTraits
         $file->storeAs($path, $fileName, 'public');
         // $file->move(public_path('students/'.$path), $fileName);
 
-        if (isset($oldFile)) {
+        if ($oldFile) {
 
-            Storage::delete('public/', $oldFile);
+            File::delete($oldFile);
         }
        
     }

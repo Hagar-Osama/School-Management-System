@@ -10,7 +10,7 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0">{{trans('library.EDit Book')}}
+            <h4 class="mb-0">{{trans('library.Edit Book')}}
             </h4>
         </div>
         <div class="col-sm-6">

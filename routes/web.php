@@ -9,6 +9,7 @@ use App\Http\Controllers\FeeController;
 use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GraduatedStudentController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\OnlineExamController;
 use App\Http\Controllers\OnlineMeetingController;
@@ -220,7 +221,7 @@ Route::group(
             Route::get('/multipleMeetings/create', [OnlineMeetingController::class, 'makeMeeting'])->name('makeMeeting');
             Route::post('/multipleMeetings/store', [OnlineMeetingController::class, 'storeMeeting'])->name('storeMeeting');
         });
-        //    Library Routes
+        //  Library Routes
         Route::group(['prefix' => 'library', 'as' => 'library.'], function () {
             Route::get('/', [LibraryController::class, 'index'])->name('index');
             Route::get('/create', [LibraryController::class, 'create'])->name('create');
@@ -229,6 +230,13 @@ Route::group(
             Route::put('/update', [LibraryController::class, 'update'])->name('update');
             Route::delete('/delete', [LibraryController::class, 'destroy'])->name('destroy');
             Route::get('/download/{fileName}', [LibraryController::class, 'download'])->name('download');
+
+        });
+         //  info Routes
+         Route::group(['prefix' => 'info', 'as' => 'info.'], function () {
+            Route::get('/', [InfoController::class, 'index'])->name('index');
+            Route::put('/update', [InfoController::class, 'update'])->name('update');
+       
 
         });
     }

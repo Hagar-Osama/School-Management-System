@@ -36,7 +36,7 @@ return [
     'Library' => 'المكتبة',
     'Online Classes' => 'حصص اونلاين',
     'Multiple Online Classes' => 'حصص اونلاين متعددة',
-    'Settings' => 'الاعدادات',
+    'School Information' => 'بيانات المدرسة',
     'Users' => 'المستخدمين',
 
 

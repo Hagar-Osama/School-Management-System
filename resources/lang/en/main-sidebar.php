@@ -37,7 +37,7 @@ return [
     'Library'=>'Library',
     'Online Classes'=>'Online classes',
     'Multiple Online Classes' => 'Multiple Online Classes',
-    'Settings'=>'Settings',
+    'School Information'=>'School Information',
     'Users'=>'Users',
 
 

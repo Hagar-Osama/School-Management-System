@@ -15,10 +15,15 @@ class AuthController extends Controller
 
     }
 
-    public function signinPage()
+    public function chooseloginForm($type)
     {
-        return $this->authInterface->signinPage();
+        return $this->authInterface->chooseloginForm($type);
     }
+
+    // public function signinPage()
+    // {
+    //     return $this->authInterface->signinPage();
+    // }
 
     public function signin(AuthRequest $request)
     {

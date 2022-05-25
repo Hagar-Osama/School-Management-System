@@ -9,11 +9,18 @@ use Illuminate\Support\Facades\Session;
 
 class AuthRepository implements AuthInterface
 {
-
-    public function signinPage()
+    
+     public function chooseloginForm($type)
     {
-        return view('signin');
+        return view('auth.login', compact('type'));
     }
+
+    // public function signinPage()
+    // {
+    //     return view('signin');
+    // }
+
+   
 
     public function signin($request)
     {

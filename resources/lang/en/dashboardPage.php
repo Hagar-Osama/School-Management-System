@@ -5,6 +5,7 @@ return [
     'Change Language'=>'language',
     'Copyrights' => 'Copyright',
     'All Rights Reserved' => 'All Rights Reserved',
+    'Who You Are ?' => 'Who You Are ?'
 
 
 

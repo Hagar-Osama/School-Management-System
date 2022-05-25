@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 interface AuthInterface {
 
-    public function signinPage();
+    public function chooseloginForm($type);
+
+    // public function signinPage();
 
     public function signin($request);
 

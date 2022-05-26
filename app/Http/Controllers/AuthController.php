@@ -25,13 +25,13 @@ class AuthController extends Controller
     //     return $this->authInterface->signinPage();
     // }
 
-    public function signin(AuthRequest $request)
+    public function login(AuthRequest $request)
     {
-        return $this->authInterface->signin($request);
+        return $this->authInterface->login($request);
     }
 
-    public function signout()
+    public function signout($type)
     {
-        return $this->authInterface->signout();
+        return $this->authInterface->signout($type);
     }
 }

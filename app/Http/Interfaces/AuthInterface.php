@@ -10,7 +10,7 @@ interface AuthInterface {
 
     // public function signinPage();
 
-    public function signin($request);
+    public function login($request);
 
-    public function signout();
+    public function signout($type);
 }

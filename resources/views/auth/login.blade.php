@@ -28,9 +28,9 @@
     <!--=================================
 preloader -->
 
-    <div id="pre-loader">
+    <!-- <div id="pre-loader">
         <img src="{{URL::asset('assets/images/pre-loader/loader-01.svg')}}" alt="">
-    </div>
+    </div> -->
 
     <!--=================================
 preloader -->
@@ -67,6 +67,7 @@ login-->
                         @endif
                         <form method="POST" action="{{route('login')}}">
                             @csrf
+                            <input type="hidden" value="{{$type}}" name="type">
                             @include('partials._errors')
                             @include('partials._session')
                             <div class="section-field mb-20">
@@ -74,7 +75,6 @@ login-->
                                 <input id="email" type="email"
                                        class="form-control @error('email') is-invalid @enderror" name="email"
                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <input type="hidden" value="{{$type}}" name="type">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

@@ -10,4 +10,10 @@ class HomeController extends Controller
     {
         return view('auth.selection');
     }
+
+    public function index()
+    {
+        return view('dashboard');
+
+    }
 }

@@ -3,12 +3,14 @@ namespace App\Http\Repositories;
 
 use App\Http\Interfaces\AuthInterface;
 use App\Http\Requests\AuthRequest;
+use App\Http\Traits\GuardTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AuthRepository implements AuthInterface
 {
+    use GuardTrait;
     
      public function chooseloginForm($type)
     {
@@ -22,12 +24,13 @@ class AuthRepository implements AuthInterface
 
    
 
-    public function signin($request)
+    public function login($request)
     {
         $adminData = $request->only('email', 'password');
-        if(auth()->attempt($adminData)) {
+        if(auth()->guard($this->checkGuard($request))->attempt($adminData)) {
             $request->session()->regenerate();
-            return redirect()->intended('/'); //intended method takes url not route name
+           return $this->redirect($request);
+            // return redirect()->intended('/'); //intended method takes url not route name
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -36,10 +39,10 @@ class AuthRepository implements AuthInterface
         // return redirect()->back();
     }
 
-    public function signout()
+    public function signout($type)
     {
         Session::flush();
-        Auth::logout();
-        return redirect(route('signin'));
+        Auth::guard($type)->logout();
+        return redirect(route('selectionPage'));
     }
 }

@@ -1,6 +1,9 @@
 <?php
 return [
-    'Dashboard'=>'لوحة التحكم',
+    'Admin Dashboard'=>'لوحة التحكم الادمن',
+    'Student Dashboard'=>'لوحة التحكم الطالب',
+    'Parent Dashboard'=>'لوحة التحكم ولي الامر',
+    'Teacher Dashboard'=>'لوحة التحكم المعلم',
     'Dashboard Page Title' =>  'نظام ادارة المدارس',
     'Change Language'=>'تغير اللغة',
     'All Rights Reserved' => 'جميع الحقوق محفوظة ',

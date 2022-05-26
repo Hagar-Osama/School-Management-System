@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-{{trans('main-sidebar.Add Parent')}}
+{{trans('parents.Parents')}}
 @stop
 @endsection
 @section('page-header')

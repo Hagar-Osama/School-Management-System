@@ -11,6 +11,7 @@ return [
     'Teacher Name_en' => 'Teacher Name In English',
     'Teacher Name_ar' => 'Teacher Name In Arabic',
     'Teacher Address' => 'Teacher Address',
+    'Created At' => 'Created At ',
     'Email' => 'Email',
     'Password' => 'password',
     'Gender' => 'Gender',

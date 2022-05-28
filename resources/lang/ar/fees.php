@@ -28,5 +28,7 @@ return [
     'Edit Invoice' => 'تعديل فاتورة',
     'Delete Invoice' => 'حذف فاتورة',
     'Tuition Invoices' => 'الفواتير الدراسية',
+    'Created At' => 'ميعاد انشاءه',
+    'Invoice Date' => 'تاريخ الفاتورة',
 
 ];

@@ -8,6 +8,7 @@ return [
     'Add Teacher' => 'اضافة المعلم',
     'Edit Teacher' => 'تعديل المعلم',
     'Delete Teacher' => 'حذف المعلم',
+    'Created At' => 'ميعاد انشاءه',
     'Teacher Name_ar' =>  'اسم المعلم بالعربي',
     'Teacher Name_en' =>  'اسم المعلم بالانجليزي',
     'Teacher Address' => 'عنوان المعلم',

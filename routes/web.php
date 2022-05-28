@@ -25,6 +25,7 @@ use App\Http\Controllers\StudentRefundController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UpgradeStudentController;
+use App\Http\Livewire\Calendar;
 use App\Models\ParentAttachment;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -50,7 +51,8 @@ Route::group(
     function () {
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::post('/signout/{type}', [AuthController::class, 'signout'])->name('signout');
-
+        //calender Route
+        Livewire::component('calendar', Calendar::class);
         ///Grades Routes///
         Route::group(['prefix' => 'grades'], function () {
             Route::get('/', [GradeController::class, 'index'])->name('grades.index');
@@ -76,7 +78,7 @@ Route::group(
             Route::delete('/delete', [SectionController::class, 'destroy'])->name('section.destroy');
         });
         /////Parents Routes/////
-        Route::view('add-parent', 'livewire.showForm');
+        Route::view('add-parent', 'livewire.showForm')->name('parents');
         /////Teachers Route//////
         Route::group(['prefix' => 'teachers', 'as' => 'teachers.'], function () {
             Route::get('/', [TeacherController::class, 'index'])->name('index');

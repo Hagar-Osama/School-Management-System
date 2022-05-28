@@ -1,8 +1,10 @@
 <?php
 return [
-    'Tuition Fees'=>'Tuition Fees',
+    'Tuition Fees' => 'Tuition Fees',
     'Title' => 'Title',
     'Amount' => 'Amount',
+    'Created At' => 'Created At ',
+    'Invoice Date' => 'Invoice Date',
     'Description' => 'Description',
     'Academic Year' => 'Academic Year',
     'Home' => 'Home',

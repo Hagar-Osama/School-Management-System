@@ -8,6 +8,7 @@ return [
     'Step2' => 'Mother information',
     'Step3' => 'Attachments & Confirm information',
     'Email' => 'Email',
+    'Created At' => 'Created At ',
     'Password' => 'Password',
     'Father Name' => 'Father Name In Arabic',
     'Father Name_en' => 'Father Name In English',

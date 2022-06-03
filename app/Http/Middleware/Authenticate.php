@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            
+
             if (Request::is(app()->getLocale() . '/student/dashboard')) {
 
                 return route('selectionPage');

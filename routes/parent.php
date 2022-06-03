@@ -47,8 +47,8 @@ Route::group(
     ['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:parent']],
     function () {
         Route::get('/parent/dashboard',function () {
-            return view('livewire/dashboard');
+            return view('livewire.dashboard');
         });
-      
+
     }
 );

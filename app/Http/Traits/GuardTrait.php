@@ -32,7 +32,7 @@ trait GuardTrait {
             return redirect()->intended(RouteServiceProvider::TEACHER);
 
         }elseif($request->type == 'parent') {
-            return redirect()->intended(RouteServiceProvider::PARENT);
+            return redirect()->intended(RouteServiceProvider::PARENTS);
 
         }else {
             return redirect()->intended(RouteServiceProvider::HOME);

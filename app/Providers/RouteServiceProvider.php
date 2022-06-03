@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
     public const STUDENT = '/student/dashboard';
     public const TEACHER = '/teacher/dashboard';
-    public const PARENT = '/parent/dashboard';
+    public const PARENTS = '/parent/dashboard';
 
 
     /**
@@ -79,7 +79,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/parent.php'));
 
 
-           
+
     }
 
     /**

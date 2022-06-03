@@ -24,11 +24,11 @@ class RedirectIfAuthenticated
         if (Auth::guard('student')->check()) {
             return redirect(RouteServiceProvider::STUDENT);
         }
-        if (auth('teacher')->check()) {
+        if (Auth::guard('teacher')->check()) {
             return redirect(RouteServiceProvider::TEACHER);
         }
         if (Auth::guard('parent')->check()) {
-            return redirect(RouteServiceProvider::PARENT);
+            return redirect(RouteServiceProvider::PARENTS);
         }
 
         return $next($request);

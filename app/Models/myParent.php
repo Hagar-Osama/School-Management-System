@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Spatie\Translatable\HasTranslations;
 
-class myParent extends Authenticatable
+class myParent extends Model
 {
     use HasTranslations;
     protected $guarded = [];

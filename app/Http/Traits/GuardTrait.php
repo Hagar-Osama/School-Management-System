@@ -26,16 +26,16 @@ trait GuardTrait {
     public function redirect($request)
     {
         if($request->type == 'student') {
-            return redirect()->intended(RouteServiceProvider::STUDENT);
+            return redirect('/student/dashboard');
 
         }elseif($request->type == 'teacher') {
-            return redirect()->intended(RouteServiceProvider::TEACHER);
+            return redirect('/teacher/dashboard');
 
         }elseif($request->type == 'parent') {
             return redirect()->intended(RouteServiceProvider::PARENTS);
 
         }else {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect('/dashboard');
 
         }
     }

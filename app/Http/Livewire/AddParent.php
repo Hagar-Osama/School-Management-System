@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Http\Requests\AddParentRequest;
+use App\Http\Traits\FilesTraits;
 use App\Models\Blood;
 use App\Models\myParent;
 use App\Models\Nationality;
@@ -18,6 +19,7 @@ use Livewire\WithFileUploads;
 class AddParent extends Component
 {
     use WithFileUploads;
+    use FilesTraits;
 
     public $catchError = false;
     public $successMessage = '';
@@ -25,7 +27,7 @@ class AddParent extends Component
     public $currentStep = 1, $photos = [], $showParentTable = true, $parent_id,
         $email, $password, $father_name, $father_name_en, $father_job, $father_job_en,
         $father_passport_id, $father_national_id, $father_phone, $father_nationality_id,
-        $father_blood_id, $father_religion_id, $father_address,
+        $father_blood_id, $father_religion_id, $father_address, $file_name,
         ///Mother Inputs
         $mother_name, $mother_name_en, $mother_job, $mother_job_en,
         $mother_passport_id, $mother_national_id, $mother_phone, $mother_nationality_id,
@@ -128,7 +130,7 @@ class AddParent extends Component
 
             if (!empty($this->photos)) {
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs('parent_attachments/' .$this->father_phone, $photo->getClientOriginalName(), $disk = 'public');
+                    $photo->storeAs('parent_attachments/' . $this->father_phone, $photo->getClientOriginalName(), $disk = 'public');
                     ParentAttachment::create([
                         'file_name' => $photo->getClientOriginalName(),
                         'parent_id' => myParent::latest()->first()->id,
@@ -249,25 +251,27 @@ class AddParent extends Component
                 'mother_religion_id' =>  $this->mother_religion_id,
                 'mother_address' => $this->mother_address,
             ]);
-
-
         }
         return redirect()->to('add-parent')->with('success', 'data updated successfully');
     }
 
     public function delete($parentId)
     {
-        $parentAttachments = ParentAttachment::where('parent_id', $parentId);
-        if ($parentAttachments->count() !== 0) {
-            $parentAttachments->delete();
-           Storage::delete('public/'.$this->father_phone);
+        $parentAttachments = ParentAttachment::where('parent_id', $parentId)->first();
+        if ($parentAttachments->count() != 0) {
+            // $parentAttachments->delete();
+                $path = 'storage/parent_attachments/' . $parentAttachments->father_phone. $parentAttachments->file_name;
+                $this->deleteFile($path);
+
+
+            // dd($path);
             $parent = myParent::find($parentId);
-            $parent->delete();
+            // $parent->delete();
             return redirect()->to('add-parent')->with('success', 'Data Deleted Successfully');
         } else {
 
-            $parent = myParent::find($parentId);
-            $parent->delete();
+            // $parent = myParent::find($parentId);
+            // $parent->delete();
             return redirect()->to('add-parent')->with('success', 'Data Deleted Successfully');
         }
     }

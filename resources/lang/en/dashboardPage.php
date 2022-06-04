@@ -1,6 +1,8 @@
 <?php
 return [
     'Admin Dashboard' => 'Admin Dashboard',
+    'Welcome' => 'Welcome',
+    'Personal File' => 'Personal File',
     'Student Dashboard' => 'Student Dashboard',
     'Parent Dashboard' => 'Parent Dashboard',
     'Teacher Dashboard' => 'Teacher Dashboard',

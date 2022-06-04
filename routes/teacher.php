@@ -1,34 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClassController;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\FeeController;
-use App\Http\Controllers\FeeInvoiceController;
-use App\Http\Controllers\GradeController;
-use App\Http\Controllers\GraduatedStudentController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InfoController;
-use App\Http\Controllers\LibraryController;
-use App\Http\Controllers\OnlineExamController;
-use App\Http\Controllers\OnlineMeetingController;
-use App\Http\Controllers\ParentController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\RefundController;
-use App\Http\Controllers\SectionController;
-use App\Http\Controllers\StudentAccountController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\StudentRefundController;
-use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\UpgradeStudentController;
-use App\Models\ParentAttachment;
+
+use App\Http\Controllers\Dashboards\TeacherDashboardController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +20,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::group(
     ['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:teacher']],
     function () {
-        Route::get('/teacher/dashboard',function () {
-            return view('Teachers.dashboard.dashboard');
+        Route::group(['namespace' => 'dashboards'], function (){
+
+            Route::get('/teacher/dashboard',[TeacherDashboardController::class, 'teacherDashboard'])->name('teacher.dashboard');
+            Route::get('teacherDashboard/studentsName', [TeacherDashboardController::class, 'getStudentNames'])->name('students.names');
         });
+
 
     }
 );

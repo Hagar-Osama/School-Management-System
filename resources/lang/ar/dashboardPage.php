@@ -1,9 +1,12 @@
 <?php
 return [
-    'Admin Dashboard'=>'لوحة التحكم الادمن',
-    'Student Dashboard'=>'لوحة التحكم الطالب',
-    'Parent Dashboard'=>'لوحة التحكم ولي الامر',
-    'Teacher Dashboard'=>'لوحة التحكم المعلم',
+    'Admin Dashboard'=>'لوحة تحكم الادمن',
+    'Welcome' => 'مرحبا',
+    'Personal File' => 'الملف الشخصي',
+
+    'Student Dashboard'=>'لوحة تحكم الطالب',
+    'Parent Dashboard'=>'لوحة تحكم ولي الامر',
+    'Teacher Dashboard'=>'لوحة تحكم المعلم',
     'Dashboard Page Title' =>  'نظام ادارة المدارس',
     'Change Language'=>'تغير اللغة',
     'All Rights Reserved' => 'جميع الحقوق محفوظة ',

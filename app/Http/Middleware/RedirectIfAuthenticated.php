@@ -28,7 +28,7 @@ class RedirectIfAuthenticated
             return redirect('/teacher/dashboard');
         }
         if ($guard == 'parent' && Auth::guard('parent')->check()) {
-            return redirect(RouteServiceProvider::PARENTS);
+            return redirect('/parent/dashboard');
         }
 
         return $next($request);

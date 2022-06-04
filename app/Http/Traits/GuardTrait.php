@@ -32,7 +32,7 @@ trait GuardTrait {
             return redirect('/teacher/dashboard');
 
         }elseif($request->type == 'parent') {
-            return redirect()->intended(RouteServiceProvider::PARENTS);
+            return redirect('/parent/dashboard');
 
         }else {
             return redirect('/dashboard');

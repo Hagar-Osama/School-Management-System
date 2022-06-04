@@ -3,7 +3,9 @@ return [
     'Admin Dashboard'=>'لوحة تحكم الادمن',
     'Welcome' => 'مرحبا',
     'Personal File' => 'الملف الشخصي',
-
+    'Reports' => 'التقارير',
+    'Exams Reports' =>  'تقارير الامتحانات',
+    'Attendance Reports' => 'تقارير الحضور والغياب',
     'Student Dashboard'=>'لوحة تحكم الطالب',
     'Parent Dashboard'=>'لوحة تحكم ولي الامر',
     'Teacher Dashboard'=>'لوحة تحكم المعلم',

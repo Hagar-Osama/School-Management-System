@@ -70,7 +70,7 @@
                                                     <a class="dropdown-item" href="{{route('payments.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('payments.Add Payments')}}</a>
                                                     <a class="dropdown-item" href="{{route('refunds.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('refunds.Add Refund')}}</a>
                                                     <a class="dropdown-item" href="{{route('studentRefunds.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('studentsRefunds.Add Student Refund')}}</a>
-                                                    <a class="dropdown-item" data-target="#delete_student{{ $student->id }}" title="{{ trans('students.Delete Student') }}"><i style="color: red" class="fa fa-trash"></i>&nbsp;{{trans('students.Delete Student')}}&nbsp;</a>
+                                                    <a class="dropdown-item" data-target="#delete_student{{$student->id}}" title="{{ trans('students.Delete Student') }}" data-toggle="modal" href="delete_Student{{ $student->id }}"><i style="color: red" class="fa fa-trash"></i>&nbsp;{{trans('students.Delete Student')}}&nbsp;</a>
 
 
                                                     </div>

@@ -2,6 +2,9 @@
 return [
     'Admin Dashboard' => 'Admin Dashboard',
     'Welcome' => 'Welcome',
+    'Reports' => 'Reports',
+    'Exams Reports' => 'Exams Reports',
+    'Attendance Reports' => 'Attendance Reports',
     'Personal File' => 'Personal File',
     'Student Dashboard' => 'Student Dashboard',
     'Parent Dashboard' => 'Parent Dashboard',

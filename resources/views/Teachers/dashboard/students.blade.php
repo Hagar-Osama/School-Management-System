@@ -2,7 +2,7 @@
 @section('css')
 @toastr_css
 @section('title')
-{{trans('students.Students List')}}
+{{trans('attendance.Attendance & Absence List')}}
 @stop
 @endsection
 @section('page-header')
@@ -10,12 +10,12 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0"> {{trans('students.Students')}}</h4>
+            <h4 class="mb-0"> {{trans('attendance.Attendance & Absence List')}}</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="default-color">{{trans('students.Home')}}</a></li>
-                <li class="breadcrumb-item active">{{trans('students.Students List')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('teacher.dashboard')}}" class="default-color">{{trans('classes.Home')}}</a></li>
+                <li class="breadcrumb-item active">{{trans('attendance.Attendance & Absence List')}}</li>
             </ol>
         </div>
     </div>
@@ -24,95 +24,105 @@
 @endsection
 @section('content')
 <!-- row -->
-<div class="row">
-    <div class="col-md-12 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div class="col-xl-12 mb-30">
-                    <div class="card card-statistics h-100">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>{{trans('students.Student Name')}}</th>
-                                            <th>{{trans('students.Email')}}</th>
-                                            <th>{{trans('students.Gender')}}</th>
-                                            <th>{{trans('classes.Class Name')}}</th>
-                                            <th>{{trans('grades.Grade Name')}}</th>
-                                            <th>{{trans('sections.Section Name')}}</th>
-                                            <th>{{trans('students.Actions')}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($students as $student)
-                                        <tr>
 
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{$student->name}}</td>
-                                            <td>{{$student->email}}</td>
-                                            <td>{{$student->gender->name}}</td>
-                                            <td>{{$student->class->name}}</td>
-                                            <td>{{$student->grade->name}}</td>
-                                            <td>{{$student->section->name}}</td>
-
-                                            <td>
-                                                <div class="dropdown show">
-                                                    <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        {{trans('students.Actions')}}
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="{{route('students.show', [$student->id])}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i style="color: #ffc107" class="far fa-eye"></i>&nbsp;{{trans('students.Student Information')}}&nbsp;</a>
-                                                    <a class="dropdown-item" href="{{route('students.edit',[$student->id])}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i style="color:green" class="fa fa-edit"></i>&nbsp;{{trans('students.Edit Student')}}&nbsp;</a>
-                                                    <a class="dropdown-item" href="{{route('feesInvoices.create',[$student->id])}}"><i style="color: #0000cc" class="fa fa-edit"></i>&nbsp;{{trans('fees.Add Invoice Fees')}}&nbsp;</a>
-                                                    <a class="dropdown-item" href="{{route('payments.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('payments.Add Payments')}}</a>
-                                                    <a class="dropdown-item" href="{{route('refunds.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('refunds.Add Refund')}}</a>
-                                                    <a class="dropdown-item" href="{{route('studentRefunds.create',[$student->id])}}"><i style="color: #9dc8e2" class="fas fa-money-bill-alt"></i>&nbsp; &nbsp; {{trans('studentsRefunds.Add Student Refund')}}</a>
-                                                    <a class="dropdown-item" data-target="#delete_student{{ $student->id }}" title="{{ trans('students.Delete Student') }}"><i style="color: red" class="fa fa-trash"></i>&nbsp;{{trans('students.Delete Student')}}&nbsp;</a>
-
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <div class="modal fade" id="delete_student{{$student->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <form action="{{route('students.destroy','test')}}" method="post">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">{{ trans('students.Delete Student') }}</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p> {{ trans('students.Delete Student Warning') }}</p>
-                                                            <input type="hidden" name="student_id" value="{{$student->id}}">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('students.Close') }}</button>
-                                                                <button type="submit" class="btn btn-danger">{{ trans('students.Submit') }}</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
 </div>
+@endif
+
+@if (session('status'))
+<div class="alert alert-danger">
+    <ul>
+        <li>{{ session('status') }}</li>
+    </ul>
+</div>
+@endif
+
+
+<h5 style="font-family: 'Cairo', sans-serif;color: red"> {{trans('attendance.Today Date')}} : {{ date('Y-m-d') }}</h5>
+@include('partials._errors')
+@include('partials._session')
+<form method="post" action="{{ route('attendance.store') }}">
+    @csrf
+    <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
+        <thead>
+            <tr>
+                <th class="alert-success">#</th>
+                <th class="alert-success">{{ trans('Students.Student Name') }}</th>
+                <th class="alert-success">{{ trans('Students.Email') }}</th>
+                <th class="alert-success">{{ trans('Students.Gender') }}</th>
+                <th class="alert-success">{{ trans('grades.Grade Name') }}</th>
+                <th class="alert-success">{{ trans('classes.Class Name') }}</th>
+                <th class="alert-success">{{ trans('sections.Section Name') }}</th>
+                <th class="alert-success">{{ trans('attendance.Attendance') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($students as $student)
+            <tr>
+                <td>{{ $loop->index + 1 }}</td>
+                <td>{{ $student->name }}</td>
+                <td>{{ $student->email }}</td>
+                <td>{{ $student->gender->name }}</td>
+                <td>{{ $student->grade->name }}</td>
+                <td>{{ $student->class->name }}</td>
+                <td>{{ $student->section->name }}</td>
+                <td>
+
+                    @if(isset($student->attendances()->where('attendance_date',date('Y-m-d'))->where('student_id',$student->id)->first()->student_id))
+
+                    <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
+                        <input name="attendances[{{ $student->id }}]" disabled
+                        @foreach($student->attendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
+                        {{ $attendance->attendance_status == 1 ? 'checked' : '' }}
+                        @endforeach
+                        class="leading-tight" type="radio" value="attendant">
+                        <span class="text-success">{{trans('attendance.Attendance')}}</span>
+                    </label>
+
+                    <label class="ml-4 block text-gray-500 font-semibold">
+                        <input name="attendances[{{ $student->id }}]" disabled
+                        @foreach($student->attendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
+                        {{ $attendance->attendance_status == 0 ? 'checked' : '' }}
+                        @endforeach
+                        class="leading-tight" type="radio" value="absent">
+                        <span class="text-danger">{{trans('attendance.Absence')}}</span>
+                    </label>
+                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#edit_attendance{{ $student->id }}" title="edit"><i class="fa fa-edit"></i></button>
+                    @include('Teachers.dashboard.editAttendance')
+                    @else
+
+                    <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
+                        <input name="attendances[{{ $student->id }}]" class="leading-tight" type="radio" value="attendant">
+                        <span class="text-success">{{trans('attendance.Attendance')}}</span>
+                    </label>
+
+                    <label class="ml-4 block text-gray-500 font-semibold">
+                        <input name="attendances[{{ $student->id }}]" class="leading-tight" type="radio" value="absent">
+                        <span class="text-danger">{{trans('attendance.Absence')}}</span>
+                    </label>
+
+
+                    <input type="hidden" name="student_id[]" value="{{ $student->id }}">
+                    <input type="hidden" name="grade_id" value="{{ $student->grade_id }}">
+                    <input type="hidden" name="class_id" value="{{ $student->class_id }}">
+                    <input type="hidden" name="section_id" value="{{ $student->section_id }}">
+                    @endif
+
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <P>
+        <button class="btn btn-success" type="submit">{{ trans('Attendance.Submit') }}</button>
+    </P>
+</form><br>
 <!-- row closed -->
 @endsection
 @section('js')

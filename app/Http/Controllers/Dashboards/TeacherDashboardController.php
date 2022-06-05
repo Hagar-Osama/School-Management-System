@@ -67,7 +67,8 @@ class TeacherDashboardController extends Controller
                 } else {
                     $attendantStatus = false;
                 }
-                $this->attendanceModel::create([
+                ///['student_id'=> $studentId] : this here is getting the id of the student needed to be updated,in case of updating
+                $this->attendanceModel::updateOrcreate(['student_id'=> $studentId],[
                     'student_id' => $studentId,
                     'grade_id' => $request->grade_id,
                     'class_id' => $request->class_id,

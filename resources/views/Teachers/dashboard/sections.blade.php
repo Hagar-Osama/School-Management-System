@@ -36,10 +36,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ trans('Sections.Section Name') }}
-                                            </th>
+                                            <th>{{ trans('Sections.Section Name') }}</th>
                                             <th>{{ trans('classes.Class Name') }}</th>
-                                            <th>{{ trans('Sections.Section Status') }}</th>
                                             <th>{{ trans('grades.Grade Name') }}</th>
                                         </tr>
                                     </thead>
@@ -49,17 +47,8 @@
 
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $section->name }}</td>
-                                            <td>{{ $section->class->name }}
-                                            </td>
-                                            <td>
-                                                @if ($section->status == 1)
-                                                <label class="badge badge-success">{{ trans('Sections.Section Status Active') }}</label>
-                                                @else
-                                                <label class="badge badge-danger">{{ trans('Sections.Section Status Unactive') }}</label>
-                                                @endif
-
-                                            </td>
-                                            <td>{{ $section->grade->name }}
+                                            <td>{{ $section->class->name }}</td>
+                                            <td>{{ $section->grade->name }}</td>
 
                                         </tr>
 

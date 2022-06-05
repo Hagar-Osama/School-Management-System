@@ -45,8 +45,7 @@
 
 
 <h5 style="font-family: 'Cairo', sans-serif;color: red"> {{trans('attendance.Today Date')}} : {{ date('Y-m-d') }}</h5>
-@include('partials._errors')
-@include('partials._session')
+
 <form method="post" action="{{ route('attendance.store') }}">
     @csrf
     <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
@@ -74,11 +73,10 @@
                 <td>{{ $student->section->name }}</td>
                 <td>
 
-                    @if(isset($student->attendances()->where('attendance_date',date('Y-m-d'))->where('student_id',$student->id)->first()->student_id))
 
                     <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
-                        <input name="attendances[{{ $student->id }}]" disabled
-                        @foreach($student->attendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
+                        <input name="attendances[{{ $student->id }}]"
+                         @foreach($student->attendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
                         {{ $attendance->attendance_status == 1 ? 'checked' : '' }}
                         @endforeach
                         class="leading-tight" type="radio" value="attendant">
@@ -86,33 +84,18 @@
                     </label>
 
                     <label class="ml-4 block text-gray-500 font-semibold">
-                        <input name="attendances[{{ $student->id }}]" disabled
-                        @foreach($student->attendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
+                        <input name="attendances[{{ $student->id }}]"
+                         @foreach($student->attendances()->where('attendance_date',date('Y-m-d'))->get() as $attendance)
                         {{ $attendance->attendance_status == 0 ? 'checked' : '' }}
                         @endforeach
                         class="leading-tight" type="radio" value="absent">
                         <span class="text-danger">{{trans('attendance.Absence')}}</span>
                     </label>
-                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#edit_attendance{{ $student->id }}" title="edit"><i class="fa fa-edit"></i></button>
-                    @include('Teachers.dashboard.editAttendance')
-                    @else
-
-                    <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
-                        <input name="attendances[{{ $student->id }}]" class="leading-tight" type="radio" value="attendant">
-                        <span class="text-success">{{trans('attendance.Attendance')}}</span>
-                    </label>
-
-                    <label class="ml-4 block text-gray-500 font-semibold">
-                        <input name="attendances[{{ $student->id }}]" class="leading-tight" type="radio" value="absent">
-                        <span class="text-danger">{{trans('attendance.Absence')}}</span>
-                    </label>
 
 
-                    <input type="hidden" name="student_id[]" value="{{ $student->id }}">
                     <input type="hidden" name="grade_id" value="{{ $student->grade_id }}">
                     <input type="hidden" name="class_id" value="{{ $student->class_id }}">
                     <input type="hidden" name="section_id" value="{{ $student->section_id }}">
-                    @endif
 
                 </td>
             </tr>

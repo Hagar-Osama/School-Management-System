@@ -28,7 +28,9 @@ Route::group(
             Route::get('teacherDashboard/studentsName', [TeacherDashboardController::class, 'getStudentNames'])->name('students.names');
             Route::get('teacherDashboard/sections', [TeacherDashboardController::class, 'showSections'])->name('sections.show');
             Route::post('/attendance/store', [TeacherDashboardController::class, 'store'])->name('attendance.store');
-            Route::post('attendances/update', [TeacherDashboardController::class, 'update'])->name('attendances.update');
+            Route::get('attendance/reports', [TeacherDashboardController::class, 'getAttendanceReports'])->name('attendance.report');
+            Route::post('attendance/search', [TeacherDashboardController::class, 'searchAttendance'])->name('attendance.search');
+
         });
 
 

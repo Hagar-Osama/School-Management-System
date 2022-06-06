@@ -39,8 +39,8 @@
                 <div class="clearfix"></div>
             </a>
             <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
-                <li><a href="#">  {{trans('dashboardPage.Attendance Reports')}}</a></li>
-                <li><a href="#"> {{trans('dashboardPage. Exams Reports')}}</a></li>
+                <li><a href="{{route('attendance.report')}}">  {{trans('dashboardPage.Attendance Reports')}}</a></li>
+                <li><a href="#"> {{trans('dashboardPage.Exams Reports')}}</a></li>
             </ul>
 
         </li>

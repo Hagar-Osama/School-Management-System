@@ -68,7 +68,7 @@ class TeacherDashboardController extends Controller
                     $attendantStatus = false;
                 }
                 ///['student_id'=> $studentId] : this here is getting the id of the student needed to be updated,in case of updating
-                $this->attendanceModel::updateOrcreate(['student_id'=> $studentId],[
+                $this->attendanceModel::updateOrcreate(['student_id' => $studentId], [
                     'student_id' => $studentId,
                     'grade_id' => $request->grade_id,
                     'class_id' => $request->class_id,
@@ -96,7 +96,7 @@ class TeacherDashboardController extends Controller
             $studentId = $this->attendanceModel::where([['attendance_date', date('y-m-d')], ['student_id', $request->student_id]])->first();
             if ($request->attendances == 'attendant') {
                 $attendantStatus = true;
-            } elseif($request->attendances == 'absent') {
+            } elseif ($request->attendances == 'absent') {
                 $attendantStatus = false;
             }
             $studentId->update([
@@ -109,6 +109,45 @@ class TeacherDashboardController extends Controller
             return redirect()->route('students.names');
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function getAttendanceReports()
+    {
+        $teacher = auth()->user()->id;
+        $sections = DB::table('section_teacher')->where('teacher_id', $teacher)->pluck('section_id');
+        $students = $this->studentModel::whereIn('section_id', $sections)->get();
+        return view('Teachers.dashboard.attendanceReports', compact('students'));
+    }
+
+    public function searchAttendance(Request $request)
+    {
+
+        $request->validate(
+            [
+                'from' => 'required|date|date_format:Y-m-d',
+                'to' => 'required|date|date_format:Y-m-d|after_or_equal:from'
+            ],
+            [
+                'from.date_format' => trans('validation.date_format'),
+                'to.date_format' =>    trans('validation.date_format'),
+                'to.after_or_equal' => trans('validation.after_or_equal'),
+
+
+            ]
+        );
+
+        //here i need the students coz i want the select returning with me after executing the query
+        $teacher = auth()->user()->id;
+        $sections = DB::table('section_teacher')->where('teacher_id', $teacher)->pluck('section_id');
+        $students = $this->studentModel::whereIn('section_id', $sections)->get();
+
+        if ($request->student_id == 'all') {
+            $studentsTable = $this->attendanceModel::whereBetween('attendance_date', [$request->from, $request->to])->get();
+            return view('Teachers.dashboard.attendanceReports', compact('students', 'studentsTable'));
+        } else {
+            $studentsTable = $this->attendanceModel::whereBetween('attendance_date', [$request->from, $request->to])->where('student_id', $request->student_id)->get();
+            return view('Teachers.dashboard.attendanceReports', compact('students', 'studentsTable'));
         }
     }
 }

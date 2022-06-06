@@ -4,6 +4,7 @@ return [
     'Attendance' => 'حضور',
     'Absence' => 'الغياب',
     'Today Date' => 'تاريخ اليوم',
+    'Attendance Status' => 'حالة الحضور',
     'Home' => 'الصفحة الرئيسية',
     'Actions' => 'العمليات',
     'Add Attendance' => 'اضافة حضور',

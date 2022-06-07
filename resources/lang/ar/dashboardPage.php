@@ -6,6 +6,8 @@ return [
     'Reports' => 'التقارير',
     'Exams Reports' =>  'تقارير الامتحانات',
     'Attendance Reports' => 'تقارير الحضور والغياب',
+    'Exams List' => 'قائمة الاختبارات',
+    'Questions List' => 'قائمة الاسئلة',
     'Student Dashboard'=>'لوحة تحكم الطالب',
     'Parent Dashboard'=>'لوحة تحكم ولي الامر',
     'Teacher Dashboard'=>'لوحة تحكم المعلم',

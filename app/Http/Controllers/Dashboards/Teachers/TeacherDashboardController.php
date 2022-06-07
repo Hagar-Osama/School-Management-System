@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboards;
+namespace App\Http\Controllers\Dashboards\Teachers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddAttendanceRequest;
@@ -68,7 +68,8 @@ class TeacherDashboardController extends Controller
                     $attendantStatus = false;
                 }
                 ///['student_id'=> $studentId] : this here is getting the id of the student needed to be updated,in case of updating
-                $this->attendanceModel::updateOrcreate(['student_id' => $studentId], [
+                //incase the attendnace date not equal to the current date then create otherwise update
+                $this->attendanceModel::updateOrcreate(['student_id' => $studentId, 'attendance_date' => date('y-m-d')], [
                     'student_id' => $studentId,
                     'grade_id' => $request->grade_id,
                     'class_id' => $request->class_id,

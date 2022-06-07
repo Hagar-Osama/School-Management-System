@@ -6,6 +6,8 @@ return [
     'Exams Reports' => 'Exams Reports',
     'Attendance Reports' => 'Attendance Reports',
     'Personal File' => 'Personal File',
+    'Exams List' => 'Exams List',
+    'Questions List' => 'Questions List',
     'Student Dashboard' => 'Student Dashboard',
     'Parent Dashboard' => 'Parent Dashboard',
     'Teacher Dashboard' => 'Teacher Dashboard',

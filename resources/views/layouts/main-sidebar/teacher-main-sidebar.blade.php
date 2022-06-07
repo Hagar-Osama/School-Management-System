@@ -25,8 +25,19 @@
 
 
         <!-- الامتحانات-->
+       
         <li>
-            <a href=""><i class="fas fa-book-open"></i><span class="right-nav-text">{{trans('exams.Exams')}}</span></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
+                <div class="pull-left"><i class="fas fa-chalkboard"></i><span
+                        class="right-nav-text">{{trans('exams.Exams')}}</span></div>
+                <div class="pull-right"><i class="ti-plus"></i></div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
+                <li><a href="{{route('onlineExams.index')}}">  {{trans('dashboardPage.Exams List')}}</a></li>
+                <li><a href="#"> {{trans('dashboardPage.Questions List')}}</a></li>
+            </ul>
+
         </li>
 
         <!-- Reports-->

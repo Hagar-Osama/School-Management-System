@@ -1,9 +1,8 @@
 <?php
 
 
-use App\Http\Controllers\Dashboards\TeacherDashboardController;
-use App\Models\Attendance;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Dashboards\Teachers\TeacherDashboardController;
+use App\Http\Controllers\Dashboards\Teachers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     ['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:teacher']],
     function () {
-        Route::group(['namespace' => 'dashboards'], function () {
+        Route::group(['namespace' => 'Dashboards\Teachers'], function () {
 
             Route::get('/teacher/dashboard', [TeacherDashboardController::class, 'teacherDashboard'])->name('teacher.dashboard');
             Route::get('teacherDashboard/studentsName', [TeacherDashboardController::class, 'getStudentNames'])->name('students.names');
@@ -30,9 +29,19 @@ Route::group(
             Route::post('/attendance/store', [TeacherDashboardController::class, 'store'])->name('attendance.store');
             Route::get('attendance/reports', [TeacherDashboardController::class, 'getAttendanceReports'])->name('attendance.report');
             Route::post('attendance/search', [TeacherDashboardController::class, 'searchAttendance'])->name('attendance.search');
-
+            //classes and section Ajax routes
+            Route::get('students/classes/{gradeId}', [QuizController::class, 'getClasses']);
+            Route::get('students/sections/{classId}', [QuizController::class, 'getSections']);
+            //  Online Exams Routes
+            Route::group(['prefix' => 'onlineExams', 'as' => 'onlineExams.'], function () {
+                Route::get('/', [QuizController::class, 'index'])->name('index');
+                Route::get('/create', [QuizController::class, 'create'])->name('create');
+                Route::post('/store', [QuizController::class, 'store'])->name('store');
+                Route::get('/edit/{onlineExamId}', [QuizController::class, 'edit'])->name('edit');
+                Route::put('/update', [QuizController::class, 'update'])->name('update');
+                Route::delete('/delete', [QuizController::class, 'destroy'])->name('destroy');
+               
+            });
         });
-
-
     }
 );

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Dashboards\Teachers\QuestionController;
 use App\Http\Controllers\Dashboards\Teachers\TeacherDashboardController;
 use App\Http\Controllers\Dashboards\Teachers\QuizController;
+use App\Http\Controllers\Dashboards\Teachers\TeacherQuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,12 +44,12 @@ Route::group(
             });
             Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
                 Route::get('/show/questions/{onlineExamId}', [QuizController::class, 'showQuestions'])->name('show');
-                Route::get('/', [QuestionController::class, 'index'])->name('index');
-                Route::get('/create/{onlineExamId}', [QuestionController::class, 'create'])->name('create');
-                Route::post('/store', [QuestionController::class, 'store'])->name('store');
-                Route::get('/edit/{questionId}', [QuestionController::class, 'edit'])->name('edit');
-                Route::put('/update', [QuestionController::class, 'update'])->name('update');
-                Route::delete('/delete', [QuestionController::class, 'destroy'])->name('destroy');
+                Route::get('/', [TeacherQuestionController::class, 'index'])->name('index');
+                Route::get('/create/{onlineExamId}', [TeacherQuestionController::class, 'create'])->name('create');
+                Route::post('/store', [TeacherQuestionController::class, 'store'])->name('store');
+                Route::get('/edit/{questionId}', [TeacherQuestionController::class, 'edit'])->name('edit');
+                Route::put('/update', [TeacherQuestionController::class, 'update'])->name('update');
+                Route::delete('/delete', [TeacherQuestionController::class, 'destroy'])->name('destroy');
 
             });
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboards\Teachers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddQuestionTeacherDashboardRequest;
 use App\Http\Requests\DeleteQuestionRequest;
-use App\Http\Requests\DeleteQuestionTeacherDashboardRequest;
 use App\Http\Requests\UpdateQuestionTeacherDashboardRequest;
 use App\Http\Traits\OnlineExamsTraits;
 use App\Http\Traits\QuestionsTraits;
@@ -14,7 +13,7 @@ use App\Models\Question;
 use Exception;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class TeacherQuestionController extends Controller
 {
     private $questionModel;
     private $onlineExamModel;
@@ -74,7 +73,7 @@ class QuestionController extends Controller
             ]);
 
             toastr()->success(trans('messages.update'));
-            return redirect(route('questions.show', $request->onlineExamId));
+            return redirect(route('questions.show', $question->online_exam_id));
         } catch (Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

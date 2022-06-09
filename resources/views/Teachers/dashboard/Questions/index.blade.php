@@ -2,7 +2,7 @@
 @section('css')
 @toastr_css
 @section('title')
-{{trans('onlineExams.Online Exams')}}
+{{trans('questions.Questions')}}
 @stop
 @endsection
 @section('page-header')
@@ -10,13 +10,13 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0">{{trans('onlineExams.Online Exams')}}
+            <h4 class="mb-0">{{trans('questions.Questions')}} : <span class = "text-danger">{{$onlineExam->name}}</span>
             </h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="default-color">{{trans('teachers.Home')}}</a></li>
-                <li class="breadcrumb-item active">{{trans('onlineExams.Online Exams')}}
+                <li class="breadcrumb-item active">{{trans('questions.Questions')}}
                 </li>
             </ol>
         </div>
@@ -33,41 +33,38 @@
                 <div class="col-xl-12 mb-30">
                     <div class="card card-statistics h-100">
                         <div class="card-body">
-                            <a href="{{route('onlineExams.create')}}" class="btn btn-success btn-sm" role="button" aria-pressed="true"> {{trans('onlineExams.Add Online Exam')}}
+                            <a href="{{route('questions.create', [$onlineExam->id])}}" class="btn btn-success btn-sm" role="button" aria-pressed="true"> {{trans('questions.Add Question')}}
                             </a><br><br>
                             <div class="table-responsive">
                                 <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th> {{trans('questions.Questions')}}</th>
+                                            <th> {{trans('questions.Answer')}}</th>
+                                            <th> {{trans('questions.Score')}}</th>
+                                            <th> {{trans('questions.Right Answer')}}</th>
                                             <th> {{trans('onlineExams.Online Exams')}}</th>
-                                            <th> {{trans('subjects.Subject Name')}}</th>
-                                            <th> {{trans('grades.Grade Name')}}</th>
-                                            <th> {{trans('classes.Class Name')}}</th>
-                                            <th> {{trans('sections.Section Name')}}</th>
-                                            <th> {{trans('teachers.Teacher Name')}}</th>
-                                            <th>{{trans('onlineExams.Actions')}}</th>
+                                            <th>{{trans('questions.Actions')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($onlineExams as $onlineExam)
+                                        @foreach($questions as $question)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$onlineExam->name}}</td>
-                                            <td>{{$onlineExam->subjects->name}}</td>
-                                            <td>{{$onlineExam->grades->name}}</td>
-                                            <td>{{$onlineExam->classes->name}}</td>
-                                            <td>{{$onlineExam->sections->name}}</td>
-                                            <td>{{$onlineExam->teachers->name}}</td>
+                                            <td>{{$question->question}}</td>
+                                            <td>{{$question->answer}}</td>
+                                            <td>{{$question->score}}</td>
+                                            <td>{{$question->right_answer}}</td>
+                                            <td>{{$question->onlineExam->name}}</td>
 
-                                            <td><a href="{{route('onlineExams.edit', $onlineExam->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                <form action="{{route('onlineExams.destroy')}}" method="post" style="display: inline-block;">
+                                            <td><a href="{{route('questions.edit', $question->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                                <form action="{{route('questions.destroy')}}" method="post" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="hidden" name="onlineExam_id" value="{{$onlineExam->id}}">
+                                                    <input type="hidden" name="question_id" value="{{$question->id}}">
                                                     <button type="submit" onclick="return confirm('Are You Sure?')" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-trash"></i></button>
                                                 </form>
-                                                <a href="{{route('questions.show', [$onlineExam->id])}}" class="btn btn-warning btn-sm" title="questions" role="button" aria-pressed="true"><i class="fa fa-binoculars"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -17,6 +17,7 @@ use App\Http\Requests\AddQuizTeacherDashboardRequest;
 use App\Http\Requests\DeleteOnlineExamRequest;
 use App\Http\Requests\UpdateQuizTeacherDashboardRequest;
 use App\Models\Classes;
+use App\Models\Question;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -27,20 +28,20 @@ class QuizController extends Controller
     private $gradesModel;
     private $classModel;
     private $sectionModel;
-    use SubjectsTraits;
+    private $questionModel;
     use OnlineExamsTraits;
-    use TeachersTraits;
     use GradesTraits;
 
 
 
-    public function __construct(Subject $subjects, OnlineExam $onlineExam, Grade $grade, Classes $classes, Section $section)
+    public function __construct(Subject $subjects, OnlineExam $onlineExam, Grade $grade, Classes $classes, Section $section, Question $question)
     {
         $this->subjectModel = $subjects;
         $this->gradesModel = $grade;
         $this->onlineExamModel = $onlineExam;
         $this->classModel = $classes;
         $this->sectionModel = $section;
+        $this->questionModel = $question;
     }
 
     public function index()
@@ -128,5 +129,14 @@ class QuizController extends Controller
         $onlineExam->delete();
         toastr()->error(trans('messages.delete'));
         return redirect(route('onlineExams.index'));
+    }
+
+    public function showQuestions($onlineExamId)
+    {
+        $questions = $this->questionModel::where('online_exam_id', $onlineExamId)->get();
+        $onlineExam = $this->getOnlineExamById($onlineExamId);
+        return view('Teachers.Dashboard.questions.index', compact('onlineExam', 'questions'));
+
+
     }
 }

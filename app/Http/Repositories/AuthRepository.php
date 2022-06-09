@@ -33,7 +33,9 @@ class AuthRepository implements AuthInterface
             // return redirect()->intended('/'); //intended method takes url not route name
         }
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'The Provided Credentials Do Not Match Our Records.',
+            'password' => 'The Provided Password Does Not Match Our Records.',
+
         ]);
         // session()->flash('error', 'The provided credentials do not match our records.');
         // return redirect()->back();

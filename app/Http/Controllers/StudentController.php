@@ -25,15 +25,15 @@ class StudentController extends Controller
 
     }
 
-    public function getClasses( $gradeId)
-    {
-        return $this->studentsInterface->getClasses($gradeId);
-    }
+    // public function getClasses( $gradeId)
+    // {
+    //     return $this->studentsInterface->getClasses($gradeId);
+    // }
 
-    public function getSections( $classId)
-    {
-        return $this->studentsInterface->getSections($classId);
-    }
+    // public function getSections( $classId)
+    // {
+    //     return $this->studentsInterface->getSections($classId);
+    // }
 
     public function create()
     {

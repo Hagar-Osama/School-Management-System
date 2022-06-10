@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Repositories;
+namespace App\Http\Controllers\Dashboards\Teachers;
 
-use App\Http\Interfaces\OnlineMeetingsInterface;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AddMeetingRequest;
+use App\Http\Requests\AddMultipleMeetingsRequest;
+use App\Http\Requests\DeleteMeetingRequest;
 use App\Http\Traits\GradesTraits;
 use App\Http\Traits\OnlineMeetingsTraits;
 use App\Models\Grade;
 use App\Models\OnlineMeeting;
 use Exception;
 use MacsiDigital\Zoom\Facades\Zoom;
+use Illuminate\Http\Request;
 
-class OnlineMeetingsRepository implements OnlineMeetingsInterface
+class OnlineClassController extends Controller
 {
     private $meetingModel;
     private $gradesModel;
@@ -28,22 +32,22 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
     public function index()
     {
         $meetings = $this->meetingModel::where('created_by', auth()->user()->email)->get();
-        return view('Meetings.index', compact('meetings'));
+        return view('Teachers.Dashboard.Meetings.index', compact('meetings'));
     }
 
     public function create()
     {
         $grades = $this->getAllGrades();
-        return view('Meetings.create', compact('grades'));
+        return view('Teachers.Dashboard.Meetings.create', compact('grades'));
     }
 
     public function makeMeeting()
     {
         $grades = $this->getAllGrades();
-        return view('Meetings.multipleMeetings', compact('grades'));
+        return view('Teachers.Dashboard.Meetings.multipleMeetings', compact('grades'));
     }
 
-    public function store($request)
+    public function store(AddMeetingRequest $request)
     {
 
         try {
@@ -92,7 +96,7 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
         }
     }
 
-    public function storeMeeting($request)
+    public function storeMeeting(AddMultipleMeetingsRequest $request)
     {
 
         try {
@@ -120,7 +124,7 @@ class OnlineMeetingsRepository implements OnlineMeetingsInterface
     }
 
 
-    public function destroy($request)
+    public function destroy(DeleteMeetingRequest $request)
     {
         try {
 

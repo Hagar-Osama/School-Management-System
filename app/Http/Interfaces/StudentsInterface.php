@@ -5,9 +5,9 @@ interface StudentsInterface {
 
     public function index();
 
-    public function getClasses($gradeId);
+    // public function getClasses($gradeId);
 
-    public function getSections($classId);
+    // public function getSections($classId);
 
     public function create();
 

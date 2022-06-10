@@ -65,7 +65,7 @@
                                             <td>{{$meeting->grades->name}}</td>
                                             <td>{{$meeting->classes->name}}</td>
                                             <td>{{$meeting->sections->name}}</td>
-                                            <td>{{$meeting->users->name}}</td>
+                                            <td>{{$meeting->created_by}}</td>
                                             <td class="text-danger"><a href="{{$meeting->join_url}}" target="_blank">{{trans('meetings.Join Url')}}</a></td>
                                             <td>
                                                 <form action="{{route('onlineMeetings.destroy')}}" method="post" style="display: inline-block;">

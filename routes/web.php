@@ -91,8 +91,8 @@ Route::group(
         //////Students Routes/////
         Route::group(['prefix' => 'students', 'as' => 'students.'], function () {
             Route::get('/', [StudentController::class, 'index'])->name('index');
-            Route::get('/classes/{gradeId}', [StudentController::class, 'getClasses']);
-            Route::get('/sections/{classId}', [StudentController::class, 'getSections']);
+            // Route::get('/classes/{gradeId}', [StudentController::class, 'getClasses']);
+            // Route::get('/sections/{classId}', [StudentController::class, 'getSections']);
             Route::get('/create', [StudentController::class, 'create'])->name('create');
             Route::post('/store', [StudentController::class, 'store'])->name('store');
             Route::get('/show/{id}', [StudentController::class, 'show'])->name('show');

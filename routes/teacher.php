@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboards\Teachers\OnlineClassController;
 use App\Http\Controllers\Dashboards\Teachers\TeacherDashboardController;
 use App\Http\Controllers\Dashboards\Teachers\QuizController;
 use App\Http\Controllers\Dashboards\Teachers\TeacherQuestionController;
@@ -29,29 +30,40 @@ Route::group(
             Route::post('/attendance/store', [TeacherDashboardController::class, 'store'])->name('attendance.store');
             Route::get('attendance/reports', [TeacherDashboardController::class, 'getAttendanceReports'])->name('attendance.report');
             Route::post('attendance/search', [TeacherDashboardController::class, 'searchAttendance'])->name('attendance.search');
-            //classes and section Ajax routes
-            Route::get('students/classes/{gradeId}', [QuizController::class, 'getClasses']);
-            Route::get('students/sections/{classId}', [QuizController::class, 'getSections']);
+          
             //  Online Exams Routes
             Route::group(['prefix' => 'onlineExams', 'as' => 'onlineExams.'], function () {
-                Route::get('/', [QuizController::class, 'index'])->name('index');
-                Route::get('/create', [QuizController::class, 'create'])->name('create');
-                Route::post('/store', [QuizController::class, 'store'])->name('store');
-                Route::get('/edit/{onlineExamId}', [QuizController::class, 'edit'])->name('edit');
-                Route::put('/update', [QuizController::class, 'update'])->name('update');
-                Route::delete('/delete', [QuizController::class, 'destroy'])->name('destroy');
+                Route::get('/teacher', [QuizController::class, 'index'])->name('index');
+                Route::get('/teacher/create', [QuizController::class, 'create'])->name('create');
+                Route::post('/teacher/store', [QuizController::class, 'store'])->name('store');
+                Route::get('/teacher/edit/{onlineExamId}', [QuizController::class, 'edit'])->name('edit');
+                Route::put('/teacher/update', [QuizController::class, 'update'])->name('update');
+                Route::delete('/teacher/delete', [QuizController::class, 'destroy'])->name('destroy');
                
             });
+            ///  Questions Route
             Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
-                Route::get('/show/questions/{onlineExamId}', [QuizController::class, 'showQuestions'])->name('show');
-                Route::get('/', [TeacherQuestionController::class, 'index'])->name('index');
-                Route::get('/create/{onlineExamId}', [TeacherQuestionController::class, 'create'])->name('create');
-                Route::post('/store', [TeacherQuestionController::class, 'store'])->name('store');
-                Route::get('/edit/{questionId}', [TeacherQuestionController::class, 'edit'])->name('edit');
-                Route::put('/update', [TeacherQuestionController::class, 'update'])->name('update');
-                Route::delete('/delete', [TeacherQuestionController::class, 'destroy'])->name('destroy');
+                Route::get('/teacher/show/{onlineExamId}', [QuizController::class, 'showQuestions'])->name('show');
+                Route::get('/teacher', [TeacherQuestionController::class, 'index'])->name('index');
+                Route::get('/teacher/create/{onlineExamId}', [TeacherQuestionController::class, 'create'])->name('create');
+                Route::post('/teacher/store', [TeacherQuestionController::class, 'store'])->name('store');
+                Route::get('/teacher/edit/{questionId}', [TeacherQuestionController::class, 'edit'])->name('edit');
+                Route::put('/teacher/update', [TeacherQuestionController::class, 'update'])->name('update');
+                Route::delete('/teacher/delete', [TeacherQuestionController::class, 'destroy'])->name('destroy');
 
             });
+             //  online Meetings Routes (zoom integeration)
+        Route::group(['prefix' => 'zoom', 'as' => 'zoom.'], function () {
+            Route::get('/', [OnlineClassController::class, 'index'])->name('index');
+            Route::get('/create', [OnlineClassController::class, 'create'])->name('create');
+            Route::post('/store', [OnlineClassController::class, 'store'])->name('store');
+            Route::delete('/delete', [OnlineClassController::class, 'destroy'])->name('destroy');
+        });
+        //  multiple Meetings Routes
+        Route::group(['prefix' => 'indirectZoom', 'as' => 'indirectZoom.'], function () {
+            Route::get('/multipleMeetings/create', [OnlineClassController::class, 'makeMeeting'])->name('makeMeeting');
+            Route::post('/multipleMeetings/store', [OnlineClassController::class, 'storeMeeting'])->name('storeMeeting');
+        });
 
 
         });

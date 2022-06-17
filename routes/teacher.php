@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboards\Teachers\OnlineClassController;
 use App\Http\Controllers\Dashboards\Teachers\TeacherDashboardController;
 use App\Http\Controllers\Dashboards\Teachers\QuizController;
+use App\Http\Controllers\Dashboards\Teachers\TeacherProfileController;
 use App\Http\Controllers\Dashboards\Teachers\TeacherQuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::group(
             Route::post('/attendance/store', [TeacherDashboardController::class, 'store'])->name('attendance.store');
             Route::get('attendance/reports', [TeacherDashboardController::class, 'getAttendanceReports'])->name('attendance.report');
             Route::post('attendance/search', [TeacherDashboardController::class, 'searchAttendance'])->name('attendance.search');
-          
+
             //  Online Exams Routes
             Route::group(['prefix' => 'onlineExams', 'as' => 'onlineExams.'], function () {
                 Route::get('/teacher', [QuizController::class, 'index'])->name('index');
@@ -39,7 +40,7 @@ Route::group(
                 Route::get('/teacher/edit/{onlineExamId}', [QuizController::class, 'edit'])->name('edit');
                 Route::put('/teacher/update', [QuizController::class, 'update'])->name('update');
                 Route::delete('/teacher/delete', [QuizController::class, 'destroy'])->name('destroy');
-               
+
             });
             ///  Questions Route
             Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
@@ -64,8 +65,9 @@ Route::group(
             Route::get('/multipleMeetings/create', [OnlineClassController::class, 'makeMeeting'])->name('makeMeeting');
             Route::post('/multipleMeetings/store', [OnlineClassController::class, 'storeMeeting'])->name('storeMeeting');
         });
-
-
+        //teacher profile routes
+        Route::get('teacher/profile', [TeacherProfileController::class, 'index'])->name('profile.index');
+        Route::put('teacher/profile/update/{id}', [TeacherProfileController::class, 'updateProfile'])->name('profile.update');
         });
     }
 );

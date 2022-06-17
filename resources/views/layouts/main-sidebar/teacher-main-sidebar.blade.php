@@ -70,7 +70,7 @@
 
         <!-- الملف الشخصي-->
         <li>
-            <a href=""><i class="fas fa-id-card-alt"></i><span class="right-nav-text">{{trans('dashboardPage.Personal File')}}</span></a>
+            <a href="{{route('profile.index')}}"><i class="fas fa-id-card-alt"></i><span class="right-nav-text">{{trans('dashboardPage.Personal File')}}</span></a>
         </li>
 
 

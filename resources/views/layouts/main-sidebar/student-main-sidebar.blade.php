@@ -14,15 +14,22 @@
         <!-- menu item Elements-->
       <!-- الامتحانات-->
       <li>
-            <a href=""><i class="fas fa-book-open"></i><span
-                    class="right-nav-text">الامتحانات</span></a>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
+                <div class="pull-left"><i class="fas fa-chalkboard"></i><span class="right-nav-text">{{trans('exams.Exams')}}</span></div>
+                <div class="pull-right"><i class="ti-plus"></i></div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
+                <li><a href=""> {{trans('dashboardPage.Exams List')}}</a></li>
+            </ul>
+
         </li>
 
 
         <!-- Settings-->
         <li>
             <a href=""><i class="fas fa-id-card-alt"></i><span
-                    class="right-nav-text">الملف الشخصي</span></a>
+                    class="right-nav-text">{{trans('dashboardPage.Personal File')}}</span></a>
         </li>
 
     </ul>

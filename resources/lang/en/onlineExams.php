@@ -10,4 +10,6 @@ return [
     'Delete Online Exam' => 'Delete Online Exam',
     'Close' => 'Close',
     'Submit' => 'Submit',
+
+    'TakeExam / Score' => 'TakeExam / Score',
 ];

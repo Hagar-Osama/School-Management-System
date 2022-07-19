@@ -2,7 +2,7 @@
     <ul class="nav navbar-nav side-menu" id="sidebarnav">
         <!-- menu item Dashboard-->
         <li>
-            <a href="{{route('dashboard')}}">
+            <a href="{{route('students.dashboard')}}">
                 <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{trans('main-sidebar.Dashboard')}}</span>
                 </div>
                 <div class="clearfix"></div>
@@ -20,7 +20,7 @@
                 <div class="clearfix"></div>
             </a>
             <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
-                <li><a href=""> {{trans('dashboardPage.Exams List')}}</a></li>
+                <li><a href="{{route('studentsOnlineExams.index')}}"> {{trans('dashboardPage.Exams List')}}</a></li>
             </ul>
 
         </li>

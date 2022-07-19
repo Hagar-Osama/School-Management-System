@@ -10,4 +10,6 @@ return [
     'Delete Online Exam' =>  'حذف  امتحان اونلاين',
     'Close' => 'اغلاق',
     'Submit' => 'تنفيذ',
+
+    'TakeExam / Score' => 'دخول الامتحانات / الدرجة',
 ];

@@ -60,7 +60,7 @@
 
                                 <div class="form-row">
                                     <div class="col">
-                                        <label for="title"> {{trans('questions.Answer')}}</label>
+                                        <label for="title"> {{trans('questions.Answer')}} <span style="color: red; font-size: smaller"> يجب فصل بعلامه - بين الاسئلة</span></label>
                                         <textarea name="answer" class="form-control" id="exampleFormControlTextarea1"
                                                   rows="4"></textarea>
                                     </div>
@@ -77,7 +77,7 @@
                                 <br>
 
                                 <div class="form-row">
-                                
+
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="Grade_id">{{trans('questions.Score')}} : <span class="text-danger">*</span></label>

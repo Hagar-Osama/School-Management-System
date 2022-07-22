@@ -39,4 +39,9 @@ class OnlineExam extends Model
     {
         return $this->hasMany(Question::class, 'online_exam_id');
     }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class, 'online_exam_id');
+    }
 }

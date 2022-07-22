@@ -42,23 +42,35 @@ class ShowQuestions extends Component
             //if there is previous score update the score table with the new exam results
         } else {
 
-            $scores->question_id  = $questionId;
-            //here we check wether the right answer is equivalent to the right answer in the question table
-            if (strcmp(trim($answer), trim($rightAnswer)) === 0) {
-                $scores->score += $score;
-            } else {
-                $scores->score += 0;
+            if($studentScores->question_id >= $this->question[$this->counter]->id) {
+                $studentScores->score = '0';
+                $studentScores->manipulation = '1';
+                $studentScores->save();
+                toastr()->error('Exam canceled automatically for manipulation');
+                return redirect()->route('studentsOnlineExams.index');
+
+            }else {
+                $studentScores->question_id  = $questionId;
+                //here we check wether the right answer is equivalent to the right answer in the question table
+                if (strcmp(trim($answer), trim($rightAnswer)) === 0) {
+                    $studentScores->score += $score;
+                } else {
+                    $studentScores->score += 0;
+                }
+                $studentScores->save();
+
             }
-            $scores->save();
+
+
 
         }
 
-        if($this->counter < $this->questionCount) {
+        if($this->counter < $this->questionCount - 1) {
             $this->counter++;
 
         }else {
             toastr()->success('Exam submitted successfully');
-            return redirect()->route('studentsOnlieExams.index');
+            return redirect()->route('studentsOnlineExams.index');
         }
     }
 

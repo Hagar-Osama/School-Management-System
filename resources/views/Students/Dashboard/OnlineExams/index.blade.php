@@ -52,13 +52,17 @@
                                             <td>{{$onlineExam->name}}</td>
                                             <td>{{$onlineExam->subjects->name}}</td>
 
-
-                                            <td>  <a href="{{route('studentsOnlineExams.show',$onlineExam->id)}}"
-                                                           class="btn btn-outline-success btn-sm" role="button"
-                                                           aria-pressed="true" onclick="alertAbuse()">
-                                                            <i class="fas fa-person-booth"></i></a></a>
+                                            <td>
+                                                @if($onlineExam->scores->count() > 0 && $onlineExam->id == $onlineExam->scores[0]->online_exam_id)
+                                                {{$onlineExam->scores[0]->score}}
+                                                @else
+                                                <a href="{{route('studentsOnlineExams.show',$onlineExam->id)}}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true" onclick="alertManipulation()">
+                                                    <i class="fas fa-person-booth"></i></a></a>
                                             </td>
                                         </tr>
+
+                                        @endif
+
                                         @endforeach
                                 </table>
                             </div>
@@ -74,4 +78,9 @@
 @section('js')
 @toastr_js
 @toastr_render
+<script>
+    function alertManipulation() {
+        alert('Please dont try to refresh the page once you start the exam,if you did, your exam will be ended automatically');
+    }
+    </script>
 @endsection

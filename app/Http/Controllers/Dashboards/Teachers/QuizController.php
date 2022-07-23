@@ -18,6 +18,7 @@ use App\Http\Requests\DeleteOnlineExamRequest;
 use App\Http\Requests\UpdateQuizTeacherDashboardRequest;
 use App\Models\Classes;
 use App\Models\Question;
+use App\Models\Score;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -29,12 +30,13 @@ class QuizController extends Controller
     private $classModel;
     private $sectionModel;
     private $questionModel;
+    private $scoreModel;
     use OnlineExamsTraits;
     use GradesTraits;
 
 
 
-    public function __construct(Subject $subjects, OnlineExam $onlineExam, Grade $grade, Classes $classes, Section $section, Question $question)
+    public function __construct(Subject $subjects, OnlineExam $onlineExam, Grade $grade, Classes $classes, Section $section, Question $question, Score $score)
     {
         $this->subjectModel = $subjects;
         $this->gradesModel = $grade;
@@ -42,6 +44,7 @@ class QuizController extends Controller
         $this->classModel = $classes;
         $this->sectionModel = $section;
         $this->questionModel = $question;
+        $this->scoreModel = $score;
     }
 
     public function index()
@@ -136,6 +139,22 @@ class QuizController extends Controller
         $questions = $this->questionModel::where('online_exam_id', $onlineExamId)->get();
         $onlineExam = $this->getOnlineExamById($onlineExamId);
         return view('Teachers.Dashboard.questions.index', compact('onlineExam', 'questions'));
+
+
+    }
+
+    public function showScores($onlineExamId)
+    {
+        $scores = $this->scoreModel::where('online_exam_id', $onlineExamId)->get();
+        return view('Teachers.Dashboard.onlineExams.scoresShow', compact('scores'));
+    }
+
+    public function retakeExam(Request $request, $onlineExamId)
+    {
+        $scores = $this->scoreModel::where([['student_id', $request->student_id], ['online_exam_id', $onlineExamId]])->first();
+        $scores->delete();
+        toastr()->success(trans('Exam can be retaken Now'));
+        return redirect()->back();
 
 
     }

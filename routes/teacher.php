@@ -40,7 +40,9 @@ Route::group(
                 Route::get('/teacher/edit/{onlineExamId}', [QuizController::class, 'edit'])->name('edit');
                 Route::put('/teacher/update', [QuizController::class, 'update'])->name('update');
                 Route::delete('/teacher/delete', [QuizController::class, 'destroy'])->name('destroy');
-
+                //students who took te exam route
+                Route::get('teacher/students/examsResults/{onlineExamId}', [QuizController::class, 'showScores'])->name('scores.show');
+                Route::post('teacher/student/retakeExam/{onlineExamId}', [QuizController::class, 'retakeExam'])->name('retakeExam');
             });
             ///  Questions Route
             Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
@@ -51,23 +53,22 @@ Route::group(
                 Route::get('/teacher/edit/{questionId}', [TeacherQuestionController::class, 'edit'])->name('edit');
                 Route::put('/teacher/update', [TeacherQuestionController::class, 'update'])->name('update');
                 Route::delete('/teacher/delete', [TeacherQuestionController::class, 'destroy'])->name('destroy');
-
             });
-             //  online Meetings Routes (zoom integeration)
-        Route::group(['prefix' => 'zoom', 'as' => 'zoom.'], function () {
-            Route::get('/', [OnlineClassController::class, 'index'])->name('index');
-            Route::get('/create', [OnlineClassController::class, 'create'])->name('create');
-            Route::post('/store', [OnlineClassController::class, 'store'])->name('store');
-            Route::delete('/delete', [OnlineClassController::class, 'destroy'])->name('destroy');
-        });
-        //  multiple Meetings Routes
-        Route::group(['prefix' => 'indirectZoom', 'as' => 'indirectZoom.'], function () {
-            Route::get('/multipleMeetings/create', [OnlineClassController::class, 'makeMeeting'])->name('makeMeeting');
-            Route::post('/multipleMeetings/store', [OnlineClassController::class, 'storeMeeting'])->name('storeMeeting');
-        });
-        //teacher profile routes
-        Route::get('teacher/profile', [TeacherProfileController::class, 'index'])->name('profile.index');
-        Route::put('teacher/profile/update/{id}', [TeacherProfileController::class, 'updateProfile'])->name('profile.update');
+            //  online Meetings Routes (zoom integeration)
+            Route::group(['prefix' => 'zoom', 'as' => 'zoom.'], function () {
+                Route::get('/', [OnlineClassController::class, 'index'])->name('index');
+                Route::get('/create', [OnlineClassController::class, 'create'])->name('create');
+                Route::post('/store', [OnlineClassController::class, 'store'])->name('store');
+                Route::delete('/delete', [OnlineClassController::class, 'destroy'])->name('destroy');
+            });
+            //  multiple Meetings Routes
+            Route::group(['prefix' => 'indirectZoom', 'as' => 'indirectZoom.'], function () {
+                Route::get('/multipleMeetings/create', [OnlineClassController::class, 'makeMeeting'])->name('makeMeeting');
+                Route::post('/multipleMeetings/store', [OnlineClassController::class, 'storeMeeting'])->name('storeMeeting');
+            });
+            //teacher profile routes
+            Route::get('teacher/profile', [TeacherProfileController::class, 'index'])->name('profile.index');
+            Route::put('teacher/profile/update/{id}', [TeacherProfileController::class, 'updateProfile'])->name('profile.update');
         });
     }
 );

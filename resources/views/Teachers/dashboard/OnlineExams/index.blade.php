@@ -68,7 +68,7 @@
                                                     <button type="submit" onclick="return confirm('Are You Sure?')" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-trash"></i></button>
                                                 </form>
                                                 <a href="{{route('questions.show', [$onlineExam->id])}}" class="btn btn-warning btn-sm" title="questions" role="button" aria-pressed="true"><i class="fa fa-binoculars"></i></a>
-                                            </td>
+                                                <a href="{{route('onlineExams.scores.show',$onlineExam->id)}}" class="btn btn-primary btn-sm" title="عرض الطلاب المختبرين" role="button" aria-pressed="true"><i class="fa fa-street-view"></i></ </td>
                                         </tr>
                                         @endforeach
                                 </table>

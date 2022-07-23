@@ -1,6 +1,7 @@
 <?php
 return [
     'Students' => 'الطلاب',
+    'Student' => 'الطالب',
     'Home' => 'الرئيسية',
     'Students List' => 'قائمة الطلاب',
     'Student Name' => 'اسم الطالب',

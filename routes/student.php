@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboards\Students\StudentExamController;
+use App\Http\Controllers\Dashboards\Students\StudentProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,11 @@ Route::group(
             Route::get('/studentExam/show/{onlineExamId}', [StudentExamController::class, 'show'])->name('show');
 
         });
+
+        //student Profile Route
+        Route::get('student/profile', [StudentProfileController::class, 'index'])->name('studentProfile.index');
+        Route::put('student/profile/update/{id}', [StudentProfileController::class, 'updateProfile'])->name('studentProfile.update');
+
 
     });
 

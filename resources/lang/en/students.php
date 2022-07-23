@@ -1,6 +1,7 @@
 <?php
 return [
     'Students' => 'Students',
+    'Student' => 'Student',
     'Home' => 'Home',
     'Students List' => 'Students List',
     'Student Name' => 'Student Name',

@@ -2,7 +2,7 @@
     <ul class="nav navbar-nav side-menu" id="sidebarnav">
         <!-- menu item Dashboard-->
         <li>
-            <a href="{{route('dashboard')}}">
+            <a href="{{route('parents.dashboard')}}">
                 <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{trans('main-sidebar.Dashboard')}}</span>
                 </div>
                 <div class="clearfix"></div>
@@ -13,6 +13,19 @@
         <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Components </li>
         <!-- menu item Elements-->
 
+
+      <!-- الامتحانات-->
+      <li>
+            <a href="{{route('studentsOnlineExamsResults.show')}}"><i class="fas fa-book-open"></i><span
+                    class="right-nav-text">الابناء</span></a>
+        </li>
+
+
+        <!-- Settings-->
+        <li>
+            <a href="{{route('parentStudentProfile.index')}}"><i class="fas fa-id-card-alt"></i><span
+                    class="right-nav-text">الملف الشخصي</span></a>
+        </li>
 
     </ul>
 </div>

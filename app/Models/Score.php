@@ -12,4 +12,9 @@ class Score extends Model
         return $this->belongsTo(Student::class, 'student_id');
     }
 
+    public function onlineExams()
+    {
+        return $this->belongsTo(OnlineExam::class, 'online_exam_id');
+    }
+
 }

@@ -14,17 +14,24 @@
         <!-- menu item Elements-->
 
 
-      <!-- الامتحانات-->
-      <li>
-            <a href="{{route('studentsOnlineExamsResults.show')}}"><i class="fas fa-book-open"></i><span
-                    class="right-nav-text">الابناء</span></a>
+        <!-- الابناء-->
+        <li>
+            <a href="{{route('children.index')}}"><i class="fas fa-book-open"></i><span class="right-nav-text">الابناء</span></a>
         </li>
+        <!-- تقرير الحضور والغياب-->
+        <li>
+            <a href=""><i class="fas fa-book-open"></i><span class="right-nav-text">تقرير الحضور والغياب</span></a>
+        </li>
+        <!-- تقرير المالية-->
+        <li>
+            <a href=""><i class="fas fa-book-open"></i><span class="right-nav-text">تقرير المالية</span></a>
+        </li>
+
 
 
         <!-- Settings-->
         <li>
-            <a href="{{route('parentStudentProfile.index')}}"><i class="fas fa-id-card-alt"></i><span
-                    class="right-nav-text">الملف الشخصي</span></a>
+            <a href="{{route('parentStudentProfile.index')}}"><i class="fas fa-id-card-alt"></i><span class="right-nav-text">الملف الشخصي</span></a>
         </li>
 
     </ul>

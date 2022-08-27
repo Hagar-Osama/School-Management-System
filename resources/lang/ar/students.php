@@ -5,7 +5,7 @@ return [
     'Home' => 'الرئيسية',
     'Students List' => 'قائمة الطلاب',
     'Student Name' => 'اسم الطالب',
-    'Actions' => 'عمليات',
+    'Actions' => 'العمليات',
     'Add Student' => 'اضافة الطالب',
     'Edit Student' => 'تعديل الطالب',
     'Delete Student' => 'حذف الطالب',

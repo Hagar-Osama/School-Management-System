@@ -20,7 +20,7 @@
         </li>
         <!-- تقرير الحضور والغياب-->
         <li>
-            <a href=""><i class="fas fa-book-open"></i><span class="right-nav-text">تقرير الحضور والغياب</span></a>
+            <a href="{{route('parents.attendance')}}"><i class="fas fa-book-open"></i><span class="right-nav-text">تقرير الحضور والغياب</span></a>
         </li>
         <!-- تقرير المالية-->
         <li>

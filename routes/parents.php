@@ -34,6 +34,10 @@ Route::group(
             Route::get('/studentExam/result/{studentId}', [ParentDashboardController::class, 'showResults'])->name('show');
 
         });
+        //student attendance route
+        Route::get('parent/studentAttendance',[ParentDashboardController::class, 'showAttendance'])->name('parents.attendance');
+        Route::post('parent/attendance/search', [ParentDashboardController::class, 'searchAttendance'])->name('attendance.search');
+
         //student Profile Route
         Route::get('parent/student/profile', [ParentDashboardController::class, 'profileIndex'])->name('parentStudentProfile.index');
 

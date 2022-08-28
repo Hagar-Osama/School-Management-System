@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('css')
 
@@ -14,7 +15,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                <li class="breadcrumb-item"><a href="{{route('teacher.dashboard')}}" class="default-color">{{trans('sections.Home')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{route('parents.dashboard')}}" class="default-color">{{trans('sections.Home')}}</a></li>
                 <li class="breadcrumb-item active">{{trans('dashboardPage.Attendance Reports')}}</li>
             </ol>
         </div>
@@ -49,7 +50,7 @@
                                 <label for="student">{{trans('students.Students')}}</label>
                                 <select class="custom-select mr-sm-2" name="student_id">
                                     <option value="all">الكل</option>
-                                    @foreach($students as $student)
+                                    @foreach($studentsTable as $student)
                                         <option value="{{ $student->id }}">{{ $student->name }}</option>
                                     @endforeach
                                 </select>
@@ -85,13 +86,15 @@
                         @foreach($studentsTable as $studentAttendance)
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
-                                <td>{{$studentAttendance->students->name}}</td>
-                                <td>{{$studentAttendance->grades->name}}</td>
-                                <td>{{$studentAttendance->sections->name}}</td>
-                                <td>{{$studentAttendance->attendance_date}}</td>
+                                <td>{{$studentAttendance->name}}</td>
+                                <td>{{$studentAttendance->grade->name}}</td>
+                                <td>{{$studentAttendance->section->name}}</td>
+                                @foreach($studentAttendance->attendances as $attendanceDate)
+                                <td>{{$attendanceDate->attendance_date}}</td>
+                                @endforeach
                                 <td>
 
-                                    @if($student->attendance_status == 0)
+                                    @if($studentAttendance->attendance_status == 0)
                                         <span class="btn-danger">{{trans('attendance.Absence')}}</span>
                                     @else
                                         <span class="btn-success">{{trans('attendance.Attendance')}}</span>

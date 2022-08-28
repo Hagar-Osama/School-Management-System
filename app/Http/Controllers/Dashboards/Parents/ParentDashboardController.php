@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboards\Parents;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\FeeInvoice;
+use App\Models\Refund;
 use App\Models\Score;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -32,7 +34,7 @@ class ParentDashboardController extends Controller
     public function showResults($studentId)
     {
         $student = Student::findOrFail($studentId);
-        if ($student->parent_id !== auth()->user()->id) {
+        if ($student->parent_id != auth()->user()->id) {
             toastr()->error('there is something wrong in student info');
             return redirect()->route('children.index');
         }
@@ -78,6 +80,32 @@ class ParentDashboardController extends Controller
             $studentsTable = $this->attendanceModel::whereBetween('attendance_date', [$request->from, $request->to])->where('student_id', $request->student_id)->get();
             return view('parents.studentsAttendance', compact('students', 'studentsTable'));
         }
+    }
+
+    public function showFeesInvoices()
+    {
+        $studentsId = Student::where('parent_id', auth()->user()->id)->pluck('id');
+        $feesInvoices = FeeInvoice::whereIn('student_id', $studentsId)->get();
+        return view('parents.feesInvoicesIndex', compact('feesInvoices'));
+
+
+    }
+
+    public function feesInvoicesReceipt($studentId)
+    {
+        $student = Student::findOrFail($studentId);
+        if ($student->parent_id != auth()->user()->id) {
+            toastr()->error('there is something wrong in student info');
+            return redirect()->route('feesInvoices');
+        }
+        $refunds = Refund::where('student_id', $studentId)->get();
+        if (empty($refunds)) {
+            toastr()->error('there are no Refunds for this student');
+            return redirect()->route('feesInvoices');
+        }
+        return view('parents.receipts',compact('refunds'));
+
+
     }
 
     public function profileIndex()

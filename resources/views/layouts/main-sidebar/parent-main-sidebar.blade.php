@@ -24,7 +24,7 @@
         </li>
         <!-- تقرير المالية-->
         <li>
-            <a href=""><i class="fas fa-book-open"></i><span class="right-nav-text">تقرير المالية</span></a>
+            <a href="{{route('feesInvoices')}}"><i class="fas fa-book-open"></i><span class="right-nav-text">تقرير المالية</span></a>
         </li>
 
 

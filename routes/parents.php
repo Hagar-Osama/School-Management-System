@@ -37,6 +37,10 @@ Route::group(
         //student attendance route
         Route::get('parent/studentAttendance',[ParentDashboardController::class, 'showAttendance'])->name('parents.attendance');
         Route::post('parent/attendance/search', [ParentDashboardController::class, 'searchAttendance'])->name('attendance.search');
+        //students fees Invoices Route
+        Route::get('parents/feesInvoices/index', [ParentDashboardController::class, 'showFeesInvoices'])->name('feesInvoices');
+        Route::get('parents/feesInvoices/receipt/{studentId}', [ParentDashboardController::class, 'feesInvoicesReceipt'])->name('feesReceipt');
+        Route::get('parents/receipts/index', [ParentDashboardController::class, 'showReceipts'])->name('receipts');
 
         //student Profile Route
         Route::get('parent/student/profile', [ParentDashboardController::class, 'profileIndex'])->name('parentStudentProfile.index');

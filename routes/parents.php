@@ -43,7 +43,9 @@ Route::group(
         Route::get('parents/receipts/index', [ParentDashboardController::class, 'showReceipts'])->name('receipts');
 
         //student Profile Route
-        Route::get('parent/student/profile', [ParentDashboardController::class, 'profileIndex'])->name('parentStudentProfile.index');
+        Route::get('parent/profile', [ParentDashboardController::class, 'profileIndex'])->name('parentStudentProfile.index');
+        Route::put('parent//profile/update/{id}', [ParentDashboardController::class, 'updateProfile'])->name('parentProfile.update');
+
 
 
 

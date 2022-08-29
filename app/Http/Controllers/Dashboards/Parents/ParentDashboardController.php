@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Dashboards\Parents;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\FeeInvoice;
+use App\Models\myParent;
 use App\Models\Refund;
 use App\Models\Score;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -17,11 +19,14 @@ class ParentDashboardController extends Controller
 {
     private $studentModel;
     private $attendanceModel;
+    private $parentModel;
 
-    public function __construct(Student $student, Attendance $attendance)
+
+    public function __construct(Student $student, Attendance $attendance, myParent $parent)
     {
         $this->studentModel = $student;
         $this->attendanceModel = $attendance;
+        $this->parentModel = $parent;
 
     }
 
@@ -110,5 +115,30 @@ class ParentDashboardController extends Controller
 
     public function profileIndex()
     {
+        $information = $this->parentModel::findOrFail(auth()->user()->id);
+        return view('parents.profile', compact('information'));
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $request->validate([
+            'name_en' => 'required',
+            'name_ar' => 'required',
+        ]);
+        $parent = $this->parentModel::findOrFail($id);
+        if(! empty($request->password)) {
+            $parent->update([
+                'father_name' => ['ar' => $request->name_ar, 'en' => $request->name_en],
+                'password' => Hash::make($request->password)
+            ]);
+        }else {
+            $parent->update([
+                'father_name' => ['ar' => $request->name_ar, 'en' => $request->name_en],
+            ]);
+        }
+        toastr()->success(trans('messages.update'));
+        return redirect()->back();
+
+
     }
 }
